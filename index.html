@@ -376,35 +376,6 @@ body::before{
 ::-webkit-scrollbar{width:4px;height:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
-/* ── MODAL DE NOTICIA ── */
-.modal-overlay{display:none;position:fixed;inset:0;z-index:500;
-  background:rgba(0,0,0,0.5);backdrop-filter:blur(6px);
-  align-items:center;justify-content:center;padding:20px;}
-.modal-overlay.open{display:flex;}
-.modal-box{background:var(--surface);border-radius:12px;max-width:680px;width:100%;
-  max-height:85vh;display:flex;flex-direction:column;
-  box-shadow:0 20px 60px rgba(0,0,0,0.25);overflow:hidden;
-  animation:modalIn 0.2s ease;}
-@keyframes modalIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
-.modal-header{padding:20px 24px 16px;border-bottom:1px solid var(--border);flex-shrink:0;}
-.modal-cats{margin-bottom:8px;display:flex;gap:4px;flex-wrap:wrap;}
-.modal-title{font-size:18px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:6px;}
-.modal-meta{font-family:var(--mono);font-size:10px;color:var(--text-faint);}
-.modal-body{padding:20px 24px;overflow-y:auto;flex:1;}
-.modal-resumen{font-size:14px;color:var(--text-dim);line-height:1.85;}
-.modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
-.modal-footer{padding:14px 24px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end;flex-shrink:0;}
-.modal-close-btn{position:absolute;top:14px;right:14px;width:30px;height:30px;
-  border-radius:50%;border:1px solid var(--border);background:var(--surface2);
-  cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;
-  color:var(--text-dim);transition:all 0.15s;}
-.modal-close-btn:hover{background:var(--red);color:#fff;border-color:var(--red);}
-.modal-box{position:relative;}
-.ver-mas-noticia{background:none;border:none;color:var(--accent);font-family:var(--mono);
-  font-size:10px;font-weight:600;cursor:pointer;padding:2px 0 8px;
-  letter-spacing:0.3px;transition:opacity 0.15s;}
-.ver-mas-noticia:hover{opacity:0.7;}
-
 </style>
 </head>
 <body>
@@ -677,34 +648,6 @@ function norm(s){
     .replace(/ó/g,'o').replace(/ú/g,'u').replace(/ü/g,'u')
     .replace(/ñ/g,'n').trim();
 }
-
-/* ── MODAL ── */
-function openModal(id){
-  var allNews=getAllNews();
-  var n=null;
-  for(var i=0;i<allNews.length;i++){if(allNews[i].id===id){n=allNews[i];break;}}
-  if(!n)return;
-  document.getElementById('modalCats').innerHTML=cbadges(n.cats);
-  document.getElementById('modalTitle').textContent=n.titulo;
-  document.getElementById('modalMeta').textContent=fechaLegible(n.fecha)+' · '+n.fuente;
-  document.getElementById('modalResumen').textContent=n.resumen;
-  var tagsHtml=n.tags.map(function(t){return '<span class="n-tag">'+esc(t)+'</span>';}).join('');
-  document.getElementById('modalTags').innerHTML=tagsHtml;
-  var srcQ=n.url&&n.url.trim()!==''?n.url:'https://www.google.com/search?q='+encodeURIComponent(n.titulo.substring(0,70)+' '+n.fuente.split(',')[0]);
-  document.getElementById('modalVerFuente').href=srcQ;
-  document.getElementById('modalCopiar').onclick=function(){shareNews(n.id,n.titulo,n.fuente);};
-  document.getElementById('modalOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeModal(e){
-  if(e&&e.target!==document.getElementById('modalOverlay'))return;
-  document.getElementById('modalOverlay').classList.remove('open');
-  document.body.style.overflow='';
-}
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape'){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
-});
-
 function esc(s){
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
@@ -1042,12 +985,7 @@ function renderContent(){
       : esc(n.titulo);
     html+='<div class="n-title" data-orig="'+esc(n.titulo)+'">'+tituloHtml+'</div></div>';
     html+='<div class="n-img" style="color:'+catColor(n.cats)+'">'+getCatSVG(n.cats)+'</div></div>';
-    var resumenCorto=n.resumen.length>200;
-    html+='<div class="n-summary" style="'+(resumenCorto?'display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;':'')+'">';
-    html+=esc(n.resumen)+'</div>';
-    if(resumenCorto){
-      html+='<button class="ver-mas-noticia" onclick="openModal(\''+esc(n.id)+'\')">Ver más ▾</button>';
-    }
+    html+='<div class="n-summary">'+esc(n.resumen)+'</div>';
     html+='<div class="n-footer"><div class="n-meta"><span class="n-source">'+esc(n.fuente)+'</span><div class="n-tags">'+tags+'</div></div>';
     html+='<div class="n-actions">';
     html+='<a class="share-btn" href="'+srcQ+'" target="_blank" rel="noopener">↗ Ver fuente</a>';
@@ -1296,27 +1234,7 @@ function exportPDF(){
     html+='<div class="item-source">'+esc(n.fuente)+'</div></div>';
   });
   html+='<div class="footer"><span>SF Peruano · Departamento de Análisis del Sistema Financiero · '+esc(d.label)+'</span><span>USO INTERNO — No distribuir sin autorización</span></div>';
-  html+='
-<!-- MODAL NOTICIA -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-  <div class="modal-box" id="modalBox">
-    <button class="modal-close-btn" onclick="closeModal()" aria-label="Cerrar">✕</button>
-    <div class="modal-header">
-      <div class="modal-cats" id="modalCats"></div>
-      <div class="modal-title" id="modalTitle"></div>
-      <div class="modal-meta" id="modalMeta"></div>
-    </div>
-    <div class="modal-body">
-      <div class="modal-resumen" id="modalResumen"></div>
-      <div class="modal-tags" id="modalTags"></div>
-    </div>
-    <div class="modal-footer">
-      <a id="modalVerFuente" class="share-btn" href="#" target="_blank" rel="noopener" style="padding:8px 14px;">↗ Ver fuente</a>
-      <button id="modalCopiar" class="share-btn" style="padding:8px 14px;">⎘ Copiar</button>
-    </div>
-  </div>
-</div>
-</body></html>';
+  html+='</body></html>';
   var win=window.open('','_blank','width=920,height=720');
   win.document.write(html);win.document.close();
   setTimeout(function(){win.print();},700);
@@ -1347,25 +1265,5 @@ window.addEventListener('DOMContentLoaded',function(){
   renderContent();
 });
 </script>
-
-<!-- MODAL NOTICIA -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-  <div class="modal-box" id="modalBox">
-    <button class="modal-close-btn" onclick="closeModal()" aria-label="Cerrar">✕</button>
-    <div class="modal-header">
-      <div class="modal-cats" id="modalCats"></div>
-      <div class="modal-title" id="modalTitle"></div>
-      <div class="modal-meta" id="modalMeta"></div>
-    </div>
-    <div class="modal-body">
-      <div class="modal-resumen" id="modalResumen"></div>
-      <div class="modal-tags" id="modalTags"></div>
-    </div>
-    <div class="modal-footer">
-      <a id="modalVerFuente" class="share-btn" href="#" target="_blank" rel="noopener" style="padding:8px 14px;">↗ Ver fuente</a>
-      <button id="modalCopiar" class="share-btn" style="padding:8px 14px;">⎘ Copiar</button>
-    </div>
-  </div>
-</div>
 </body>
 </html>
