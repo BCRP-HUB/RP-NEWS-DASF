@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noticias — Sistema Financiero Peruano</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap');
+:root{
+  --bg:#f5f7fa;--bg2:#edf0f5;--surface:#ffffff;--surface2:#f0f4f8;
+  --border:#d4dce8;--border2:#c0ccd8;
+  --text:#1a2438;--text-dim:#5a6e88;--text-faint:#a0b0c4;
+  --accent:#005ea8;--accent2:#0070c4;--accent-light:#e8f2fb;
+  --green:#1a7f37;--red:#b91c1c;--orange:#b45309;--purple:#6d28d9;
+  --teal:#0e7490;--pink:#be185d;
+  --gold:#92710a;--gold-bg:#fefce8;
+  --mono:'IBM Plex Mono',monospace;--sans:'Inter',sans-serif;--radius:8px;
+  --shadow:0 1px 3px rgba(0,0,0,0.08),0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md:0 4px 12px rgba(0,0,0,0.10),0 2px 4px rgba(0,0,0,0.06);
+}
+[data-theme="dark"]{
+  --bg:#05090f;--bg2:#0a1020;--surface:#111827;--surface2:#1a2438;
+  --border:#1e2d45;--border2:#243352;
+  --text:#c8d6e8;--text-dim:#6b7f99;--text-faint:#2e3f57;
+  --accent:#2f81f7;--accent2:#1a5fc0;--accent-light:rgba(47,129,247,0.1);
+  --green:#3fb950;--red:#f85149;--orange:#d29922;--purple:#a371f7;
+  --teal:#39d5d5;--pink:#f778ba;
+  --gold:#d4a017;--gold-bg:rgba(212,160,23,0.08);
+  --shadow:0 1px 3px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.4);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--text);
+  min-height:100vh;transition:background 0.3s,color 0.3s;
+}
+
+/* BCRP-inspired background: light watermark pattern */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 70% 45% at 85% 15%,rgba(0,94,168,0.055) 0%,transparent 65%),
+    radial-gradient(ellipse 50% 35% at 10% 90%,rgba(0,112,196,0.035) 0%,transparent 60%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1' fill='%23005ea8' opacity='0.04'/%3E%3C/svg%3E") repeat;
+}
+[data-theme="dark"] body::before{
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 0%,rgba(47,129,247,0.06) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 100%,rgba(57,213,213,0.03) 0%,transparent 55%),
+    url("data:image/svg+xml,%3Csvg width='48' height='48' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='48' y2='0' stroke='%232f81f7' stroke-width='0.3' opacity='0.3'/%3E%3Cline x1='0' y1='0' x2='0' y2='48' stroke='%232f81f7' stroke-width='0.3' opacity='0.3'/%3E%3C/svg%3E") repeat;
+}
+
+/* Top accent bar — BCRP brand blue */
+.sidebar-accent{position:fixed;left:0;top:0;bottom:0;width:4px;z-index:20;
+  background:linear-gradient(180deg,#005ea8 0%,#0070c4 40%,#1a8a6e 80%,#005ea8 100%);
+  opacity:0.9;}
+[data-theme="dark"] .sidebar-accent{background:linear-gradient(180deg,var(--accent),var(--teal),var(--green),var(--purple));}
+
+/* TOPBAR (mobile) */
+.topbar{display:none;position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,0.96);border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);padding:0 16px;height:52px;
+  align-items:center;justify-content:space-between;gap:10px;
+  box-shadow:var(--shadow);}
+[data-theme="dark"] .topbar{background:rgba(10,16,32,0.96);}
+.topbar-title{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);}
+.topbar-actions{display:flex;align-items:center;gap:8px;}
+
+/* LAYOUT */
+.page-wrap{position:relative;z-index:2;display:flex;min-height:100vh;}
+.left-panel{
+  width:256px;min-width:256px;
+  background:rgba(255,255,255,0.88);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;position:sticky;top:0;height:100vh;
+  overflow:hidden;backdrop-filter:blur(16px);transition:background 0.3s;
+  box-shadow:var(--shadow);
+}
+[data-theme="dark"] .left-panel{background:rgba(10,16,32,0.82);}
+.panel-sec{border-bottom:1px solid var(--border);flex-shrink:0;}
+.panel-sec-last{flex:1;display:flex;flex-direction:column;min-height:0;}
+.panel-head{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--border);background:rgba(0,94,168,0.03);}
+[data-theme="dark"] .panel-head{background:rgba(47,129,247,0.04);}
+.ph-title{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);}
+.ph-sub{font-size:9px;color:var(--text-faint);margin-top:1px;}
+.ticker-scroll{height:220px;overflow:hidden;position:relative;}
+.ticker-inner{position:absolute;top:0;left:0;right:0;}
+.ticker-inner.paused{animation-play-state:paused !important;}
+.t-item{padding:9px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;}
+.t-item:hover{background:var(--accent-light);}
+.t-date{font-family:var(--mono);font-size:9px;color:var(--text-faint);margin-bottom:2px;}
+.t-title{font-size:12px;font-weight:500;color:var(--text);line-height:1.4;}
+.ticker-foot{padding:5px 14px;font-size:9px;color:var(--text-faint);border-top:1px solid var(--border);}
+
+/* TOP 5 SIDEBAR */
+.top5-admin-btn{font-family:var(--mono);font-size:9px;font-weight:600;padding:3px 8px;border-radius:3px;border:1px solid var(--border2);background:transparent;color:var(--text-dim);cursor:pointer;transition:all 0.2s;letter-spacing:0.5px;}
+.top5-admin-btn:hover{border-color:var(--orange);color:var(--orange);}
+.top5-admin-btn.active{background:var(--orange);color:#fff;border-color:var(--orange);}
+.admin-panel{background:var(--surface2);border:1px solid var(--orange);border-radius:6px;padding:12px;margin:10px;display:none;}
+.admin-panel.show{display:block;}
+.admin-panel-title{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:8px;}
+.admin-input{background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:var(--sans);font-size:12px;padding:7px 10px;border-radius:5px;width:100%;outline:none;margin-bottom:6px;transition:border-color 0.2s;}
+.admin-input:focus{border-color:var(--orange);}
+.admin-select{background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:var(--sans);font-size:12px;padding:7px 10px;border-radius:5px;width:100%;outline:none;margin-bottom:6px;cursor:pointer;}
+.admin-btn-row{display:flex;gap:6px;margin-top:4px;}
+.admin-save-btn{font-family:var(--mono);font-size:10px;font-weight:600;padding:6px 12px;border-radius:4px;border:none;background:var(--orange);color:#fff;cursor:pointer;transition:opacity 0.2s;}
+.admin-save-btn:hover{opacity:0.85;}
+.admin-cancel-btn{font-family:var(--mono);font-size:10px;padding:6px 12px;border-radius:4px;border:1px solid var(--border2);background:transparent;color:var(--text-dim);cursor:pointer;}
+.t5-highlight-btn{font-size:9px;padding:2px 6px;border-radius:3px;border:1px solid var(--orange);background:transparent;color:var(--orange);cursor:pointer;opacity:0.8;font-family:var(--mono);}
+.t5-del-btn{font-size:9px;padding:2px 6px;border-radius:3px;border:1px solid var(--red);background:transparent;color:var(--red);cursor:pointer;font-family:var(--mono);opacity:0.7;}
+.top5-grid{display:flex;flex-direction:column;gap:1px;}
+.t5-item{display:grid;grid-template-columns:40px 36px 1fr;border-left:3px solid var(--border);background:var(--surface);transition:background 0.15s;}
+.t5-item:nth-child(1){border-left-color:var(--gold);}
+.t5-item:nth-child(2){border-left-color:#9ca3af;}
+.t5-item:nth-child(3){border-left-color:#cd7f32;}
+.t5-item.highlighted{border-left-color:var(--orange)!important;background:var(--gold-bg);}
+.t5-rank{display:flex;align-items:center;justify-content:center;padding:8px 4px;}
+.t5-num{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--text-faint);}
+.t5-item:nth-child(1) .t5-num{color:var(--gold);}
+.t5-item:nth-child(2) .t5-num{color:#9ca3af;}
+.t5-item:nth-child(3) .t5-num{color:#cd7f32;}
+.t5-item.highlighted .t5-num{color:var(--orange)!important;}
+.t5-icon{display:flex;align-items:center;justify-content:center;border-left:1px solid var(--border);}
+.t5-body{padding:8px 10px;}
+.t5-title{font-size:11px;font-weight:500;color:var(--text);line-height:1.4;margin-bottom:3px;}
+.t5-meta{display:flex;align-items:center;gap:4px;flex-wrap:wrap;}
+.top5-empty{padding:16px 14px;font-size:11px;color:var(--text-faint);text-align:center;border:1px dashed var(--border2);border-radius:6px;margin:12px;background:var(--surface);}
+
+/* MAIN CONTENT */
+.main-content{flex:1;min-width:0;padding:28px 28px 0;}
+.header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:12px;padding-bottom:18px;border-bottom:2px solid var(--border);}
+.header-left{flex:1;}
+.header-eyebrow{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:4px;display:flex;align-items:center;gap:6px;}
+.bcrp-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;}
+.header-title{font-size:26px;font-weight:700;color:var(--text);letter-spacing:-0.5px;}
+.header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.month-select{font-family:var(--mono);background:var(--surface);border:1px solid var(--border2);color:var(--text);font-size:13px;font-weight:600;padding:8px 36px 8px 12px;border-radius:6px;cursor:pointer;appearance:none;-webkit-appearance:none;outline:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23005ea8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;box-shadow:var(--shadow);}
+[data-theme="dark"] .month-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%232f81f7' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");}
+.theme-btn{font-size:15px;width:36px;height:36px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text);box-shadow:var(--shadow);}
+.theme-btn:hover{border-color:var(--accent);}
+.pdf-btn{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;font-weight:600;padding:8px 12px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);color:var(--text-dim);cursor:pointer;transition:all 0.2s;box-shadow:var(--shadow);}
+.pdf-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+/* SEARCH */
+.search-row{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+.search-box{flex:1;min-width:160px;background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:var(--sans);font-size:13px;padding:9px 12px 9px 36px;border-radius:6px;outline:none;transition:border-color 0.2s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235a6e88' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:12px center;box-shadow:var(--shadow);}
+.search-box:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,94,168,0.12);}
+.search-box::placeholder{color:var(--text-faint);}
+[data-theme="dark"] .search-box{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b7f99' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");}
+.date-range-wrap{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.date-picker{background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:var(--mono);font-size:12px;padding:9px 10px;border-radius:6px;cursor:pointer;outline:none;min-width:122px;color-scheme:light;transition:border-color 0.2s;box-shadow:var(--shadow);}
+[data-theme="dark"] .date-picker{color-scheme:dark;}
+.date-picker:focus{border-color:var(--accent);}
+.date-picker::-webkit-calendar-picker-indicator{cursor:pointer;opacity:0.6;}
+[data-theme="dark"] .date-picker::-webkit-calendar-picker-indicator{filter:invert(0.7);}
+.date-sep{font-family:var(--mono);font-size:11px;color:var(--text-faint);}
+.clear-date-btn,.clear-btn{font-family:var(--mono);font-size:10px;padding:8px 10px;border-radius:6px;border:1px solid var(--border2);background:transparent;color:var(--text-dim);cursor:pointer;transition:all 0.15s;white-space:nowrap;}
+.clear-date-btn:hover,.clear-btn:hover{border-color:var(--red);color:var(--red);}
+.search-info{font-family:var(--mono);font-size:10px;color:var(--text-dim);min-height:18px;margin-bottom:10px;}
+.search-info b{color:var(--accent);}
+
+/* FILTER ACCORDIONS */
+.filter-accordions{display:flex;flex-direction:column;gap:0;margin-bottom:16px;border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:var(--shadow);}
+.facc-block{border-bottom:1px solid var(--border);}
+.facc-block:last-child{border-bottom:none;}
+.facc-hdr{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;cursor:pointer;background:var(--surface2);transition:background 0.15s;user-select:none;}
+.facc-hdr:hover{background:var(--accent-light);}
+.facc-hdr.open{background:var(--accent-light);}
+.facc-lbl{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:7px;}
+.facc-active-badge{font-family:var(--mono);font-size:8px;font-weight:600;background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;letter-spacing:0;}
+[data-theme="dark"] .facc-active-badge{color:#0d1117;}
+.facc-chevron{font-size:10px;color:var(--text-faint);transition:transform 0.2s;}
+.facc-hdr.open .facc-chevron{transform:rotate(180deg);}
+.facc-body{display:none;padding:10px 14px 12px;background:var(--surface);}
+.facc-hdr.open + .facc-body{display:flex;flex-wrap:wrap;gap:5px;}
+.filters-bar{display:flex;flex-wrap:wrap;gap:5px;}
+.f-btn{font-family:var(--mono);font-size:9px;font-weight:600;padding:4px 10px;border-radius:3px;border:1px solid var(--border2);background:var(--surface);color:var(--text-dim);cursor:pointer;transition:all 0.15s;letter-spacing:0.5px;text-transform:uppercase;box-shadow:var(--shadow);}
+.f-btn:hover{border-color:var(--accent);color:var(--accent);}
+.f-btn.active{color:#fff!important;border-color:transparent;box-shadow:none;}
+[data-theme="dark"] .f-btn.active{color:#0d1117!important;}
+.f-btn.active.fc-todos{background:var(--accent);}
+.f-btn.active.fc-banca{background:var(--accent);}
+.f-btn.active.fc-credito{background:var(--green);}
+.f-btn.active.fc-fintech{background:#e05c45;}
+.f-btn.active.fc-regulacion{background:var(--purple);}
+.f-btn.active.fc-inclusion{background:#c2740a;}
+.f-btn.active.fc-mercado{background:var(--teal);}
+.f-btn.active.fc-pension{background:var(--orange);}
+.f-btn.active.fc-internacional{background:#0369a1;color:#fff!important;}
+.f-btn.active.fc-seguros{background:var(--red);}
+.f-btn.active.fc-microfinanzas{background:#16a34a;}
+.f-btn.active.fc-cajas{background:#7c3aed;}
+.f-btn.active.fc-coopac{background:var(--pink);}
+.f-btn.active.fc-solvencia{background:#0f766e;}
+.f-btn.active.fc-rentabilidad{background:#b45309;}
+.f-btn.active.fe-btn{background:var(--accent);}
+
+/* MONTH SELECTOR — quincena cascade */
+.month-cascade{display:flex;flex-direction:column;gap:0;}
+/* año */
+.mc-year{border-bottom:1px solid var(--border);}
+.mc-year:last-child{border-bottom:none;}
+.mc-year-hdr{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;cursor:pointer;background:rgba(0,94,168,0.05);transition:background 0.15s;user-select:none;border-bottom:1px solid var(--border);}
+[data-theme="dark"] .mc-year-hdr{background:rgba(47,129,247,0.06);}
+.mc-year-hdr:hover{background:var(--accent-light);}
+.mc-year-lbl{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:3px;color:var(--accent);}
+.mc-year-chevron{font-size:10px;color:var(--text-faint);transition:transform 0.2s;}
+.mc-year-hdr.open .mc-year-chevron{transform:rotate(180deg);}
+.mc-year-body{display:none;flex-direction:column;}
+.mc-year-hdr.open + .mc-year-body{display:flex;}
+/* mes */
+.mc-month{border-bottom:1px solid var(--border);}
+.mc-month:last-child{border-bottom:none;}
+.mc-month-hdr{display:flex;align-items:center;justify-content:space-between;padding:8px 14px 8px 20px;cursor:pointer;transition:background 0.15s;user-select:none;}
+.mc-month-hdr:hover{background:var(--accent-light);}
+.mc-month-hdr.open{background:var(--accent-light);}
+.mc-month-hdr.active-month{border-left:3px solid var(--accent);font-weight:700;}
+.mc-month-lbl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--accent);}
+.mc-chevron{font-size:10px;color:var(--text-faint);transition:transform 0.2s;}
+.mc-month-hdr.open .mc-chevron{transform:rotate(180deg);}
+/* quincenas */
+.mc-quincenas{display:none;flex-direction:column;}
+.mc-month-hdr.open + .mc-quincenas{display:flex;}
+.mc-q{padding:7px 14px 7px 30px;cursor:pointer;font-family:var(--mono);font-size:9px;letter-spacing:0.3px;color:var(--text-dim);border-bottom:1px solid var(--border);transition:background 0.12s;line-height:1.4;}
+.mc-q:hover{background:var(--accent-light);color:var(--accent);}
+.mc-q.active{color:var(--accent);font-weight:600;background:var(--accent-light);border-left:3px solid var(--accent);padding-left:27px;}
+.mc-q:last-child{border-bottom:none;}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,var(--accent) 0%,var(--border) 50%,transparent 100%);margin-bottom:20px;opacity:0.4;}
+
+/* NEWS */
+.sec-title{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.n-badge{font-size:9px;background:var(--accent-light);color:var(--accent);border-radius:10px;padding:1px 8px;margin-left:4px;font-family:var(--mono);font-weight:600;}
+.cb{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;display:inline-block;padding:2px 7px;border-radius:3px;margin-right:3px;margin-bottom:2px;}
+.cb-banca{color:#1e5fa8;background:rgba(0,94,168,0.1);}
+.cb-credito{color:#166534;background:rgba(22,163,74,0.1);}
+.cb-fintech{color:#9a3412;background:rgba(224,92,69,0.1);}
+.cb-regulacion{color:#5b21b6;background:rgba(124,58,237,0.1);}
+.cb-inclusion{color:#92400e;background:rgba(194,116,10,0.1);}
+.cb-mercado{color:#0e7490;background:rgba(14,116,144,0.1);}
+.cb-pension{color:#92400e;background:rgba(180,83,9,0.1);}
+.cb-internacional{color:#075985;background:rgba(3,105,161,0.1);}
+.cb-seguros{color:#991b1b;background:rgba(185,28,28,0.1);}
+.cb-microfinanzas{color:#166534;background:rgba(22,163,74,0.09);}
+.cb-cajas{color:#5b21b6;background:rgba(109,40,217,0.1);}
+.cb-coopac{color:#9d174d;background:rgba(190,24,93,0.1);}
+[data-theme="dark"] .cb-banca{color:#79b8ff;background:rgba(47,129,247,0.14);}
+[data-theme="dark"] .cb-credito{color:#85e89d;background:rgba(63,185,80,0.14);}
+[data-theme="dark"] .cb-fintech{color:#f78166;background:rgba(247,129,102,0.14);}
+[data-theme="dark"] .cb-regulacion{color:#c5a5f7;background:rgba(163,113,247,0.14);}
+[data-theme="dark"] .cb-inclusion{color:#ffa657;background:rgba(255,166,87,0.14);}
+[data-theme="dark"] .cb-mercado{color:#39d5d5;background:rgba(57,213,213,0.1);}
+[data-theme="dark"] .cb-pension{color:#e3b341;background:rgba(210,153,34,0.14);}
+[data-theme="dark"] .cb-internacional{color:#a5d6ff;background:rgba(165,214,255,0.1);}
+[data-theme="dark"] .cb-seguros{color:#ff7b72;background:rgba(248,81,73,0.14);}
+[data-theme="dark"] .cb-microfinanzas{color:#56d364;background:rgba(86,211,100,0.1);}
+[data-theme="dark"] .cb-cajas{color:#bc8cff;background:rgba(188,140,255,0.12);}
+[data-theme="dark"] .cb-coopac{color:#f778ba;background:rgba(247,120,186,0.1);}
+.cb-solvencia{color:#0f766e;background:rgba(15,118,110,0.1);}
+.cb-rentabilidad{color:#b45309;background:rgba(180,83,9,0.1);}
+[data-theme="dark"] .cb-solvencia{color:#2dd4bf;background:rgba(45,212,191,0.1);}
+[data-theme="dark"] .cb-rentabilidad{color:#fbbf24;background:rgba(251,191,36,0.1);}
+
+.n-grid{display:flex;flex-direction:column;gap:3px;margin-bottom:6px;}
+.n-item{display:grid;grid-template-columns:52px 1fr;border-left:3px solid var(--border);background:var(--surface);transition:border-color 0.2s,background 0.15s;box-shadow:var(--shadow);}
+.n-item:hover{border-left-color:var(--accent);background:var(--surface2);}
+.n-item.hidden{display:none!important;}
+.n-date-col{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:14px 6px 14px 0;}
+.n-date{font-family:var(--mono);font-size:11px;color:var(--text-dim);text-align:center;line-height:1.6;font-weight:600;}
+.n-body{padding:12px 14px;border-left:1px solid var(--border);}
+.n-body-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px;}
+.n-body-left{flex:1;min-width:0;}
+.n-img{width:48px;height:48px;border-radius:7px;background:var(--accent-light);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:6px;}
+.n-img svg{width:100%;height:100%;opacity:0.85;}
+.n-cats{margin-bottom:4px;display:flex;flex-wrap:wrap;gap:4px;align-items:center;}
+.cb-entidad{font-family:var(--mono);font-size:9px;font-weight:600;padding:2px 8px;border-radius:3px;
+  background:var(--surface2);border:1px solid var(--border2);color:var(--text-dim);
+  text-transform:uppercase;letter-spacing:0.5px;}
+.n-title{font-size:15px;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:6px;}
+.n-title-link{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color 0.15s,color 0.15s;}
+.n-title-link:hover{color:var(--accent);border-bottom-color:var(--accent);}
+.n-summary{font-size:13px;color:var(--text-dim);line-height:1.75;margin-bottom:8px;}
+.n-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.n-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.n-source{font-family:var(--mono);font-size:11px;color:var(--text-faint);}
+.n-tags{display:flex;gap:4px;flex-wrap:wrap;}
+.n-tag{font-size:9px;padding:2px 7px;border-radius:20px;border:1px solid var(--border);color:var(--text-faint);background:var(--surface2);}
+.share-btn{font-family:var(--mono);font-size:9px;padding:4px 8px;border-radius:4px;border:1px solid var(--border2);background:transparent;color:var(--text-dim);cursor:pointer;transition:all 0.15s;text-decoration:none;display:inline-flex;align-items:center;}
+.share-btn:hover{border-color:var(--accent);color:var(--accent);}
+.share-btn.copied{border-color:var(--green);color:var(--green);}
+
+/* VER MAS / MENOS */
+.ver-mas-btn,.ver-menos-btn{
+  width:100%;font-family:var(--mono);font-size:10px;font-weight:600;
+  padding:11px;border-radius:6px;border:1px solid var(--border2);
+  background:var(--surface);cursor:pointer;transition:all 0.2s;letter-spacing:1px;
+  margin-top:8px;box-shadow:var(--shadow);}
+.ver-mas-btn{color:var(--accent);}
+.ver-mas-btn:hover{border-color:var(--accent);background:var(--accent-light);}
+.ver-menos-btn{color:var(--text-dim);display:none;}
+.ver-menos-btn:hover{border-color:var(--text-dim);background:var(--surface2);}
+
+.highlight{background:rgba(0,94,168,0.18);color:var(--text);border-radius:2px;padding:0 2px;}
+[data-theme="dark"] .highlight{background:rgba(47,129,247,0.3);}
+.no-results{text-align:center;padding:48px 20px;color:var(--text-dim);display:none;}
+.no-results.show{display:block;}
+.fade-in{animation:fadeUp 0.3s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
+
+/* DRAWER */
+.drawer-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.45);backdrop-filter:blur(4px);}
+.drawer-overlay.open{display:block;}
+.drawer{position:fixed;left:0;top:0;bottom:0;width:290px;z-index:201;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;transform:translateX(-100%);transition:transform 0.3s ease;}
+.drawer.open{transform:translateX(0);}
+.drawer-close{position:absolute;top:12px;right:12px;font-size:18px;background:none;border:none;color:var(--text-dim);cursor:pointer;z-index:10;padding:4px;}
+
+/* TIME AGO BADGE */
+.time-ago{font-family:var(--mono);font-size:10px;color:var(--text-faint);margin-top:3px;display:block;text-align:center;line-height:1.3;}
+
+/* STAGGERED FADE-IN */
+.n-item{animation:fadeUp 0.35s ease both;}
+.n-item:nth-child(1){animation-delay:0.04s;}
+.n-item:nth-child(2){animation-delay:0.08s;}
+.n-item:nth-child(3){animation-delay:0.12s;}
+.n-item:nth-child(4){animation-delay:0.16s;}
+.n-item:nth-child(5){animation-delay:0.20s;}
+.n-item:nth-child(6){animation-delay:0.24s;}
+
+/* LIVE CLOCK */
+.live-clock{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:1px;padding:6px 12px;border-radius:6px;border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);min-width:110px;}
+.clock-time{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--text);letter-spacing:2px;line-height:1;}
+.clock-date{font-family:var(--mono);font-size:9px;color:var(--text-dim);letter-spacing:0.5px;text-transform:uppercase;margin-top:2px;}
+.clock-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:4px;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+/* FOOTER */
+.site-footer{margin-top:40px;padding:24px 0 32px;border-top:2px solid var(--border);}
+.footer-inner{display:flex;flex-direction:column;gap:4px;}
+.footer-logo{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:2px;}
+.footer-copy{font-family:var(--mono);font-size:10px;color:var(--text-dim);}
+.footer-note{font-size:10px;color:var(--text-faint);line-height:1.65;margin-top:3px;}
+
+/* RESPONSIVE */
+@media(max-width:820px){
+  .left-panel{display:none;}
+  .topbar{display:flex;}
+  .main-content{padding:16px 16px 0;}
+  .header-title{font-size:20px;}
+  .filters-bar{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;}
+  .filters-bar::-webkit-scrollbar{height:2px;}
+  .n-title{font-size:13px;}.n-img{width:44px;height:44px;}
+}
+@media(max-width:480px){
+  .n-summary{font-size:11px;}.header-right{gap:6px;}
+  .date-picker{min-width:110px;}
+}
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+</style>
+</head>
+<body>
+<div class="sidebar-accent"></div>
+
+<!-- MOBILE TOPBAR -->
+<div class="topbar" id="topbar">
+  <button onclick="openDrawer()" style="background:none;border:none;cursor:pointer;color:var(--accent);font-size:20px;padding:4px;" aria-label="Menú">☰</button>
+  <span class="topbar-title">SF Peruano</span>
+  <div class="topbar-actions">
+    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Cambiar tema">☀️</button>
+  </div>
+</div>
+
+<!-- MOBILE DRAWER -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer" role="dialog" aria-label="Menú lateral">
+  <button class="drawer-close" onclick="closeDrawer()" aria-label="Cerrar">✕</button>
+  <div style="padding:14px 14px 8px;border-bottom:1px solid var(--border);">
+    <div style="font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:2px;color:var(--accent);text-transform:uppercase;">★ Top 5 del Mes</div>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding:12px;" id="top5DrawerBox"></div>
+</div>
+
+<!-- MAIN PAGE -->
+<div class="page-wrap">
+  <!-- LEFT PANEL -->
+  <div class="left-panel">
+    <!-- Ticker -->
+    <div class="panel-sec">
+      <div class="panel-head">
+        <div>
+          <div class="ph-title">Últimas noticias</div>
+          <div class="ph-sub">Pausa al pasar el mouse</div>
+        </div>
+      </div>
+      <div class="ticker-scroll" onmouseenter="tickerPause(true)" onmouseleave="tickerPause(false)">
+        <div id="tickerInner" class="ticker-inner"></div>
+      </div>
+      <div class="ticker-foot">Sigue el filtro activo</div>
+    </div>
+    <!-- Month / Quincena cascade -->
+    <div class="panel-sec" style="flex-shrink:0;">
+      <div class="panel-head"><div class="ph-title">Período</div></div>
+      <div class="month-cascade" id="monthCascade"></div>
+    </div>
+    <!-- Top 5 -->
+    <div class="panel-sec-last" style="display:flex;flex-direction:column;">
+      <div class="panel-head">
+        <div class="ph-title">★ Top 5 del Mes</div>
+        <span style="font-family:var(--mono);font-size:9px;color:var(--text-faint);">Desde Excel col K</span>
+      </div>
+      <div class="admin-panel" id="adminPanel" style="display:none!important">
+        <div id="adminAuth">
+          <div class="admin-panel-title">Acceso Restringido</div>
+          <input class="admin-input" id="adminPin" type="password" placeholder="PIN de administrador" onkeydown="if(event.key==='Enter')checkPin()"/>
+          <div class="admin-btn-row">
+            <button class="admin-save-btn" onclick="checkPin()">Ingresar</button>
+            <button class="admin-cancel-btn" onclick="cancelAdmin()">Cancelar</button>
+          </div>
+          <div id="adminPinError" style="font-size:9px;color:var(--red);margin-top:5px;font-family:var(--mono);"></div>
+        </div>
+        <div id="adminEditor" style="display:none;">
+          <div class="admin-panel-title">✏ Agregar al Top 5</div>
+          <select class="admin-select" id="adminNewsSelect"><option value="">— Seleccionar noticia —</option></select>
+          <button class="admin-save-btn" onclick="addToTop5()">+ Agregar</button>
+        </div>
+      </div>
+      <div id="top5SideBox" style="flex:1;overflow-y:auto;min-height:0;padding:8px 0;"></div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <div class="header">
+      <div class="header-left">
+        <div class="header-eyebrow">
+          <svg width="22" height="22" viewBox="0 0 48 48" fill="none" style="flex-shrink:0;opacity:0.9;">
+            <circle cx="24" cy="24" r="22" fill="var(--accent)" opacity="0.12"/>
+            <circle cx="24" cy="24" r="22" stroke="var(--accent)" stroke-width="1.5"/>
+            <path d="M14 18h20M14 24h20M14 30h12" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="34" cy="30" r="5" fill="var(--accent)" opacity="0.8"/>
+            <path d="M32 30l1.5 1.5L36 28" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          BCRP — Análisis Financiero
+        </div>
+        <h1 class="header-title" id="page-title">Noticias del Sistema Financiero Peruano</h1>
+      </div>
+      <div class="header-right">
+        <div class="live-clock" id="liveClock">
+          <div class="clock-time" id="clockTime">--:--:--</div>
+          <div class="clock-date" id="clockDate"><span class="clock-dot"></span>--</div>
+        </div>
+        <button class="theme-btn" onclick="toggleTheme()" id="themeBtnD" aria-label="Cambiar tema">☀️</button>
+        <button class="pdf-btn" onclick="exportPDF()">
+          <svg width="12" height="14" viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1" y="1" width="8" height="11" rx="1"/><path d="M3 4h5M3 6.5h5M3 9h3"/><path d="M7 1v3h3" stroke-width="1" opacity="0.5"/></svg>PDF
+        </button>
+      </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search-row">
+      <input class="search-box" id="searchBox" type="text" placeholder="Buscar noticia, entidad, tema o palabra clave..." oninput="applySearch()" autocomplete="off" aria-label="Buscar noticias"/>
+      <div class="date-range-wrap">
+        <span style="font-size:13px;opacity:0.6;">📅</span>
+        <input class="date-picker" id="dateFrom" type="date" onchange="applyDateRange()" title="Desde"/>
+        <span class="date-sep">→</span>
+        <input class="date-picker" id="dateTo" type="date" onchange="applyDateRange()" title="Hasta (máx. 2 semanas)"/>
+        <button class="clear-date-btn" onclick="clearDateRange()" title="Limpiar rango">✕</button>
+      </div>
+      <button class="clear-btn" onclick="clearSearch()">✕ Limpiar</button>
+    </div>
+    <div class="search-info" id="searchInfo" aria-live="polite"></div>
+
+    <!-- FILTER GROUPS: accordion style -->
+    <div class="filter-accordions" id="filterAccordions"></div>
+    <div class="divider"></div>
+
+    <div id="contentArea"></div>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-logo">Departamento de Análisis Financiero</div>
+        <div class="footer-copy">© 2026 Departamento de Análisis Financiero · Todos los derechos reservados · Uso interno</div>
+        <div class="footer-note">La información contenida en este sistema es de uso exclusivo del departamento y no debe ser distribuida sin autorización expresa. Generado el <span id="footerDate"></span>.</div>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   ESTADO GLOBAL
+═══════════════════════════════════════════════ */
+var activeFilter='todos';
+var activeEntidad='ent-todos';
+var searchText='';
+var searchDateFrom='';
+var searchDateTo='';
+var ADMIN_PIN='2026';
+var adminUnlocked=false;
+var manualTop5={feb26:[],mar26:[]};
+var top5Highlighted={feb26:{},mar26:{}};
+var tickerKF=document.createElement('style');
+document.head.appendChild(tickerKF);
+
+/* ── estado de período seleccionado ── */
+var activeMonth='';      /* se inicializa despues de DATA */
+var activeQuincena=null;
+var openYears={};
+
+/* ═══════════════════════════════════════════════
+   DATOS
+═══════════════════════════════════════════════ */
+var DATA={
+  feb26:{
+    label:'Febrero',year:'2026',
+    quincenas:[
+      {titulo:'1ra Quincena — 1 al 15 de febrero 2026',noticias:[
+        {id:'f01',fecha:'17 Feb',cats:[{key:'pension',lbl:'Pensiones'},{key:'banca',lbl:'Banca'},{key:'mercado',lbl:'Mercado'}],titulo:'Retiros de AFP superan S/ 25,000 millones en menos de tres meses',resumen:'Los retiros del SPP alcanzaron S/ 25,000 millones tras el octavo retiro aprobado por el Congreso. Más de 4 millones de afiliados habrían quedado sin saldo. Más de S/ 11,000 millones fue captado por el sistema bancario, dinamizando el crédito minorista pero con riesgos estructurales para el ahorro interno.',fuente:'Diario Gestión, 17 Feb 2026',tags:['AFP','retiros','liquidez','depósitos']},
+        {id:'f02',fecha:'18 Feb',cats:[{key:'banca',lbl:'Banca'},{key:'mercado',lbl:'Mercado'}],titulo:'Inversión en Rutas de Lima afectó rentabilidad de IFS',resumen:'IFS reportó utilidad neta de S/ 1,900 millones en 2025. Rentabilidad afectada por deterioro contable de Rutas de Lima (~S/ 205 millones), reduciendo el ROE a 16.8%. Sin este efecto habría alcanzado 18.3%. Para 2026 el holding proyecta ROE cercano a 17%.',fuente:'Diario Gestión, 18 Feb 2026',tags:['IFS','Interbank','ROE','rentabilidad']},
+        {id:'f03',fecha:'18 Feb',cats:[{key:'banca',lbl:'Banca'},{key:'credito',lbl:'Crédito'}],titulo:'Ahorro de personas creció 17.9% en 2025',resumen:'El ahorro de las personas aumentó 17.9% en 2025, alcanzando cerca de S/ 38,000 millones. El ahorro regulado creció 19.6% y el no regulado 15.6%. El mayor dinamismo fortalece la liquidez del sistema.',fuente:'El Comercio, 18 Feb 2026',tags:['ahorro','depósitos','liquidez','fondeo']}
+      ]},
+      {titulo:'2da Quincena — 16 al 28 de febrero 2026',noticias:[
+        {id:'f04',fecha:'19 Feb',cats:[{key:'credito',lbl:'Crédito'},{key:'inclusion',lbl:'Inclusión'}],titulo:'Crédito promedio se reduce frente al PBI per cápita en últimos cinco años',resumen:'El crédito promedio del SF peruano pasó de 1.05 veces el PBI per cápita en junio 2020 a 0.8 veces en junio 2025. El 34.98% de la población adulta mantiene crédito formal.',fuente:'Diario Gestión, 19 Feb 2026',tags:['profundidad financiera','PBI per cápita','microcréditos']},
+        {id:'f05',fecha:'19 Feb',cats:[{key:'fintech',lbl:'Fintech'},{key:'microfinanzas',lbl:'Microfinanzas'},{key:'inclusion',lbl:'Inclusión'}],titulo:'Mibanco apuesta por WhatsApp como nuevo canal clave de inclusión financiera',resumen:'Mibanco lanzó un canal bancario dentro de WhatsApp con biometría alineada a RENIEC. Proyecta 5,000 clientes en febrero y 10,000 al cierre de 2026. Segunda fase incluirá desembolsos, transferencias y pagos QR. NPS inicial de 68 puntos.',fuente:'Revista Microfinanzas, Ed. 240, Feb 2026',tags:['WhatsApp banking','NPS','digitalización','Mibanco']},
+        {id:'f06',fecha:'19 Feb',cats:[{key:'mercado',lbl:'Mercado'},{key:'credito',lbl:'Crédito'}],titulo:'Cofide proyecta financiar hasta 85 startups en 2026',resumen:'Cofide prevé canalizar US$ 5 millones adicionales en venture capital, alcanzando 85 emprendimientos desde el FCEI. Impulsa programa de US$ 100 millones como inversionista ancla priorizando infraestructura, energías renovables y mypes.',fuente:'Diario Gestión, 19 Feb 2026',tags:['venture capital','startups','mypes','Cofide']},
+        {id:'f07',fecha:'19 Feb',cats:[{key:'regulacion',lbl:'Regulación'},{key:'inclusion',lbl:'Inclusión'}],titulo:'Programa Tu Empresa se reorganiza para fortalecer servicios a cooperativas',resumen:'El Ministerio de la Producción modificó el Manual de Operaciones de Tu Empresa para ampliar alcance hacia cooperativas. Se crea nueva Unidad de Gestión de Servicios a Cooperativas.',fuente:'Gan@Más, 19 Feb 2026',tags:['cooperativas','mipymes','Produce','formalización']},
+        {id:'f08',fecha:'19 Feb',cats:[{key:'regulacion',lbl:'Regulación'},{key:'coopac',lbl:'Coopac'}],titulo:'Empresa de Crédito Alternativa reduce capital y reorganiza estructura accionaria',resumen:'Alternativa acordó reducción de capital por S/ 1,945 millones sin afectar accionistas. Cooperativa Abaco mantiene 65.11% y Diviso Grupo Financiero el 34.63%. Incluye transferencia de activos a fideicomisos para titulización privada.',fuente:'Gan@Más, 19 Feb 2026',tags:['reducción de capital','titulización','SBS']},
+        {id:'f09',fecha:'20 Feb',cats:[{key:'banca',lbl:'Banca'},{key:'credito',lbl:'Crédito'},{key:'mercado',lbl:'Mercado'}],titulo:'Menor costo de fondeo impulsa la utilidad del Fondo Mivivienda en 2025',resumen:'Mivivienda cerró 2025 con utilidad neta de ~S/ 121 millones (+44.4%). Mejora por reducción de ~7% en gastos por intereses. Cartera de créditos directos casi se duplicó.',fuente:'Gan@Más, 20 Feb 2026',tags:['Mivivienda','costo de fondeo','rentabilidad']},
+        {id:'f10',fecha:'21 Feb',cats:[{key:'regulacion',lbl:'Regulación'},{key:'banca',lbl:'Banca'}],titulo:'SBS autoriza organización de BK Empresa de Créditos',resumen:'La SBS autorizó la organización de BK Empresa de Créditos S.A. vinculada al conglomerado chileno BICECORP. BK SpA posee el 50.1% del capital. La empresa aún debe obtener licencia de funcionamiento definitiva.',fuente:'Gan@Más, 21 Feb 2026',tags:['SBS','BK','BICECORP','licencia']},
+        {id:'f11',fecha:'22 Feb',cats:[{key:'regulacion',lbl:'Regulación'},{key:'banca',lbl:'Banca'}],titulo:'Grupo EFE busca convertir a Financiera Efectiva en banco',resumen:'Financiera Efectiva solicitó a la SBS el cambio de licencia para convertirse en banco al cuarto trimestre de 2026, siendo el banco número 20 del sistema.',fuente:'SEMANAeconomica, 22 Feb 2026',tags:['Grupo EFE','licencia bancaria','SBS']},
+        {id:'f12',fecha:'23 Feb',cats:[{key:'banca',lbl:'Banca'},{key:'credito',lbl:'Crédito'}],titulo:'Bancos mantendrán cautela en créditos a personas al menos hasta marzo',resumen:'El indicador de expectativas para consumo pasó de restrictivo a neutral. En empresas las perspectivas son favorables: corporativo avanzó a relajamiento y mypes pasó de restrictivo a optimista. El crédito a personas creció 6.9% en 2025.',fuente:'Diario Gestión, 23 Feb 2026',tags:['oferta de crédito','BCR','consumo']},
+        {id:'f13',fecha:'23 Feb',cats:[{key:'mercado',lbl:'Mercado'},{key:'internacional',lbl:'Internacional'}],titulo:'Tasas estables impulsan mayor peso de renta fija en carteras conservadoras',resumen:'Carteras conservadoras reorientan estrategia hacia renta fija de corto y mediano plazo. Los gestores priorizan bonos flotantes, deuda grado de inversión e híbridos bancarios.',fuente:'+Finanzas, 23 Feb 2026',tags:['tasas de interés','renta fija','política monetaria']},
+        {id:'f14',fecha:'23 Feb',cats:[{key:'banca',lbl:'Banca'},{key:'mercado',lbl:'Mercado'}],titulo:'PCR reafirma calificaciones de Banco GNB tras mejora en cartera y rentabilidad',resumen:'PCR ratificó calificaciones de Banco GNB con perspectiva estable. Colocaciones crecieron 5.5%, morosidad se redujo a 2.3% (vs sistema 3.3%). Utilidad neta: S/ 67.3 millones (+48.9%), ROE 8.2%.',fuente:'+Finanzas, 23 Feb 2026',tags:['Banco GNB','morosidad','rentabilidad']},
+        {id:'f15',fecha:'23 Feb',cats:[{key:'internacional',lbl:'Internacional'},{key:'mercado',lbl:'Mercado'}],titulo:'Salida de capitales de corto plazo supera los USD 3,500 millones en 2025',resumen:'La cuenta financiera de capitales de corto plazo registró salida neta de USD 3,531 millones en 2025. El sector no financiero explicó USD 2,906 millones.',fuente:'+Finanzas, 23 Feb 2026',tags:['capitales','cuenta financiera','balanza de pagos']},
+        {id:'f16',fecha:'23 Feb',cats:[{key:'inclusion',lbl:'Inclusión'},{key:'microfinanzas',lbl:'Microfinanzas'}],titulo:'Bancarización en el Perú: avances y brechas estructurales',resumen:'La bancarización alcanza ~60% de la población adulta. En zonas urbanas el 61% posee cuenta bancaria vs 37% en áreas rurales. El sistema microfinanciero y los pagos digitales han sido clave.',fuente:'Diario El Comercio',tags:['bancarización','inclusión financiera','brechas rurales']},
+        {id:'f17',fecha:'24 Feb',cats:[{key:'internacional',lbl:'Internacional'},{key:'mercado',lbl:'Mercado'}],titulo:'Mercado eleva probabilidad de tres recortes de la Fed en 2026',resumen:'El mercado elevó la probabilidad de tres recortes de 25pb de la Fed a 38% (desde 24% hace un mes), tras inflación de 2.4% en enero. Scotiabank mantiene escenario base en rango 2.75%-3.00%.',fuente:'Reporte Scotiabank, 24 Feb 2026',tags:['Reserva Federal','recortes de tasas','inflación EE.UU.']},
+        {id:'f18',fecha:'25 Feb',cats:[{key:'regulacion',lbl:'Regulación'},{key:'banca',lbl:'Banca'}],titulo:'SBS agiliza proceso de licencia para nuevos bancos',resumen:'La SBS eliminó la suspensión automática del plazo de evaluación por respuesta de supervisores extranjeros. Reduce trabas que podían paralizar solicitudes hasta 90 días.',fuente:'Diario Gestión, 25 Feb 2026',tags:['SBS','licencia bancaria','regulación']},
+        {id:'f19',fecha:'25 Feb',cats:[{key:'fintech',lbl:'Fintech'},{key:'regulacion',lbl:'Regulación'},{key:'inclusion',lbl:'Inclusión'}],titulo:'SBS proyecta primeros intercambios de datos financieros en 2028 bajo Finanzas Abiertas',resumen:'La SBS presentó hoja de ruta de Finanzas Abiertas en 4 fases (2026-2029). Primeros intercambios formales en 2028. El esquema permitirá compartir datos vía APIs entre bancos, cajas, aseguradoras, AFP y fintech.',fuente:'Semana Económica / Gan@Más, 25 Feb 2026',tags:['Finanzas Abiertas','open banking','APIs']},
+        {id:'f20',fecha:'26 Feb',cats:[{key:'banca',lbl:'Banca'},{key:'mercado',lbl:'Mercado'}],titulo:'Utilidades de la banca múltiple crecen 26% en enero y superan los S/ 1,500 millones',resumen:'La utilidad neta de la banca múltiple alcanzó S/ 1,512 millones en enero 2026 (+26%). BCP lideró con S/ 724.6 millones (+22.4%). BBVA registró S/ 250.3 millones (+36.8%). Mibanco (+79%).',fuente:'Gan@Más, 26 Feb 2026',tags:['banca múltiple','utilidades','BCP','BBVA']},
+        {id:'f21',fecha:'26 Feb',cats:[{key:'fintech',lbl:'Fintech'},{key:'banca',lbl:'Banca'},{key:'inclusion',lbl:'Inclusión'}],titulo:'Ingresos de Yape ya se ubican entre los de los cinco mayores bancos del país',resumen:'Los ingresos por comisiones de Yape son comparables a los 5 principales bancos. Se han desembolsado más de 16 millones de créditos a 4.1 millones de usuarios. Volumen de pagos creció 50% interanual.',fuente:'Diario Gestión, Feb 2026',tags:['Yape','billetera digital','crédito digital','pagos QR']},
+        {id:'f22',fecha:'28 Feb',cats:[{key:'credito',lbl:'Crédito'},{key:'microfinanzas',lbl:'Microfinanzas'}],titulo:'Factoring creció 22% en 2025 y mayor competencia reduce tasas a niveles de 10%-20%',resumen:'El factoring alcanzó S/ 52,699 millones en 2025 (+22%). Mayor competencia redujo tasas a rango de 10%-20%. Para 2026 se proyecta crecimiento de 15%-20%.',fuente:'SEMANA Económica, 28 Feb 2026',tags:['factoring','mipymes','tasas','Cavali']},
+        {id:'f23',fecha:'28 Feb',cats:[{key:'cajas',lbl:'Cajas Munic.'},{key:'credito',lbl:'Crédito'}],titulo:'Tasación de joyas sube 80% por alza del oro e impulsa créditos pignoraticios de Caja Metropolitana',resumen:'La tasación de joyas aumentó 80% en dos años. El oro superó los US$ 5,200 la onza. El crédito pignoraticio representa ~25% de la cartera de Caja Metropolitana.',fuente:'Diario Gestión, 28 Feb 2026',tags:['Caja Metropolitana','pignoraticio','precio del oro']}
+      ]}
+    ]
+  },
+  mar26:{
+    label:'Marzo',year:'2026',
+    quincenas:[
+      {titulo:'1ra Quincena — 1 al 15 de marzo 2026',noticias:[
+        {id:'m01',fecha:'02 Mar',cats:[{key:'microfinanzas',lbl:'Microfinanzas'},{key:'credito',lbl:'Crédito'}],titulo:'Inflación controlada y mejora del empleo impulsan crecimiento de microcréditos al inicio de 2026',resumen:'La inflación controlada y recuperación del empleo dinamizan la demanda de microcréditos en mypes. El crédito mype creció 5.8% anual al cierre de 2025 vs 0.2% en 2024. Compartamos Banco anticipa crecimiento de doble dígito.',fuente:'Diario Gestión, 2 Mar 2026',tags:['microcrédito','mypes','inflación','Compartamos']}
+      ]},
+      {titulo:'2da Quincena — 16 al 31 de marzo 2026',noticias:[]}
+    ]
+  }
+};
+
+/* Índice año → [claves de mes en orden] — se construye automáticamente */
+var YEAR_INDEX=(function(){
+  var idx={};
+  Object.keys(DATA).forEach(function(k){
+    var y=DATA[k].year||'????';
+    if(!idx[y])idx[y]=[];
+    idx[y].push(k);
+  });
+  return idx;
+}());
+
+/* Inicializar mes activo = mas reciente con noticias */
+(function(){
+  var keys=Object.keys(DATA);
+  keys.sort(function(a,b){
+    var ya=DATA[a].year||'0', yb=DATA[b].year||'0';
+    if(ya!==yb)return yb.localeCompare(ya);
+    return b.localeCompare(a);
+  });
+  for(var i=0;i<keys.length;i++){
+    var d=DATA[keys[i]];
+    var total=0;
+    d.quincenas.forEach(function(q){total+=q.noticias.length;});
+    if(total>0){activeMonth=keys[i];break;}
+  }
+  if(!activeMonth)activeMonth=keys[0]||'';
+  if(activeMonth&&DATA[activeMonth])openYears[DATA[activeMonth].year]=true;
+}());
+
+/* ═══════════════════════════════════════════════
+   CATEGORÍAS Y ENTIDADES
+═══════════════════════════════════════════════ */
+var CATS=[
+  {key:'todos',lbl:'Todas',cls:'fc-todos'},
+  {key:'credito',lbl:'Crédito',cls:'fc-credito'},
+  {key:'microfinanzas',lbl:'Microfinanzas',cls:'fc-microfinanzas'},
+  {key:'fintech',lbl:'Fintech',cls:'fc-fintech'},
+  {key:'regulacion',lbl:'Regulación',cls:'fc-regulacion'},
+  {key:'inclusion',lbl:'Inclusión',cls:'fc-inclusion'},
+  {key:'mercado',lbl:'Mercado',cls:'fc-mercado'},
+  {key:'pension',lbl:'Pensiones',cls:'fc-pension'},
+  {key:'seguros',lbl:'Seguros',cls:'fc-seguros'},
+  {key:'solvencia',lbl:'Solvencia',cls:'fc-solvencia'},
+  {key:'rentabilidad',lbl:'Rentabilidad',cls:'fc-rentabilidad'},
+  {key:'internacional',lbl:'Internacional',cls:'fc-internacional'}
+];
+var ENTIDADES=[
+  {key:'ent-todos',lbl:'Todas'},
+  {key:'banca',lbl:'Banca'},
+  {key:'financiera',lbl:'Financiera'},
+  {key:'cmac',lbl:'CMAC'},
+  {key:'crac',lbl:'CRAC'},
+  {key:'ec',lbl:'EC'},
+  {key:'estado',lbl:'Estado'},
+  {key:'coopac',lbl:'Coopac'},
+  {key:'sbs',lbl:'SBS'},
+  {key:'bcrp',lbl:'BCRP'},
+  {key:'fintech',lbl:'Fintech'}
+];
+/* ENTIDAD_KW ya no se usa — filtramos por n.entidad directo */
+var ENTIDAD_KW={};
+
+/* ═══════════════════════════════════════════════
+   ICONOS SVG POR CATEGORÍA
+═══════════════════════════════════════════════ */
+var CAT_SVG={
+  banca:'<svg viewBox="0 0 48 48" fill="none"><rect x="6" y="19" width="36" height="21" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 24h36" stroke="currentColor" stroke-width="1.5"/><path d="M24 7L42 19H6L24 7Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><rect x="13" y="28" width="5" height="7" rx="1" fill="currentColor" opacity="0.35"/><rect x="21.5" y="28" width="5" height="7" rx="1" fill="currentColor" opacity="0.35"/><rect x="30" y="28" width="5" height="7" rx="1" fill="currentColor" opacity="0.35"/></svg>',
+  credito:'<svg viewBox="0 0 48 48" fill="none"><rect x="4" y="11" width="40" height="26" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M4 20h40" stroke="currentColor" stroke-width="2"/><rect x="9" y="27" width="12" height="4" rx="1" fill="currentColor" opacity="0.35"/><circle cx="36" cy="31" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M36 28v3.5l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  fintech:'<svg viewBox="0 0 48 48" fill="none"><rect x="12" y="4" width="24" height="40" rx="4" stroke="currentColor" stroke-width="1.5"/><circle cx="24" cy="38" r="2" fill="currentColor" opacity="0.5"/><path d="M16 8h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M20 18l3 3 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 26h14M17 30h10" stroke="currentColor" stroke-width="1" opacity="0.4" stroke-linecap="round"/></svg>',
+  regulacion:'<svg viewBox="0 0 48 48" fill="none"><path d="M24 4L6 13v10c0 11 8 18 18 21 10-3 18-10 18-21V13L24 4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M17 24l4 4 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  inclusion:'<svg viewBox="0 0 48 48" fill="none"><circle cx="18" cy="16" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M6 38c0-7 5-11 12-11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="32" cy="20" r="5" stroke="currentColor" stroke-width="1.5" opacity="0.6"/><path d="M28 38c0-5 3.5-8.5 8-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/><path d="M20 38h20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/></svg>',
+  mercado:'<svg viewBox="0 0 48 48" fill="none"><path d="M6 38l9-12 8 6 8-16 11 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 42h36" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>',
+  pension:'<svg viewBox="0 0 48 48" fill="none"><circle cx="20" cy="16" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 38c0-7 5-11 12-11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="35" cy="33" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M35 30v3.5l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  seguros:'<svg viewBox="0 0 48 48" fill="none"><path d="M24 5L8 13v9c0 12 7 19 16 22 9-3 16-10 16-22v-9L24 5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M18 24l4 4 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  microfinanzas:'<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="22" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M24 16v2m0 8v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M20 20c0-2.2 1.8-4 4-4s4 1.8 4 4-4 4-4 4-4 1.8-4 4 1.8 4 4 4 4-1.8 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 38c0-4 6-7 14-7s14 3 14 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/></svg>',
+  cajas:'<svg viewBox="0 0 48 48" fill="none"><rect x="8" y="20" width="32" height="22" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 26h32" stroke="currentColor" stroke-width="1.5"/><path d="M24 9l16 11H8L24 9Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><rect x="20" y="30" width="8" height="7" rx="1" stroke="currentColor" stroke-width="1.5" opacity="0.6"/></svg>',
+  coopac:'<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M24 10v4M24 34v4M10 24h4M34 24h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14.9 14.9l2.8 2.8M30.3 30.3l2.8 2.8M14.9 33.1l2.8-2.8M30.3 17.7l2.8-2.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="24" cy="24" r="3" fill="currentColor" opacity="0.4"/></svg>',
+  internacional:'<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="1.5"/><ellipse cx="24" cy="24" rx="8" ry="18" stroke="currentColor" stroke-width="1.5"/><path d="M6 24h36" stroke="currentColor" stroke-width="1.5"/><path d="M8 16h32M8 32h32" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg>',
+  solvencia:'<svg viewBox="0 0 48 48" fill="none"><rect x="8" y="10" width="32" height="28" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M16 24h16M16 30h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M24 4v6M16 4l2 6M32 4l-2 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="36" cy="12" r="6" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/><path d="M34 12l1.5 1.5L38 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  rentabilidad:'<svg viewBox="0 0 48 48" fill="none"><path d="M6 36l8-10 7 4 8-14 8 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M34 22h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="14" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M14 11v3.5l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 42h36" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>'
+};
+function getCatSVG(cats){
+  if(!cats||!cats.length)return CAT_SVG.mercado;
+  return CAT_SVG[cats[0].key]||CAT_SVG[cats[0].key.split('-')[0]]||CAT_SVG.mercado;
+}
+function cbadges(cats){
+  return cats.map(function(c){return '<span class="cb cb-'+c.key+'" title="'+esc(c.lbl)+'">'+esc(c.lbl)+'</span>';}).join('');
+}
+
+/* ═══════════════════════════════════════════════
+   UTILIDADES
+═══════════════════════════════════════════════ */
+/* Normaliza texto: minusculas, sin tildes, sin espacios extra */
+function norm(s){
+  if(!s)return '';
+  return s.toLowerCase()
+    .replace(/á/g,'a').replace(/é/g,'e').replace(/í/g,'i')
+    .replace(/ó/g,'o').replace(/ú/g,'u').replace(/ü/g,'u')
+    .replace(/ñ/g,'n').trim();
+}
+function esc(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+var MONTH_MAP={ene:1,feb:2,mar:3,abr:4,may:5,jun:6,jul:7,ago:8,sep:9,oct:10,nov:11,dic:12};
+var MONTH_NAMES=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+
+/* Convierte fecha serial de Excel (numero) o texto a ISO yyyy-mm-dd */
+function fechaToISO(f){
+  if(!f)return '';
+  f=String(f).trim();
+  /* Si es numero serial de Excel */
+  if(/^\d{4,6}$/.test(f)){
+    var serial=parseInt(f,10);
+    /* Excel epoch: 1 ene 1900 = 1, con bug del año bisiesto 1900 */
+    var d=new Date((serial-25569)*86400000);
+    var yy=d.getUTCFullYear(),mm=d.getUTCMonth()+1,dd=d.getUTCDate();
+    return yy+'-'+String(mm).padStart(2,'0')+'-'+String(dd).padStart(2,'0');
+  }
+  /* Si es texto: "19 Mar 2026" */
+  var p=f.split(' ');
+  if(p.length>=2){
+    var mon=MONTH_MAP[p[1].toLowerCase().substring(0,3)];
+    var yr=p[2]?parseInt(p[2],10):2026;
+    return mon?yr+'-'+String(mon).padStart(2,'0')+'-'+String(parseInt(p[0],10)).padStart(2,'0'):'';
+  }
+  return '';
+}
+
+/* Convierte fecha serial o texto a formato legible "19 Mar 2026" */
+function fechaLegible(f){
+  if(!f)return '';
+  f=String(f).trim();
+  if(/^\d{4,6}$/.test(f)){
+    var serial=parseInt(f,10);
+    var d=new Date((serial-25569)*86400000);
+    return d.getUTCDate()+' '+MONTH_NAMES[d.getUTCMonth()]+' '+d.getUTCFullYear();
+  }
+  return f;
+}
+function setEl(id,val){var el=document.getElementById(id);if(el)el.textContent=val;}
+function getEl(id){return document.getElementById(id);}
+
+/* ═══════════════════════════════════════════════
+   TEMA
+═══════════════════════════════════════════════ */
+function toggleTheme(){
+  var dark=document.documentElement.getAttribute('data-theme')==='dark';
+  document.documentElement.setAttribute('data-theme',dark?'light':'dark');
+  var ic=dark?'☀️':'🌙';
+  setEl('themeBtn',ic);setEl('themeBtnD',ic);
+}
+
+/* ═══════════════════════════════════════════════
+   DRAWER
+═══════════════════════════════════════════════ */
+function openDrawer(){
+  getEl('drawer').classList.add('open');
+  getEl('drawerOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  syncDrawerTop5();
+}
+function closeDrawer(){
+  getEl('drawer').classList.remove('open');
+  getEl('drawerOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+/* ═══════════════════════════════════════════════
+   MONTH CASCADE (side panel)
+═══════════════════════════════════════════════ */
+function buildMonthCascade(){
+  var cont=getEl('monthCascade');
+  if(!cont)return;
+  var html='';
+  Object.keys(YEAR_INDEX).sort().forEach(function(yr){
+    var yOpen=!!openYears[yr];
+    html+='<div class="mc-year">';
+    html+='<div class="mc-year-hdr'+(yOpen?' open':'')+'" onclick="toggleYear(\''+yr+'\')" tabindex="0" role="button" aria-expanded="'+yOpen+'">';
+    html+='<span class="mc-year-lbl">'+esc(yr)+'</span><span class="mc-year-chevron">▾</span></div>';
+    html+='<div class="mc-year-body">';
+    YEAR_INDEX[yr].forEach(function(mKey){
+      var d=DATA[mKey];
+      var mOpen=(mKey===activeMonth);
+      html+='<div class="mc-month">';
+      html+='<div class="mc-month-hdr'+(mOpen?' open':'')+'" onclick="toggleMonth(\''+mKey+'\')" tabindex="0" role="button" aria-expanded="'+mOpen+'">';
+      html+='<span class="mc-month-lbl">'+esc(d.label)+'</span><span class="mc-chevron">▾</span></div>';
+      html+='<div class="mc-quincenas">';
+      html+='<div class="mc-q'+(mKey===activeMonth&&activeQuincena===null?' active':'')+'" onclick="selectPeriod(\''+mKey+'\',null)">Todas las quincenas</div>';
+      d.quincenas.forEach(function(q,qi){
+        html+='<div class="mc-q'+(mKey===activeMonth&&activeQuincena===qi?' active':'')+'" onclick="selectPeriod(\''+mKey+'\','+qi+')">'+esc(q.titulo)+' ('+q.noticias.length+')</div>';
+      });
+      html+='</div></div>';
+    });
+    html+='</div></div>';
+  });
+  cont.innerHTML=html;
+}
+function toggleYear(yr){
+  openYears[yr]=!openYears[yr];
+  buildMonthCascade();
+}
+function toggleMonth(mKey){
+  var yr=DATA[mKey]?DATA[mKey].year:null;
+  if(yr)openYears[yr]=true;
+  /* Si ya esta activo, colapsar/expandir quincenas */
+  if(mKey===activeMonth){
+    /* toggle: si ya estaba abierto, solo actualizar cascade */
+    buildMonthCascade();
+    return;
+  }
+  activeMonth=mKey;
+  activeQuincena=null;
+  buildMonthCascade();
+  renderContent();
+}
+function selectPeriod(mKey,qIdx){
+  var yr=DATA[mKey]?DATA[mKey].year:null;
+  if(yr)openYears[yr]=true;
+  activeMonth=mKey;
+  activeQuincena=qIdx;
+  buildMonthCascade();
+  renderContent();
+}
+
+/* ═══════════════════════════════════════════════
+   FILTROS
+═══════════════════════════════════════════════ */
+var filterAccOpen={cat:true,ent:false};
+function buildFilters(){
+  var cont=getEl('filterAccordions');
+  if(!cont)return;
+  var activeCatLbl=activeFilter==='todos'?null:(CATS.filter(function(c){return c.key===activeFilter;})[0]||{lbl:null}).lbl;
+  var activeEntLbl=activeEntidad==='ent-todos'?null:(ENTIDADES.filter(function(e){return e.key===activeEntidad;})[0]||{lbl:null}).lbl;
+  var html='';
+  /* ── Categoría ── */
+  html+='<div class="facc-block">';
+  html+='<div class="facc-hdr'+(filterAccOpen.cat?' open':'')+'" onclick="toggleFAcc(\'cat\')" tabindex="0" role="button" aria-expanded="'+(filterAccOpen.cat)+'"><div class="facc-lbl">Categoría'+(activeCatLbl?'<span class="facc-active-badge">'+esc(activeCatLbl)+'</span>':'')+'</div><span class="facc-chevron">▾</span></div>';
+  html+='<div class="facc-body" id="filtersBar">';
+  CATS.forEach(function(c){html+='<button class="f-btn '+c.cls+(c.key===activeFilter?' active':'')+'" onclick="setFilter(\''+c.key+'\')" aria-pressed="'+(c.key===activeFilter)+'">'+esc(c.lbl)+'</button>';});
+  html+='</div></div>';
+  /* ── Entidad Financiera ── */
+  html+='<div class="facc-block">';
+  html+='<div class="facc-hdr'+(filterAccOpen.ent?' open':'')+'" onclick="toggleFAcc(\'ent\')" tabindex="0" role="button" aria-expanded="'+(filterAccOpen.ent)+'"><div class="facc-lbl">Entidad Financiera'+(activeEntLbl?'<span class="facc-active-badge">'+esc(activeEntLbl)+'</span>':'')+'</div><span class="facc-chevron">▾</span></div>';
+  html+='<div class="facc-body" id="entidadesBar">';
+  ENTIDADES.forEach(function(e){html+='<button class="f-btn fe-btn'+(e.key===activeEntidad?' active':'')+'" onclick="setEntidad(\''+e.key+'\')" aria-pressed="'+(e.key===activeEntidad)+'">'+esc(e.lbl)+'</button>';});
+  html+='</div></div>';
+  cont.innerHTML=html;
+}
+function toggleFAcc(key){
+  filterAccOpen[key]=!filterAccOpen[key];
+  buildFilters();
+}
+function setFilter(k){activeFilter=norm(k);filterAccOpen.cat=true;buildFilters();applySearch();refreshTicker();}
+function setEntidad(k){activeEntidad=k;filterAccOpen.ent=true;buildFilters();applySearch();}
+
+/* ═══════════════════════════════════════════════
+   BÚSQUEDA Y FILTRADO
+═══════════════════════════════════════════════ */
+function applyDateRange(){
+  var df=getEl('dateFrom'),dt=getEl('dateTo');
+  var from=df?df.value:'',to=dt?dt.value:'';
+  if(from&&to){
+    var diff=(new Date(to)-new Date(from))/(86400000);
+    if(diff>14){alert('El rango máximo es de 2 semanas (14 días).');if(dt)dt.value='';return;}
+    if(diff<0){if(dt)dt.value=from;return;}
+  }
+  searchDateFrom=from;searchDateTo=to;
+  applySearch();
+}
+function clearDateRange(){
+  var df=getEl('dateFrom'),dt=getEl('dateTo');
+  if(df)df.value='';if(dt)dt.value='';
+  searchDateFrom='';searchDateTo='';
+  applySearch();
+}
+function applySearch(){
+  var sbEl=getEl('searchBox');
+  searchText=sbEl?sbEl.value.toLowerCase().trim():'';
+  var items=document.querySelectorAll('.n-item');
+  var vis=0;
+  var entFiltro=activeEntidad!=='ent-todos'?activeEntidad:'';
+  items.forEach(function(el){
+    var cats=(el.dataset.cats||'').split(',');
+    var catOk=activeFilter==='todos'||cats.map(function(c){return norm(c);}).indexOf(norm(activeFilter))>=0;
+    var isoDate=el.dataset.date||'';
+    var dateOk=true;
+    if(searchDateFrom&&isoDate<searchDateFrom)dateOk=false;
+    if(searchDateTo&&isoDate>searchDateTo)dateOk=false;
+    var titleEl=el.querySelector('.n-title');
+    var summaryEl=el.querySelector('.n-summary');
+    var sourceEl=el.querySelector('.n-source');
+    var hay=[
+      titleEl?titleEl.getAttribute('data-orig')||titleEl.textContent:'',
+      summaryEl?summaryEl.textContent:'',
+      sourceEl?sourceEl.textContent:''
+    ].join(' ').toLowerCase();
+    var textOk=!searchText||hay.indexOf(searchText)>=0;
+    var entOk=!entFiltro||(el.dataset.entidad&&norm(el.dataset.entidad)===norm(entFiltro));
+    var show=catOk&&dateOk&&textOk&&entOk;
+    el.classList[show?'remove':'add']('hidden');
+    if(show&&el.getAttribute('data-extra'))el.style.removeProperty('display');
+    if(titleEl){
+      var orig=titleEl.getAttribute('data-orig')||titleEl.textContent;
+      titleEl.setAttribute('data-orig',orig);
+      if(show&&searchText){
+        var re=new RegExp('('+searchText.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+        titleEl.innerHTML=orig.replace(re,'<span class="highlight">$1</span>');
+      }else{
+        titleEl.textContent=orig;
+      }
+    }
+    if(show)vis++;
+  });
+  var hasFilters=!!(searchText||searchDateFrom||searchDateTo||(activeFilter!=='todos')||(activeEntidad!=='ent-todos'));
+  var vmb=getEl('verMasBtn'),vlessb=getEl('verMenosBtn');
+  if(vmb)vmb.style.display=hasFilters?'none':'';
+  if(vlessb)vlessb.style.display=hasFilters?'none':'';
+  var nc=getEl('nCount');if(nc)nc.textContent=String(vis);
+  var nr=getEl('noResults');if(nr)nr.className=vis===0?'no-results show':'no-results';
+  var info=getEl('searchInfo');
+  if(info){
+    var parts=[];
+    if(searchText)parts.push('texto: <b>'+esc(searchText)+'</b>');
+    if(searchDateFrom||searchDateTo){
+      var fp=searchDateFrom?searchDateFrom.split('-'):null;
+      var tp=searchDateTo?searchDateTo.split('-'):null;
+      var rs=(fp?fp[2]+'/'+fp[1]:'inicio')+' → '+(tp?tp[2]+'/'+tp[1]:'fin');
+      parts.push('rango: <b>'+rs+'</b>');
+    }
+    if(activeFilter!=='todos')parts.push('categoría: <b>'+esc(activeFilter)+'</b>');
+    if(activeEntidad!=='ent-todos'){
+      var en=ENTIDADES.filter(function(e){return e.key===activeEntidad;})[0];
+      if(en)parts.push('entidad: <b>'+esc(en.lbl)+'</b>');
+    }
+    info.innerHTML=parts.length?'&#9670; <b>'+vis+'</b> resultado'+(vis!==1?'s':'')+' — '+parts.join(' + '):'';
+  }
+}
+function clearSearch(){
+  var sb=getEl('searchBox');if(sb)sb.value='';
+  clearDateRange();
+  searchText='';activeFilter='todos';activeEntidad='ent-todos';
+  filterAccOpen.cat=true;filterAccOpen.ent=false;
+  buildFilters();applySearch();
+  var info=getEl('searchInfo');if(info)info.innerHTML='';
+}
+function buildDateRange(allNews){
+  var dates=allNews.map(function(n){return fechaToISO(n.fecha);}).filter(Boolean);
+  dates.sort();
+  var df=getEl('dateFrom'),dt=getEl('dateTo');
+  if(!dates.length)return;
+  if(df){df.min=dates[0];df.max=dates[dates.length-1];}
+  if(dt){dt.min=dates[0];dt.max=dates[dates.length-1];}
+}
+
+/* ═══════════════════════════════════════════════
+   VER MÁS / VER MENOS
+═══════════════════════════════════════════════ */
+function showAll(){
+  document.querySelectorAll('.n-item[data-extra]').forEach(function(el){
+    el.style.removeProperty('display');
+  });
+  var vmb=getEl('verMasBtn');if(vmb)vmb.style.display='none';
+  var vlessb=getEl('verMenosBtn');if(vlessb)vlessb.style.display='block';
+}
+function showLess(){
+  document.querySelectorAll('.n-item[data-extra]').forEach(function(el){
+    el.style.display='none';
+  });
+  var vmb=getEl('verMasBtn');if(vmb)vmb.style.display='block';
+  var vlessb=getEl('verMenosBtn');if(vlessb)vlessb.style.display='none';
+  var grid=getEl('newsGrid');
+  if(grid)window.scrollTo({top:grid.offsetTop-80,behavior:'smooth'});
+}
+
+/* ═══════════════════════════════════════════════
+   TIME AGO
+═══════════════════════════════════════════════ */
+var MONTH_NUM={ene:1,feb:2,mar:3,abr:4,may:5,jun:6,jul:7,ago:8,sep:9,oct:10,nov:11,dic:12};
+function timeAgo(isoDate){
+  if(!isoDate)return '';
+  var d=new Date(isoDate+'T12:00:00');
+  var now=new Date();
+  var diffMs=now-d;
+  var diffD=Math.floor(diffMs/86400000);
+  if(diffD<=0)return 'Hoy';
+  if(diffD===1)return 'Ayer';
+  if(diffD<7)return 'Hace '+diffD+' días';
+  if(diffD<30)return 'Hace '+(Math.round(diffD/7))+' sem.';
+  return 'Hace '+(Math.round(diffD/30))+' mes.';
+}
+
+/* ═══════════════════════════════════════════════
+   RENDER PRINCIPAL
+═══════════════════════════════════════════════ */
+function getAllNews(){
+  var d=DATA[activeMonth];if(!d)return [];
+  var all=[];
+  if(activeQuincena===null){
+    d.quincenas.forEach(function(q){q.noticias.forEach(function(n){all.push(n);});});
+  }else{
+    var q=d.quincenas[activeQuincena];
+    if(q)q.noticias.forEach(function(n){all.push(n);});
+  }
+  all.sort(function(a,b){return fechaToISO(b.fecha).localeCompare(fechaToISO(a.fecha));});
+  return all;
+}
+function renderContent(){
+  activeFilter='todos';activeEntidad='ent-todos';searchText='';searchDateFrom='';searchDateTo='';
+  var sb=getEl('searchBox');if(sb)sb.value='';
+  var df=getEl('dateFrom');if(df)df.value='';
+  var dt=getEl('dateTo');if(dt)dt.value='';
+  var info=getEl('searchInfo');if(info)info.innerHTML='';
+  var area=getEl('contentArea');
+  var allNews=getAllNews();
+  var total=allNews.length;
+  var html='<div class="sec-title fade-in">Noticias <span class="n-badge" id="nCount">'+total+'</span></div>';
+  html+='<div class="n-grid" id="newsGrid">';
+  allNews.forEach(function(n,i){
+    var tags=n.tags.map(function(t){return '<span class="n-tag">'+esc(t)+'</span>';}).join('');
+    var extraAttr=i>=6?' data-extra="1" style="display:none"':'';
+    var iso=fechaToISO(n.fecha);
+    var ago=timeAgo(iso);
+    /* buscar URL de fuente: si la fuente tiene dominio conocido lo usamos, si no google */
+    var srcQ=n.url&&n.url.trim()!==''?n.url:'https://www.google.com/search?q='+encodeURIComponent(n.titulo.substring(0,70)+' '+n.fuente.split(',')[0]);
+    html+='<div class="n-item fade-in" data-cats="'+esc(n.cats.map(function(c){return c.key;}).join(','))+'" data-id="'+esc(n.id)+'" data-date="'+iso+'" data-entidad="'+norm(n.entidad||'')+'"'+extraAttr+'>';
+    html+='<div class="n-date-col"><span class="n-date">'+esc(fechaLegible(n.fecha))+'</span><span class="time-ago">'+ago+'</span></div>';
+    html+='<div class="n-body">';
+    html+='<div class="n-body-top"><div class="n-body-left">';
+    var entBadge=n.entidad&&n.entidad.trim()!==''?'<span class="cb-entidad">'+esc(n.entidad)+'</span>':'';
+    html+='<div class="n-cats">'+cbadges(n.cats)+entBadge+'</div>';
+    var tituloHtml = n.url && n.url.trim() !== ''
+      ? '<a class="n-title-link" href="'+n.url+'" target="_blank" rel="noopener">'+esc(n.titulo)+'</a>'
+      : esc(n.titulo);
+    html+='<div class="n-title" data-orig="'+esc(n.titulo)+'">'+tituloHtml+'</div></div>';
+    html+='<div class="n-img" style="color:'+catColor(n.cats)+'">'+getCatSVG(n.cats)+'</div></div>';
+    html+='<div class="n-summary">'+esc(n.resumen)+'</div>';
+    html+='<div class="n-footer"><div class="n-meta"><span class="n-source">'+esc(n.fuente)+'</span><div class="n-tags">'+tags+'</div></div>';
+    html+='<div class="n-actions">';
+    html+='<a class="share-btn" href="'+srcQ+'" target="_blank" rel="noopener">↗ Ver fuente</a>';
+    html+='<button class="share-btn" id="sb_'+esc(n.id)+'" onclick="shareNews(\''+esc(n.id)+'\',\''+esc(n.titulo)+'\',\''+esc(n.fuente)+'\')">⎘ Copiar</button>';
+    html+='</div>';
+    html+='</div></div></div>';
+  });
+  html+='</div>';
+  if(total>6){
+    html+='<button class="ver-mas-btn" id="verMasBtn" onclick="showAll()">▼ Ver más ('+(total-6)+' noticias más)</button>';
+    html+='<button class="ver-menos-btn" id="verMenosBtn" onclick="showLess()">▲ Ver menos</button>';
+  }
+  html+='<div id="noResults" class="no-results">No se encontraron noticias para los filtros aplicados.</div>';
+  area.innerHTML=html;
+  buildManualTop5(activeMonth,DATA[activeMonth]);
+  buildFilters();
+  buildDateRange(allNews);
+  setTimeout(refreshTicker,150);
+  /* Scroll suave al inicio del contenido */
+  setTimeout(function(){
+    var mc=document.querySelector('.main-content');
+    if(mc)mc.scrollTo({top:0,behavior:'smooth'});
+    window.scrollTo({top:0,behavior:'smooth'});
+  },50);
+}
+function catColor(cats){
+  var map={banca:'#1e5fa8',credito:'#166534',fintech:'#9a3412',regulacion:'#5b21b6',
+    inclusion:'#92400e',mercado:'#0e7490',pension:'#92400e',seguros:'#991b1b',
+    microfinanzas:'#166534',cajas:'#5b21b6',coopac:'#9d174d',internacional:'#075985',
+    solvencia:'#0f766e',rentabilidad:'#b45309'};
+  if(!cats||!cats.length)return map.mercado;
+  return map[cats[0].key]||map.mercado;
+}
+
+/* ═══════════════════════════════════════════════
+   TICKER
+═══════════════════════════════════════════════ */
+function tickerPause(on){
+  ['tickerInner','tickerInnerD'].forEach(function(id){
+    var el=getEl(id);if(el)el.classList[on?'add':'remove']('paused');
+  });
+}
+function refreshTicker(){
+  var allNews=getAllNews();
+  /* Ticker muestra todas las noticias visibles */
+  var items=activeFilter==='todos'
+    ?allNews
+    :allNews.filter(function(n){return n.cats.map(function(c){return c.key;}).indexOf(activeFilter)>=0;});
+  if(!items.length)items=allNews;
+  ['tickerInner','tickerInnerD'].forEach(function(innerId){
+    var inner=getEl(innerId);if(!inner)return;
+    if(!items.length){inner.innerHTML='<div style="padding:12px 14px;font-size:10px;color:var(--text-dim);">Sin noticias.</div>';inner.style.animation='none';return;}
+    var combined=items.concat(items);
+    inner.innerHTML=combined.map(function(n){
+      return '<div class="t-item"><div class="t-date">'+esc(fechaLegible(n.fecha))+' · '+esc(n.fuente.split(',')[0])+'</div>'
+        +'<div class="t-title">'+esc(n.titulo)+'</div></div>';
+    }).join('');
+    inner.style.animation='none';
+    setTimeout(function(){
+      var halfH=inner.scrollHeight/2;
+      tickerKF.textContent='@keyframes tickSc{0%{top:0}100%{top:-'+halfH+'px}}';
+      inner.style.top='0';
+      inner.style.animation='tickSc '+(Math.max(28,items.length*7))+'s linear infinite';
+    },120);
+  });
+}
+
+/* ═══════════════════════════════════════════════
+   ADMIN TOP 5
+═══════════════════════════════════════════════ */
+function toggleAdmin(){
+  var panel=getEl('adminPanel');
+  if(!panel)return;
+  if(adminUnlocked){panel.classList.toggle('show');return;}
+  panel.classList.add('show');
+  getEl('adminAuth').style.display='block';
+  getEl('adminEditor').style.display='none';
+  setTimeout(function(){var p=getEl('adminPin');if(p)p.focus();},100);
+}
+function checkPin(){
+  var pinEl=getEl('adminPin');
+  if(!pinEl)return;
+  if(pinEl.value===ADMIN_PIN){
+    adminUnlocked=true;
+    getEl('adminAuth').style.display='none';
+    getEl('adminEditor').style.display='block';
+    var tog=getEl('adminToggle');if(tog){tog.textContent='🔓 Admin';tog.classList.add('active');}
+    populateAdminSelect();
+    var box=getEl('top5SideBox');if(box)box.classList.add('admin-mode');
+    setEl('adminPinError','');
+  }else{
+    setEl('adminPinError','PIN incorrecto');
+    pinEl.value='';
+  }
+}
+function cancelAdmin(){
+  var panel=getEl('adminPanel');if(panel)panel.classList.remove('show');
+  var pinEl=getEl('adminPin');if(pinEl)pinEl.value='';
+  setEl('adminPinError','');
+}
+function populateAdminSelect(){
+  var d=DATA[activeMonth];if(!d)return;
+  var sel=getEl('adminNewsSelect');if(!sel)return;
+  var allNews=getAllNews();
+  var cur=manualTop5[activeMonth]||[];
+  sel.innerHTML='<option value="">— Seleccionar noticia —</option>'+
+    allNews.filter(function(n){return cur.indexOf(n.id)<0;})
+      .map(function(n){return '<option value="'+esc(n.id)+'">'+esc(fechaLegible(n.fecha))+' · '+esc(n.titulo.substring(0,55))+'...</option>';}).join('');
+}
+function addToTop5(){
+  var sel=getEl('adminNewsSelect');if(!sel||!sel.value)return;
+  var id=sel.value;
+  if(!manualTop5[activeMonth])manualTop5[activeMonth]=[];
+  if(manualTop5[activeMonth].length>=5){alert('El Top 5 ya está completo. Elimina una noticia primero.');return;}
+  manualTop5[activeMonth].push(id);
+  buildManualTop5(activeMonth,DATA[activeMonth]);
+  populateAdminSelect();
+}
+function removeFromTop5(month,id){
+  if(!manualTop5[month])return;
+  manualTop5[month]=manualTop5[month].filter(function(x){return x!==id;});
+  if(top5Highlighted[month])delete top5Highlighted[month][id];
+  buildManualTop5(month,DATA[month]);
+  if(adminUnlocked)populateAdminSelect();
+}
+function toggleHighlight(month,id){
+  if(!top5Highlighted[month])top5Highlighted[month]={};
+  top5Highlighted[month][id]=!top5Highlighted[month][id];
+  buildManualTop5(month,DATA[month]);
+}
+function buildManualTop5(month,d){
+  var allNews=[];
+  if(d)d.quincenas.forEach(function(q){q.noticias.forEach(function(n){allNews.push(n);});});
+  /* Usar top5 desde el campo n.top5 exportado del Excel */
+  var top=allNews.filter(function(n){return n.top5&&n.top5>0;});
+  top.sort(function(a,b){return a.top5-b.top5;});
+  var hlMap={};
+  function renderBox(boxId){
+    var box=getEl(boxId);if(!box)return;
+    if(!top.length){
+      box.innerHTML='<div class="top5-empty">'+(adminUnlocked?'Selecciona noticias desde el panel de edición.':'Las noticias destacadas del mes aparecerán aquí.')+'</div>';
+      return;
+    }
+    var h='<div class="top5-grid">';
+    top.forEach(function(n,r){
+      var hl=hlMap[n.id];
+      h+='<div class="t5-item'+(hl?' highlighted':'')+'">';
+      h+='<div class="t5-rank"><span class="t5-num">'+(r+1)+'</span></div>';
+      h+='<div class="t5-icon" style="color:'+catColor(n.cats)+'"><div style="width:26px;height:26px;">'+getCatSVG(n.cats)+'</div></div>';
+      h+='<div class="t5-body"><div class="t5-title">'+esc(n.titulo)+'</div>';
+      h+='<div class="t5-meta">'+cbadges(n.cats.slice(0,2));
+      if(hl)h+='<span style="font-family:var(--mono);font-size:9px;color:var(--orange);">⬡ Destacada</span>';
+      h+='</div>';
+      if(adminUnlocked&&boxId==='top5SideBox'){
+        h+='<div style="display:flex;gap:4px;margin-top:4px;">';
+        h+='<button class="t5-highlight-btn" onclick="toggleHighlight(\''+esc(month)+'\',\''+esc(n.id)+'\')">'+(!hl?'★ Destacar':'☆ Quitar')+'</button>';
+        h+='<button class="t5-del-btn" onclick="removeFromTop5(\''+esc(month)+'\',\''+esc(n.id)+'\')">✕ Quitar</button>';
+        h+='</div>';
+      }
+      h+='</div></div>';
+    });
+    h+='</div>';
+    box.innerHTML=h;
+  }
+  renderBox('top5SideBox');
+  syncDrawerTop5();
+}
+function syncDrawerTop5(){
+  var side=getEl('top5SideBox'),drawer=getEl('top5DrawerBox');
+  if(side&&drawer)drawer.innerHTML=side.innerHTML;
+}
+
+/* ═══════════════════════════════════════════════
+   COMPARTIR
+═══════════════════════════════════════════════ */
+function shareNews(id,titulo,fuente){
+  var text=titulo+'\nFuente: '+fuente;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(function(){flashShare(id);}).catch(function(){fallbackCopy(text,id);});
+  }else{fallbackCopy(text,id);}
+}
+function fallbackCopy(text,id){
+  var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);flashShare(id);
+}
+function flashShare(id){
+  var btn=getEl('sb_'+id);if(!btn)return;
+  btn.textContent='✓ Copiado';btn.classList.add('copied');
+  setTimeout(function(){btn.textContent='⎘ Copiar';btn.classList.remove('copied');},2000);
+}
+
+/* ═══════════════════════════════════════════════
+   EXPORT PDF
+═══════════════════════════════════════════════ */
+function exportPDF(){
+  var d=DATA[activeMonth];if(!d){alert('Sin datos.');return;}
+  var allNews=getAllNews();
+  var newsMap={};allNews.forEach(function(n){newsMap[n.id]=n;});
+  var top=(manualTop5[activeMonth]||[]).map(function(id){return newsMap[id];}).filter(Boolean);
+  var hlMap=top5Highlighted[activeMonth]||{};
+  var now=new Date();
+  var fechaGen=now.toLocaleDateString('es-PE',{day:'2-digit',month:'long',year:'numeric'})+' '+now.toLocaleTimeString('es-PE',{hour:'2-digit',minute:'2-digit'});
+  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>SF Peruano — '+esc(d.label)+' — USO INTERNO</title>';
+  html+='<style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:Georgia,serif;max-width:820px;margin:32px auto;color:#1a2438;line-height:1.6;font-size:13px;}';
+  html+='.page-hdr{border-bottom:3px solid #005ea8;padding-bottom:10px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-end;}';
+  html+='.hdr-left h1{font-size:20px;color:#005ea8;font-family:sans-serif;}.hdr-left p{font-size:11px;color:#5a6e88;font-family:monospace;margin-top:2px;}';
+  html+='.hdr-right{text-align:right;font-family:monospace;font-size:10px;color:#5a6e88;}';
+  html+='.uso-interno{display:inline-block;background:#fee2e2;color:#991b1b;font-size:9px;font-weight:bold;font-family:monospace;letter-spacing:1px;padding:2px 8px;border-radius:3px;margin-top:4px;}';
+  html+='.section-title{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#005ea8;margin:20px 0 8px;font-family:monospace;border-left:3px solid #005ea8;padding-left:8px;}';
+  html+='.item{margin-bottom:12px;padding:10px 12px;background:#f8fafc;border-left:3px solid #d4dce8;page-break-inside:avoid;}';
+  html+='.item.top{border-left-color:#92710a;}.item.hl{background:#fefce8;border-left-color:#b45309;}';
+  html+='.item-meta{font-size:10px;color:#5a6e88;font-family:monospace;margin-bottom:4px;}';
+  html+='.item-title{font-size:13px;font-weight:bold;color:#1a2438;margin-bottom:5px;}';
+  html+='.item-summary{font-size:12px;color:#374151;}.item-source{font-size:10px;color:#9ab0c8;margin-top:4px;font-family:monospace;}';
+  html+='.footer{margin-top:32px;padding-top:10px;border-top:1px solid #d4dce8;font-size:9px;color:#9ab0c8;font-family:monospace;display:flex;justify-content:space-between;}';
+  html+='@media print{body{margin:16px;}}</style></head><body>';
+  html+='<div class="page-hdr"><div class="hdr-left"><h1>Sistema Financiero Peruano</h1>';
+  html+='<p>'+esc(d.label)+' · '+allNews.length+' noticias · Generado: '+fechaGen+'</p></div>';
+  html+='<div class="hdr-right"><div class="uso-interno">USO INTERNO</div><br>Departamento de Análisis Financiero</div></div>';
+  if(top.length){
+    html+='<div class="section-title">Top '+top.length+' Noticias del Mes</div>';
+    top.forEach(function(n,i){
+      var hl=hlMap[n.id];
+      html+='<div class="item top'+(hl?' hl':'')+'"><div class="item-meta">'+esc(n.fecha)+' · '+n.cats.map(function(c){return esc(c.lbl);}).join(' · ')+(hl?' · ⬡ Destacada':'')+'</div>';
+      html+='<div class="item-title">'+(i+1)+'. '+esc(n.titulo)+'</div>';
+      html+='<div class="item-summary">'+esc(n.resumen)+'</div>';
+      html+='<div class="item-source">'+esc(n.fuente)+'</div></div>';
+    });
+  }
+  html+='<div class="section-title">Todas las Noticias</div>';
+  allNews.forEach(function(n){
+    html+='<div class="item"><div class="item-meta">'+esc(n.fecha)+' · '+n.cats.map(function(c){return esc(c.lbl);}).join(' · ')+'</div>';
+    html+='<div class="item-title">'+esc(n.titulo)+'</div>';
+    html+='<div class="item-summary">'+esc(n.resumen)+'</div>';
+    html+='<div class="item-source">'+esc(n.fuente)+'</div></div>';
+  });
+  html+='<div class="footer"><span>SF Peruano · Departamento de Análisis Financiero · '+esc(d.label)+'</span><span>USO INTERNO — No distribuir sin autorización</span></div>';
+  html+='</body></html>';
+  var win=window.open('','_blank','width=920,height=720');
+  win.document.write(html);win.document.close();
+  setTimeout(function(){win.print();},700);
+}
+
+/* ═══════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════ */
+window.addEventListener('DOMContentLoaded',function(){
+  /* footer date */
+  var fd=getEl('footerDate');
+  if(fd)fd.textContent=new Date().toLocaleDateString('es-PE',{day:'2-digit',month:'long',year:'numeric'});
+  /* live clock */
+  var DIAS=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  var MESES=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  function tickClock(){
+    var n=new Date();
+    var hh=String(n.getHours()).padStart(2,'0');
+    var mm=String(n.getMinutes()).padStart(2,'0');
+    var ss=String(n.getSeconds()).padStart(2,'0');
+    var ct=getEl('clockTime');if(ct)ct.textContent=hh+':'+mm+':'+ss;
+    var cd=getEl('clockDate');
+    if(cd)cd.innerHTML='<span class="clock-dot"></span>'+DIAS[n.getDay()]+' '+n.getDate()+' '+MESES[n.getMonth()]+' '+n.getFullYear();
+  }
+  tickClock();
+  setInterval(tickClock,1000);
+  buildMonthCascade();
+  renderContent();
+});
+</script>
+</body>
+</html>
