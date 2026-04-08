@@ -15,7 +15,6 @@
   --teal:#0e7490;--pink:#be185d;
   --gold:#92710a;--gold-bg:#fefce8;
   --mono:'IBM Plex Mono',monospace;--sans:'Inter',sans-serif;--radius:8px;
-  --sidebar-bg:#F7F7F5;--sidebar-bg-dark:#0c1628;
   --shadow:0 1px 3px rgba(0,0,0,0.08),0 1px 2px rgba(0,0,0,0.05);
   --shadow-md:0 4px 12px rgba(0,0,0,0.10),0 2px 4px rgba(0,0,0,0.06);
 }
@@ -70,27 +69,27 @@ body::before{
 /* LAYOUT */
 .page-wrap{position:relative;z-index:2;display:flex;min-height:100vh;}
 .left-panel{
-  width:268px;min-width:268px;
-  background:#F7F7F5;border-right:1px solid var(--border);
+  width:256px;min-width:256px;
+  background:rgba(255,255,255,0.88);border-right:1px solid var(--border);
   display:flex;flex-direction:column;position:sticky;top:0;height:100vh;
   overflow:hidden;backdrop-filter:blur(16px);transition:background 0.3s;
-  box-shadow:2px 0 8px rgba(0,0,0,0.06);
+  box-shadow:var(--shadow);
 }
-[data-theme="dark"] .left-panel{background:#0c1628;}
+[data-theme="dark"] .left-panel{background:rgba(10,16,32,0.82);}
 .panel-sec{border-bottom:1px solid var(--border);flex-shrink:0;}
 .panel-sec-last{flex:1;display:flex;flex-direction:column;min-height:0;}
-.panel-head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border);background:rgba(0,94,168,0.04);}
+.panel-head{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--border);background:rgba(0,94,168,0.03);}
 [data-theme="dark"] .panel-head{background:rgba(47,129,247,0.04);}
-.ph-title{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--text);display:flex;align-items:center;gap:6px;}
+.ph-title{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);}
 .ph-sub{font-size:9px;color:var(--text-faint);margin-top:1px;}
 .ticker-scroll{height:220px;overflow:hidden;position:relative;}
 .ticker-inner{position:absolute;top:0;left:0;right:0;}
 .ticker-inner.paused{animation-play-state:paused !important;}
-.t-item{padding:10px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;}
+.t-item{padding:9px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;}
 .t-item:hover{background:var(--accent-light);}
 .t-date{font-family:var(--mono);font-size:9px;color:var(--text-faint);margin-bottom:2px;}
-.t-title{font-size:13px;font-weight:500;color:var(--text);line-height:1.4;}
-.ticker-foot{padding:6px 16px;font-size:10px;color:var(--text-faint);border-top:1px solid var(--border);}
+.t-title{font-size:12px;font-weight:500;color:var(--text);line-height:1.4;}
+.ticker-foot{padding:5px 14px;font-size:9px;color:var(--text-faint);border-top:1px solid var(--border);}
 
 /* TOP 5 SIDEBAR */
 .top5-admin-btn{font-family:var(--mono);font-size:9px;font-weight:600;padding:3px 8px;border-radius:3px;border:1px solid var(--border2);background:transparent;color:var(--text-dim);cursor:pointer;transition:all 0.2s;letter-spacing:0.5px;}
@@ -130,10 +129,9 @@ body::before{
 .main-content{flex:1;min-width:0;padding:28px 28px 0;}
 .header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:12px;padding-bottom:18px;border-bottom:2px solid var(--border);}
 .header-left{flex:1;}
-.header-eyebrow{font-family:var(--sans);font-size:15px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--accent);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.header-eyebrow{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:4px;display:flex;align-items:center;gap:6px;}
 .bcrp-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;}
-.header-title{font-size:22px;font-weight:700;color:var(--text);letter-spacing:-0.3px;}
-.header-subtitle{font-size:13px;color:var(--text-dim);margin-top:3px;font-weight:400;}
+.header-title{font-size:26px;font-weight:700;color:var(--text);letter-spacing:-0.5px;}
 .header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 .month-select{font-family:var(--mono);background:var(--surface);border:1px solid var(--border2);color:var(--text);font-size:13px;font-weight:600;padding:8px 36px 8px 12px;border-radius:6px;cursor:pointer;appearance:none;-webkit-appearance:none;outline:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23005ea8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;box-shadow:var(--shadow);}
 [data-theme="dark"] .month-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%232f81f7' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");}
@@ -143,11 +141,9 @@ body::before{
 .pdf-btn:hover{border-color:var(--accent);color:var(--accent);}
 
 /* SEARCH */
-.search-row{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;max-width:900px;}
+.search-row{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
 .search-box{flex:1;min-width:160px;background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:var(--sans);font-size:13px;padding:9px 12px 9px 36px;border-radius:6px;outline:none;transition:border-color 0.2s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235a6e88' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:12px center;box-shadow:var(--shadow);}
 .search-box:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,94,168,0.12);}
-.search-box{border:1.5px solid #CACAC8;border-radius:8px;}
-.search-box:hover{border-color:#9aa0a8;}
 .search-box::placeholder{color:var(--text-faint);}
 [data-theme="dark"] .search-box{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b7f99' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");}
 .date-range-wrap{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
@@ -177,7 +173,7 @@ body::before{
 .facc-body{display:none;padding:10px 14px 12px;background:var(--surface);}
 .facc-hdr.open + .facc-body{display:flex;flex-wrap:wrap;gap:5px;}
 .filters-bar{display:flex;flex-wrap:wrap;gap:5px;}
-.f-btn{font-family:var(--mono);font-size:9px;font-weight:600;padding:6px 12px;border-radius:20px;border:1px solid var(--border2);background:var(--surface);color:var(--text-dim);cursor:pointer;transition:all 0.15s;letter-spacing:0.5px;text-transform:uppercase;box-shadow:var(--shadow);}
+.f-btn{font-family:var(--mono);font-size:9px;font-weight:600;padding:4px 10px;border-radius:3px;border:1px solid var(--border2);background:var(--surface);color:var(--text-dim);cursor:pointer;transition:all 0.15s;letter-spacing:0.5px;text-transform:uppercase;box-shadow:var(--shadow);}
 .f-btn:hover{border-color:var(--accent);color:var(--accent);}
 .f-btn.active{color:#fff!important;border-color:transparent;box-shadow:none;}
 [data-theme="dark"] .f-btn.active{color:#0d1117!important;}
@@ -196,8 +192,6 @@ body::before{
 .f-btn.active.fc-coopac{background:var(--pink);}
 .f-btn.active.fc-solvencia{background:#0f766e;}
 .f-btn.active.fc-rentabilidad{background:#b45309;}
-.f-btn.active.fc-adquisicion{background:#0369a1;}
-.f-btn.active.fc-cartera{background:#7c3aed;}
 .f-btn.active.fe-btn{background:var(--accent);}
 
 /* MONTH SELECTOR — quincena cascade */
@@ -267,22 +261,18 @@ body::before{
 .cb-rentabilidad{color:#b45309;background:rgba(180,83,9,0.1);}
 [data-theme="dark"] .cb-solvencia{color:#2dd4bf;background:rgba(45,212,191,0.1);}
 [data-theme="dark"] .cb-rentabilidad{color:#fbbf24;background:rgba(251,191,36,0.1);}
-.cb-adquisicion{color:#0369a1;background:rgba(3,105,161,0.1);}
-.cb-cartera{color:#7c3aed;background:rgba(124,58,237,0.1);}
-[data-theme="dark"] .cb-adquisicion{color:#7dd3fc;background:rgba(125,211,252,0.1);}
-[data-theme="dark"] .cb-cartera{color:#c4b5fd;background:rgba(196,181,253,0.1);}
 
 .n-grid{display:flex;flex-direction:column;gap:3px;margin-bottom:6px;}
-.n-item{display:grid;grid-template-columns:52px 1fr;border-left:3px solid var(--border);background:var(--surface);transition:border-color 0.2s,background 0.15s,box-shadow 0.2s,transform 0.15s;box-shadow:var(--shadow);}
-.n-item:hover{border-left-color:var(--accent);background:var(--surface2);box-shadow:0 4px 16px rgba(0,94,168,0.10);transform:translateY(-1px);}
+.n-item{display:grid;grid-template-columns:52px 1fr;border-left:3px solid var(--border);background:var(--surface);transition:border-color 0.2s,background 0.15s;box-shadow:var(--shadow);}
+.n-item:hover{border-left-color:var(--accent);background:var(--surface2);}
 .n-item.hidden{display:none!important;}
 .n-date-col{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:14px 6px 14px 0;}
 .n-date{font-family:var(--mono);font-size:11px;color:var(--text-dim);text-align:center;line-height:1.6;font-weight:600;}
 .n-body{padding:12px 14px;border-left:1px solid var(--border);}
 .n-body-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px;}
 .n-body-left{flex:1;min-width:0;}
-.n-img{width:52px;height:52px;border-radius:10px;background:var(--accent-light);border:none;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:8px;box-shadow:var(--shadow);}
-.n-img svg{width:100%;height:100%;opacity:1;}
+.n-img{width:48px;height:48px;border-radius:7px;background:var(--accent-light);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:6px;}
+.n-img svg{width:100%;height:100%;opacity:0.85;}
 .n-cats{margin-bottom:4px;display:flex;flex-wrap:wrap;gap:4px;align-items:center;}
 .cb-entidad{font-family:var(--mono);font-size:9px;font-weight:600;padding:2px 8px;border-radius:3px;
   background:var(--surface2);border:1px solid var(--border2);color:var(--text-dim);
@@ -295,7 +285,7 @@ body::before{
 .n-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
 .n-source{font-family:var(--mono);font-size:11px;color:var(--text-faint);}
 .n-tags{display:flex;gap:4px;flex-wrap:wrap;}
-.n-tag{font-size:9px;padding:3px 9px;border-radius:20px;border:none;color:var(--accent);background:#eef4ff;font-weight:500;}
+.n-tag{font-size:9px;padding:2px 7px;border-radius:20px;border:1px solid var(--border);color:var(--text-faint);background:var(--surface2);}
 .share-btn{font-family:var(--mono);font-size:9px;padding:4px 8px;border-radius:4px;border:1px solid var(--border2);background:transparent;color:var(--text-dim);cursor:pointer;transition:all 0.15s;text-decoration:none;display:inline-flex;align-items:center;}
 .share-btn:hover{border-color:var(--accent);color:var(--accent);}
 .share-btn.copied{border-color:var(--green);color:var(--green);}
@@ -313,7 +303,6 @@ body::before{
 
 .highlight{background:rgba(0,94,168,0.18);color:var(--text);border-radius:2px;padding:0 2px;}
 [data-theme="dark"] .highlight{background:rgba(47,129,247,0.3);}
-[data-theme="dark"] .n-tag{background:rgba(47,129,247,0.12);color:var(--accent);}
 .no-results{text-align:center;padding:48px 20px;color:var(--text-dim);display:none;}
 .no-results.show{display:block;}
 .fade-in{animation:fadeUp 0.3s ease;}
@@ -327,7 +316,7 @@ body::before{
 .drawer-close{position:absolute;top:12px;right:12px;font-size:18px;background:none;border:none;color:var(--text-dim);cursor:pointer;z-index:10;padding:4px;}
 
 /* TIME AGO BADGE */
-.time-ago{font-family:var(--mono);font-size:9px;color:var(--text-faint);margin-top:4px;display:inline-block;text-align:center;line-height:1.3;background:var(--surface2);border-radius:10px;padding:1px 6px;border:1px solid var(--border);}
+.time-ago{font-family:var(--mono);font-size:10px;color:var(--text-faint);margin-top:3px;display:block;text-align:center;line-height:1.3;}
 
 /* STAGGERED FADE-IN */
 .n-item{animation:fadeUp 0.35s ease both;}
@@ -345,7 +334,7 @@ body::before{
 .clock-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:4px;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
 /* FOOTER */
-.site-footer{margin-top:40px;padding:24px 28px 32px;border-top:2px solid var(--border);background:var(--surface2);border-radius:8px 8px 0 0;}
+.site-footer{margin-top:40px;padding:24px 0 32px;border-top:2px solid var(--border);}
 .footer-inner{display:flex;flex-direction:column;gap:4px;}
 .footer-logo{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:2px;}
 .footer-copy{font-family:var(--mono);font-size:10px;color:var(--text-dim);}
@@ -365,54 +354,9 @@ body::before{
   .n-summary{font-size:11px;}.header-right{gap:6px;}
   .date-picker{min-width:110px;}
 }
-
-/* Borde izquierdo de card por categoría */
-.n-item[data-cats*="credito"]{border-left-color:#16a34a;}
-.n-item[data-cats*="microfinanzas"]{border-left-color:#16a34a;}
-.n-item[data-cats*="fintech"]{border-left-color:#e05c45;}
-.n-item[data-cats*="regulacion"]{border-left-color:#6d28d9;}
-.n-item[data-cats*="inclusion"]{border-left-color:#c2740a;}
-.n-item[data-cats*="mercado"]{border-left-color:#0e7490;}
-.n-item[data-cats*="pension"]{border-left-color:#b45309;}
-.n-item[data-cats*="seguros"]{border-left-color:#b91c1c;}
-.n-item[data-cats*="internacional"]{border-left-color:#0369a1;}
-.n-item[data-cats*="banca"]{border-left-color:#005ea8;}
-.n-item[data-cats*="solvencia"]{border-left-color:#0f766e;}
-.n-item[data-cats*="rentabilidad"]{border-left-color:#b45309;}
-.n-item[data-cats*="adquisicion"]{border-left-color:#0369a1;}
-.n-item[data-cats*="cartera"]{border-left-color:#7c3aed;}
 ::-webkit-scrollbar{width:4px;height:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
-/* ── MODAL DE NOTICIA ── */
-.modal-overlay{display:none;position:fixed;inset:0;z-index:500;
-  background:rgba(0,0,0,0.5);backdrop-filter:blur(6px);
-  align-items:center;justify-content:center;padding:20px;}
-.modal-overlay.open{display:flex;}
-.modal-box{background:var(--surface);border-radius:12px;max-width:680px;width:100%;
-  max-height:85vh;display:flex;flex-direction:column;
-  box-shadow:0 20px 60px rgba(0,0,0,0.25);overflow:hidden;
-  animation:modalIn 0.2s ease;}
-@keyframes modalIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
-.modal-header{padding:20px 24px 16px;border-bottom:1px solid var(--border);flex-shrink:0;}
-.modal-cats{margin-bottom:8px;display:flex;gap:4px;flex-wrap:wrap;}
-.modal-title{font-size:18px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:6px;}
-.modal-meta{font-family:var(--mono);font-size:10px;color:var(--text-faint);}
-.modal-body{padding:20px 24px;overflow-y:auto;flex:1;}
-.modal-resumen{font-size:14px;color:var(--text-dim);line-height:1.85;}
-.modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
-.modal-footer{padding:14px 24px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end;flex-shrink:0;}
-.modal-close-btn{position:absolute;top:14px;right:14px;width:30px;height:30px;
-  border-radius:50%;border:1px solid var(--border);background:var(--surface2);
-  cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;
-  color:var(--text-dim);transition:all 0.15s;}
-.modal-close-btn:hover{background:var(--red);color:#fff;border-color:var(--red);}
-.modal-box{position:relative;}
-.ver-mas-noticia{background:none;border:none;color:var(--accent);font-family:var(--mono);
-  font-size:10px;font-weight:600;cursor:pointer;padding:2px 0 8px;
-  letter-spacing:0.3px;transition:opacity 0.15s;}
-.ver-mas-noticia:hover{opacity:0.7;}
-
 </style>
 </head>
 <body>
@@ -445,7 +389,7 @@ body::before{
     <div class="panel-sec">
       <div class="panel-head">
         <div>
-          <div class="ph-title"><span style="color:var(--accent)">◆</span> Últimas noticias</div>
+          <div class="ph-title">Últimas noticias</div>
           <div class="ph-sub">Pausa al pasar el mouse</div>
         </div>
       </div>
@@ -456,7 +400,7 @@ body::before{
     </div>
     <!-- Month / Quincena cascade -->
     <div class="panel-sec" style="flex-shrink:0;">
-      <div class="panel-head"><div class="ph-title"><span style="color:var(--accent)">◆</span> Período</div></div>
+      <div class="panel-head"><div class="ph-title">Período</div></div>
       <div class="month-cascade" id="monthCascade"></div>
     </div>
     <!-- Top 5 -->
@@ -497,10 +441,9 @@ body::before{
             <circle cx="34" cy="30" r="5" fill="var(--accent)" opacity="0.8"/>
             <path d="M32 30l1.5 1.5L36 28" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          BCRP-DASF
+          BCRP — Análisis Financiero
         </div>
         <h1 class="header-title" id="page-title">Noticias del Sistema Financiero Peruano</h1>
-        <div class="header-subtitle">Monitoreo y análisis · Departamento de Análisis del Sistema Financiero</div>
       </div>
       <div class="header-right">
         <div class="live-clock" id="liveClock">
@@ -517,7 +460,6 @@ body::before{
     <!-- SEARCH -->
     <div class="search-row">
       <input class="search-box" id="searchBox" type="text" placeholder="Buscar noticia, entidad, tema o palabra clave..." oninput="applySearch()" autocomplete="off" aria-label="Buscar noticias"/>
-      <button onclick="applySearch()" style="background:#1A56C4;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-family:var(--mono);font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background 0.15s;" onmouseover="this.style.background='#1447A8'" onmouseout="this.style.background='#1A56C4'">🔍 Buscar</button>
       <div class="date-range-wrap">
         <span style="font-size:13px;opacity:0.6;">📅</span>
         <input class="date-picker" id="dateFrom" type="date" onchange="applyDateRange()" title="Desde"/>
@@ -537,8 +479,8 @@ body::before{
 
     <footer class="site-footer">
       <div class="footer-inner">
-        <div class="footer-logo">Departamento de Análisis del Sistema Financiero</div>
-        <div class="footer-copy">© 2026 Departamento de Análisis del Sistema Financiero · Todos los derechos reservados · Uso interno</div>
+        <div class="footer-logo">Departamento de Análisis Financiero</div>
+        <div class="footer-copy">© 2026 Departamento de Análisis Financiero · Todos los derechos reservados · Uso interno</div>
         <div class="footer-note">La información contenida en este sistema es de uso exclusivo del departamento y no debe ser distribuida sin autorización expresa. Generado el <span id="footerDate"></span>.</div>
       </div>
     </footer>
@@ -629,8 +571,6 @@ var CATS=[
   {key:'seguros',lbl:'Seguros',cls:'fc-seguros'},
   {key:'solvencia',lbl:'Solvencia',cls:'fc-solvencia'},
   {key:'rentabilidad',lbl:'Rentabilidad',cls:'fc-rentabilidad'},
-  {key:'adquisicion',lbl:'Adquisición',cls:'fc-adquisicion'},
-  {key:'cartera',lbl:'Cartera',cls:'fc-cartera'},
   {key:'internacional',lbl:'Internacional',cls:'fc-internacional'}
 ];
 var ENTIDADES=[
@@ -644,8 +584,7 @@ var ENTIDADES=[
   {key:'coopac',lbl:'Coopac'},
   {key:'sbs',lbl:'SBS'},
   {key:'bcrp',lbl:'BCRP'},
-  {key:'fintech',lbl:'Fintech'},
-  {key:'sistema financiero',lbl:'Sistema Financiero'}
+  {key:'fintech',lbl:'Fintech'}
 ];
 /* ENTIDAD_KW ya no se usa — filtramos por n.entidad directo */
 var ENTIDAD_KW={};
@@ -667,8 +606,6 @@ var CAT_SVG={
   coopac:'<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M24 10v4M24 34v4M10 24h4M34 24h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14.9 14.9l2.8 2.8M30.3 30.3l2.8 2.8M14.9 33.1l2.8-2.8M30.3 17.7l2.8-2.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="24" cy="24" r="3" fill="currentColor" opacity="0.4"/></svg>',
   internacional:'<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="1.5"/><ellipse cx="24" cy="24" rx="8" ry="18" stroke="currentColor" stroke-width="1.5"/><path d="M6 24h36" stroke="currentColor" stroke-width="1.5"/><path d="M8 16h32M8 32h32" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg>',
   solvencia:'<svg viewBox="0 0 48 48" fill="none"><rect x="8" y="10" width="32" height="28" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M16 24h16M16 30h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M24 4v6M16 4l2 6M32 4l-2 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="36" cy="12" r="6" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/><path d="M34 12l1.5 1.5L38 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-  adquisicion:'<svg viewBox="0 0 48 48" fill="none"><path d="M8 24h32M24 8v32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="14" y="14" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.5"/><circle cx="24" cy="24" r="4" fill="currentColor" opacity="0.3"/></svg>',
-  cartera:'<svg viewBox="0 0 48 48" fill="none"><rect x="6" y="16" width="36" height="26" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M16 16v-4a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v4" stroke="currentColor" stroke-width="1.5"/><path d="M6 28h36" stroke="currentColor" stroke-width="1.5"/><rect x="20" y="24" width="8" height="8" rx="1" fill="currentColor" opacity="0.3"/></svg>',
   rentabilidad:'<svg viewBox="0 0 48 48" fill="none"><path d="M6 36l8-10 7 4 8-14 8 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M34 22h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="14" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M14 11v3.5l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 42h36" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>'
 };
 function getCatSVG(cats){
@@ -690,34 +627,6 @@ function norm(s){
     .replace(/ó/g,'o').replace(/ú/g,'u').replace(/ü/g,'u')
     .replace(/ñ/g,'n').trim();
 }
-
-/* ── MODAL ── */
-function openModal(id){
-  var allNews=getAllNews();
-  var n=null;
-  for(var i=0;i<allNews.length;i++){if(allNews[i].id===id){n=allNews[i];break;}}
-  if(!n)return;
-  document.getElementById('modalCats').innerHTML=cbadges(n.cats);
-  document.getElementById('modalTitle').textContent=n.titulo;
-  document.getElementById('modalMeta').textContent=fechaLegible(n.fecha)+' · '+n.fuente;
-  document.getElementById('modalResumen').textContent=n.resumen;
-  var tagsHtml=n.tags.map(function(t){return '<span class="n-tag">'+esc(t)+'</span>';}).join('');
-  document.getElementById('modalTags').innerHTML=tagsHtml;
-  var srcQ=n.url&&n.url.trim()!==''?n.url:'https://www.google.com/search?q='+encodeURIComponent(n.titulo.substring(0,70)+' '+n.fuente.split(',')[0]);
-  document.getElementById('modalVerFuente').href=srcQ;
-  document.getElementById('modalCopiar').onclick=function(){shareNews(n.id,n.titulo,n.fuente);};
-  document.getElementById('modalOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeModal(e){
-  if(e&&e.target!==document.getElementById('modalOverlay'))return;
-  document.getElementById('modalOverlay').classList.remove('open');
-  document.body.style.overflow='';
-}
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape'){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
-});
-
 function esc(s){
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
@@ -1042,9 +951,7 @@ function renderContent(){
     var ago=timeAgo(iso);
     /* buscar URL de fuente: si la fuente tiene dominio conocido lo usamos, si no google */
     var srcQ=n.url&&n.url.trim()!==''?n.url:'https://www.google.com/search?q='+encodeURIComponent(n.titulo.substring(0,70)+' '+n.fuente.split(',')[0]);
-    var firstCat=n.cats&&n.cats.length?n.cats[0].key:'';
-    var borderColor=getCatColor(firstCat);
-    html+='<div class="n-item fade-in" style="border-left-color:'+borderColor+'" data-cats="'+esc(n.cats.map(function(c){return c.key;}).join(','))+'" data-id="'+esc(n.id)+'" data-date="'+iso+'" data-entidad="'+norm(n.entidad||'')+'"'+extraAttr+'>';
+    html+='<div class="n-item fade-in" data-cats="'+esc(n.cats.map(function(c){return c.key;}).join(','))+'" data-id="'+esc(n.id)+'" data-date="'+iso+'" data-entidad="'+norm(n.entidad||'')+'"'+extraAttr+'>';
     html+='<div class="n-date-col"><span class="n-date">'+esc(fechaLegible(n.fecha))+'</span><span class="time-ago">'+ago+'</span></div>';
     html+='<div class="n-body">';
     html+='<div class="n-body-top"><div class="n-body-left">';
@@ -1055,12 +962,7 @@ function renderContent(){
       : esc(n.titulo);
     html+='<div class="n-title" data-orig="'+esc(n.titulo)+'">'+tituloHtml+'</div></div>';
     html+='<div class="n-img" style="color:'+catColor(n.cats)+'">'+getCatSVG(n.cats)+'</div></div>';
-    var resumenCorto=n.resumen.length>200;
-    html+='<div class="n-summary" style="'+(resumenCorto?'display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;':'')+'">';
-    html+=esc(n.resumen)+'</div>';
-    if(resumenCorto){
-      html+='<button class="ver-mas-noticia" onclick="openModal(\''+esc(n.id)+'\')">Ver más ▾</button>';
-    }
+    html+='<div class="n-summary">'+esc(n.resumen)+'</div>';
     html+='<div class="n-footer"><div class="n-meta"><span class="n-source">'+esc(n.fuente)+'</span><div class="n-tags">'+tags+'</div></div>';
     html+='<div class="n-actions">';
     html+='<a class="share-btn" href="'+srcQ+'" target="_blank" rel="noopener">↗ Ver fuente</a>';
@@ -1086,21 +988,11 @@ function renderContent(){
     window.scrollTo({top:0,behavior:'smooth'});
   },50);
 }
-function getCatColor(key){
-  var map={
-    banca:'#005ea8',credito:'#16a34a',fintech:'#e05c45',
-    regulacion:'#6d28d9',inclusion:'#c2740a',mercado:'#0e7490',
-    pension:'#b45309',seguros:'#b91c1c',microfinanzas:'#16a34a',
-    cajas:'#7c3aed',coopac:'#be185d',internacional:'#0369a1',
-    solvencia:'#0f766e',rentabilidad:'#b45309'
-  };
-  return map[key]||'#d4dce8';
-}
 function catColor(cats){
   var map={banca:'#1e5fa8',credito:'#166534',fintech:'#9a3412',regulacion:'#5b21b6',
     inclusion:'#92400e',mercado:'#0e7490',pension:'#92400e',seguros:'#991b1b',
     microfinanzas:'#166534',cajas:'#5b21b6',coopac:'#9d174d',internacional:'#075985',
-    solvencia:'#0f766e',rentabilidad:'#b45309',adquisicion:'#0369a1',cartera:'#7c3aed'};
+    solvencia:'#0f766e',rentabilidad:'#b45309'};
   if(!cats||!cats.length)return map.mercado;
   return map[cats[0].key]||map.mercado;
 }
@@ -1290,7 +1182,7 @@ function exportPDF(){
   html+='@media print{body{margin:16px;}}</style></head><body>';
   html+='<div class="page-hdr"><div class="hdr-left"><h1>Sistema Financiero Peruano</h1>';
   html+='<p>'+esc(d.label)+' · '+allNews.length+' noticias · Generado: '+fechaGen+'</p></div>';
-  html+='<div class="hdr-right"><div class="uso-interno">USO INTERNO</div><br>Departamento de Análisis del Sistema Financiero</div></div>';
+  html+='<div class="hdr-right"><div class="uso-interno">USO INTERNO</div><br>Departamento de Análisis Financiero</div></div>';
   if(top.length){
     html+='<div class="section-title">Top '+top.length+' Noticias del Mes</div>';
     top.forEach(function(n,i){
@@ -1308,28 +1200,8 @@ function exportPDF(){
     html+='<div class="item-summary">'+esc(n.resumen)+'</div>';
     html+='<div class="item-source">'+esc(n.fuente)+'</div></div>';
   });
-  html+='<div class="footer"><span>SF Peruano · Departamento de Análisis del Sistema Financiero · '+esc(d.label)+'</span><span>USO INTERNO — No distribuir sin autorización</span></div>';
-  html+='
-<!-- MODAL NOTICIA -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-  <div class="modal-box" id="modalBox">
-    <button class="modal-close-btn" onclick="closeModal()" aria-label="Cerrar">✕</button>
-    <div class="modal-header">
-      <div class="modal-cats" id="modalCats"></div>
-      <div class="modal-title" id="modalTitle"></div>
-      <div class="modal-meta" id="modalMeta"></div>
-    </div>
-    <div class="modal-body">
-      <div class="modal-resumen" id="modalResumen"></div>
-      <div class="modal-tags" id="modalTags"></div>
-    </div>
-    <div class="modal-footer">
-      <a id="modalVerFuente" class="share-btn" href="#" target="_blank" rel="noopener" style="padding:8px 14px;">↗ Ver fuente</a>
-      <button id="modalCopiar" class="share-btn" style="padding:8px 14px;">⎘ Copiar</button>
-    </div>
-  </div>
-</div>
-</body></html>';
+  html+='<div class="footer"><span>SF Peruano · Departamento de Análisis Financiero · '+esc(d.label)+'</span><span>USO INTERNO — No distribuir sin autorización</span></div>';
+  html+='</body></html>';
   var win=window.open('','_blank','width=920,height=720');
   win.document.write(html);win.document.close();
   setTimeout(function(){win.print();},700);
@@ -1360,25 +1232,5 @@ window.addEventListener('DOMContentLoaded',function(){
   renderContent();
 });
 </script>
-
-<!-- MODAL NOTICIA -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-  <div class="modal-box" id="modalBox">
-    <button class="modal-close-btn" onclick="closeModal()" aria-label="Cerrar">✕</button>
-    <div class="modal-header">
-      <div class="modal-cats" id="modalCats"></div>
-      <div class="modal-title" id="modalTitle"></div>
-      <div class="modal-meta" id="modalMeta"></div>
-    </div>
-    <div class="modal-body">
-      <div class="modal-resumen" id="modalResumen"></div>
-      <div class="modal-tags" id="modalTags"></div>
-    </div>
-    <div class="modal-footer">
-      <a id="modalVerFuente" class="share-btn" href="#" target="_blank" rel="noopener" style="padding:8px 14px;">↗ Ver fuente</a>
-      <button id="modalCopiar" class="share-btn" style="padding:8px 14px;">⎘ Copiar</button>
-    </div>
-  </div>
-</div>
 </body>
 </html>
