@@ -183,24 +183,30 @@ body::before{
 .f-btn:hover{border-color:var(--accent);color:var(--accent);}
 .f-btn.active{color:#fff!important;border-color:transparent;box-shadow:none;}
 [data-theme="dark"] .f-btn.active{color:#0d1117!important;}
-.f-btn.active{color:#fff!important;border-color:transparent;}
-.f-btn.active.fc-todos{background:var(--accent);}
-.f-btn.active.fc-credito{background:#16a34a;}
-.f-btn.active.fc-microfinanzas{background:#16a34a;}
-.f-btn.active.fc-fintech{background:#e05c45;}
-.f-btn.active.fc-regulacion{background:#6d28d9;}
-.f-btn.active.fc-inclusion{background:#c2740a;}
-.f-btn.active.fc-mercado{background:#0e7490;}
-.f-btn.active.fc-pension{background:#b45309;}
-.f-btn.active.fc-seguros{background:#b91c1c;}
-.f-btn.active.fc-solvencia{background:#0f766e;}
-.f-btn.active.fc-rentabilidad{background:#b45309;}
-.f-btn.active.fc-adquisicion{background:#0369a1;}
-.f-btn.active.fc-cartera{background:#7c3aed;}
-.f-btn.active.fc-internacional{background:#0369a1;}
-.f-btn.active.fc-cajas{background:#7c3aed;}
-.f-btn.active.fc-coopac{background:#be185d;}
-.f-btn.active.fe-btn{background:var(--accent);}
+.f-btn.active{border-color:transparent;}
+.f-btn.active.fe-btn,.f-btn.active.fc-todos{background:var(--accent);color:#fff!important;}
+/* Chips por categoría — hover y activo con color semántico */
+.f-btn.fc-credito.active,.f-btn.fc-credito:not(.f-btn-disabled):hover{background:#EAF3DE;border-color:#639922;color:#3B6D11!important;}
+.f-btn.fc-microfinanzas.active,.f-btn.fc-microfinanzas:not(.f-btn-disabled):hover{background:#E6F1FB;border-color:#378ADD;color:#0C447C!important;}
+.f-btn.fc-fintech.active,.f-btn.fc-fintech:not(.f-btn-disabled):hover{background:#EEEDFE;border-color:#7F77DD;color:#3C3489!important;}
+.f-btn.fc-regulacion.active,.f-btn.fc-regulacion:not(.f-btn-disabled):hover{background:#FAEEDA;border-color:#BA7517;color:#633806!important;}
+.f-btn.fc-inclusion.active,.f-btn.fc-inclusion:not(.f-btn-disabled):hover{background:#E1F5EE;border-color:#1D9E75;color:#085041!important;}
+.f-btn.fc-mercado.active,.f-btn.fc-mercado:not(.f-btn-disabled):hover{background:#E6F1FB;border-color:#185FA5;color:#042C53!important;}
+.f-btn.fc-pension.active,.f-btn.fc-pension:not(.f-btn-disabled):hover{background:#FBEAF0;border-color:#D4537E;color:#4B1528!important;}
+.f-btn.fc-seguros.active,.f-btn.fc-seguros:not(.f-btn-disabled):hover{background:#FCEBEB;border-color:#E24B4A;color:#501313!important;}
+.f-btn.fc-solvencia.active,.f-btn.fc-solvencia:not(.f-btn-disabled):hover{background:#FAEEDA;border-color:#EF9F27;color:#412402!important;}
+.f-btn.fc-rentabilidad.active,.f-btn.fc-rentabilidad:not(.f-btn-disabled):hover{background:#EAF3DE;border-color:#97C459;color:#173404!important;}
+.f-btn.fc-internacional.active,.f-btn.fc-internacional:not(.f-btn-disabled):hover{background:#E1F5EE;border-color:#0F6E56;color:#04342C!important;}
+.f-btn.fc-adquisicion.active,.f-btn.fc-adquisicion:not(.f-btn-disabled):hover{background:#E6F1FB;border-color:#185FA5;color:#042C53!important;}
+.f-btn.fc-cartera.active,.f-btn.fc-cartera:not(.f-btn-disabled):hover{background:#EEEDFE;border-color:#7F77DD;color:#3C3489!important;}
+.f-btn.fc-cajas.active,.f-btn.fc-cajas:not(.f-btn-disabled):hover{background:#EEEDFE;border-color:#7F77DD;color:#3C3489!important;}
+.f-btn.fc-coopac.active,.f-btn.fc-coopac:not(.f-btn-disabled):hover{background:#FBEAF0;border-color:#D4537E;color:#4B1528!important;}
+.f-btn.f-btn-disabled{opacity:0.35;cursor:not-allowed!important;}
+/* Indicador de límite */
+.limit-dots{display:flex;gap:4px;margin-top:8px;align-items:center;padding:0 2px;}
+.limit-dot{width:8px;height:8px;border-radius:50%;border:1.5px solid #CACAC8;transition:background .2s,border-color .2s;}
+.limit-dot.filled{background:#185FA5;border-color:#185FA5;}
+.limit-text{font-size:10px;color:#888;margin-left:6px;font-family:var(--mono);}
 
 /* MONTH SELECTOR — quincena cascade */
 .month-cascade{display:flex;flex-direction:column;gap:0;}
@@ -808,8 +814,24 @@ function buildFilters(){
   html+='<div class="facc-block">';
   html+='<div class="facc-hdr'+(filterAccOpen.cat?' open':'')+'" onclick="toggleFAcc(\'cat\')" tabindex="0" role="button" aria-expanded="'+(filterAccOpen.cat)+'"><div class="facc-lbl">Categoría'+(activeCatLbl?'<span class="facc-active-badge">'+esc(activeCatLbl)+'</span>':'')+'</div><span class="facc-chevron">▾</span></div>';
   html+='<div class="facc-body" id="filtersBar">';
-    CATS.forEach(function(c){var isAct=activeFilter.indexOf(norm(c.key))>=0;html+='<button class="f-btn '+c.cls+(isAct?' active':'')+'\'" onclick="setFilter(\''+c.key+'\')" aria-pressed="'+isAct+'">'+esc(c.lbl)+'</button>';});
-  html+='</div></div>';
+    var atMax=activeFilter.indexOf('todos')<0&&activeFilter.length>=3;
+  CATS.forEach(function(c){
+    var isAct=activeFilter.indexOf(norm(c.key))>=0;
+    var isDis=atMax&&!isAct&&c.key!=='todos';
+    html+='<button class="f-btn '+c.cls+(isAct?' active':'')+(isDis?' f-btn-disabled':'')+'\'" onclick="setFilter(\''+c.key+'\')" aria-pressed="'+isAct+'">'+ esc(c.lbl)+'</button>';
+  });
+  html+='</div></div>'; // cerrar facc-body y facc-block
+  // Indicador de límite
+  var filled=activeFilter.indexOf('todos')<0?activeFilter.length:0;
+  var rem=3-filled;
+  var dotTxt=filled===0?'Selecciona hasta 3 categorías':rem>0?rem+' más disponible'+(rem>1?'s':''):'Límite alcanzado';
+  var dotColor=filled>=3?'color:#D85A30':'';
+  html+='<div class="limit-dots" id="limitDots">';
+  html+='<div class="limit-dot'+(filled>=1?' filled':'')+'"></div>';
+  html+='<div class="limit-dot'+(filled>=2?' filled':'')+'"></div>';
+  html+='<div class="limit-dot'+(filled>=3?' filled':'')+'"></div>';
+  html+='<span class="limit-text" style="'+dotColor+'">'+dotTxt+'</span></div>';
+  html+='<div class="facc-block">';
   /* ── Entidad Financiera ── */
   html+='<div class="facc-block">';
   html+='<div class="facc-hdr'+(filterAccOpen.ent?' open':'')+'" onclick="toggleFAcc(\'ent\')" tabindex="0" role="button" aria-expanded="'+(filterAccOpen.ent)+'"><div class="facc-lbl">Entidad Financiera'+(activeEntLbl?'<span class="facc-active-badge">'+esc(activeEntLbl)+'</span>':'')+'</div><span class="facc-chevron">▾</span></div>';
@@ -864,7 +886,7 @@ function applySearch(){
   var entFiltro=activeEntidad!=='ent-todos'?activeEntidad:'';
   items.forEach(function(el){
     var cats=(el.dataset.cats||'').split(',');
-    var catOk=activeFilter.indexOf('todos')>=0||cats.some(function(c){return activeFilter.indexOf(norm(c))>=0;});
+    var catOk=activeFilter.indexOf('todos')>=0||activeFilter.every(function(f){return cats.some(function(c){return norm(c)===f;});});
     var isoDate=el.dataset.date||'';
     var dateOk=true;
     if(searchDateFrom&&isoDate<searchDateFrom)dateOk=false;
