@@ -207,6 +207,8 @@ body::before{
 .limit-dot{width:8px;height:8px;border-radius:50%;border:1.5px solid #CACAC8;transition:background .2s,border-color .2s;}
 .limit-dot.filled{background:#185FA5;border-color:#185FA5;}
 .limit-text{font-size:10px;color:#888;margin-left:6px;font-family:var(--mono);}
+.btn-buscar{background:#1A56C4;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-family:var(--mono);font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background 0.15s;}
+.btn-buscar:hover{background:#1447A8;}
 
 /* MONTH SELECTOR — quincena cascade */
 .month-cascade{display:flex;flex-direction:column;gap:0;}
@@ -298,7 +300,7 @@ body::before{
 .n-title{font-size:15px;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:6px;}
 .n-title-link{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color 0.15s,color 0.15s;}
 .n-title-link:hover{color:var(--accent);border-bottom-color:var(--accent);}
-.n-summary{font-size:13px;color:var(--text-dim);line-height:1.75;margin-bottom:8px;}
+.n-summary{font-size:13px;color:var(--text-dim);line-height:1.75;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .n-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
 .n-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
 .n-source{font-family:var(--mono);font-size:11px;color:var(--text-faint);}
@@ -352,6 +354,8 @@ body::before{
 .clock-date{font-family:var(--mono);font-size:9px;color:var(--text-dim);letter-spacing:0.5px;text-transform:uppercase;margin-top:2px;}
 .clock-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:4px;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+.skeleton{height:110px;border-radius:8px;margin-bottom:6px;background:linear-gradient(90deg,var(--surface2) 25%,var(--border) 50%,var(--surface2) 75%);background-size:200% 100%;animation:shimmer 1.2s infinite;}
 /* FOOTER */
 .site-footer{margin-top:40px;padding:24px 28px 32px;border-top:2px solid var(--border);background:var(--surface2);border-radius:8px 8px 0 0;}
 .footer-inner{display:flex;flex-direction:column;gap:4px;}
@@ -508,9 +512,8 @@ body::before{
 
     <!-- SEARCH -->
     <div class="search-row">
-      <input class="search-box" id="searchBox" type="text" placeholder="Buscar noticia, entidad, tema o palabra clave..." oninput="applySearch()" autocomplete="off" aria-label="Buscar noticias"/>
-      <button onclick="applySearch()" style="background:#1A56C4;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-family:var(--mono);font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0;" onmouseover="this.style.background='#1447A8'" onmouseout="this.style.background='#1A56C4'">🔍 Buscar</button>
-      <button onclick="applySearch()" style="background:#1A56C4;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-family:var(--mono);font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background 0.15s;" onmouseover="this.style.background='#1447A8'" onmouseout="this.style.background='#1A56C4'">🔍 Buscar</button>
+      <input class="search-box" id="searchBox" type="text" placeholder="Buscar noticia, entidad, tema o palabra clave..." oninput="debouncedSearch()" autocomplete="off" aria-label="Buscar noticias"/>
+      <button class="btn-buscar" onclick="applySearch()">🔍 Buscar</button>
       <div class="date-range-wrap">
         <span style="font-size:13px;opacity:0.6;">📅</span>
         <input class="date-picker" id="dateFrom" type="date" onchange="applyDateRange()" title="Desde"/>
@@ -547,8 +550,9 @@ var activeEntidad='ent-todos';
 var searchText='';
 var searchDateFrom='';
 var searchDateTo='';
-var ADMIN_PIN='2026';
+var ADMIN_HASH='10897ac5227580b3f2debd2a6a7422c49604c5bd00f9b94830e1fbdfc3b46abe'; /* SHA-256 de PIN+salt */
 var adminUnlocked=false;
+var loginAttempts=0;
 var manualTop5={feb26:[],mar26:[]};
 var top5Highlighted={feb26:{},mar26:{}};
 var tickerKF=document.createElement('style');
@@ -566,7 +570,7 @@ var DATA={
   abr26:{
     label:'Abril',year:'2026',
     quincenas:[
-      {titulo:'1ra Quincena - Abril 2026',noticias:[{id:'n001',fecha:'08 Abr 2026',cats:[{key:'seguros',lbl:'Seguros'},{key:'solvencia',lbl:'Solvencia'},{key:'credito',lbl:'Credito'}],entidad:'sistema financiero',titulo:'Unos 400 000 trabajadores públicos enfrentan restricciones de acceso al crédito por deterioro en su perfil de riesgo',resumen:'Alrededor de 400 000 trabajadores del sector público enfrentan dificultades para acceder al crédito en el sistema financiero debido a que cerca del 30% presenta una calificación crediticia por debajo de la categoría “Normal”, lo que limita significativamente su elegibilidad para nuevos préstamos; esta situación responde, en gran medida, al sobreendeudamiento asociado al mal uso de tarjetas de crédito y créditos de consumo, donde muchos deudores solo pagan intereses sin amortizar el capital, generando una “bola de nieve” en sus obligaciones; pese a contar con ingresos relativamente estables, factores como la baja educación financiera y el aumento del gasto inciden en su deterioro crediticio; en paralelo, aunque la morosidad del sistema ha mostrado una tendencia a la baja (de 4,24% en 2024 a 3,54% en 2025), persiste un grupo relevante con deudas atrasadas, lo que ha dado lugar a un mayor desarrollo de mercados secundarios de compra de cartera por parte de fintechs, que buscan reinsertar a estos clientes al sistema financiero.',fuente:'Diario Gestión',url:'',top5:0,tags:['Crédito','Trabajadores Públicos','Morosidad','Sobreendeudamiento','Fintech','Compra de Cartera','Riesgo Crediticio']},{id:'n002',fecha:'08 Abr 2026',cats:[{key:'regulacion',lbl:'Regulacion'},{key:'rentabilidad',lbl:'Rentabilidad'},{key:'solvencia',lbl:'Solvencia'}],entidad:'banca',titulo:'Bank of China (Perú) destaca por su alta solvencia y calidad de cartera en el sistema financiero',resumen:'Bank of China (Perú) evidenció un perfil financiero altamente sólido, caracterizado por una cartera crediticia de bajo riesgo con 100% de créditos vigentes, cartera de alto riesgo de 0% y cartera pesada de apenas 0,1%, lo que refleja una estrategia crediticia conservadora enfocada en el segmento corporativo; además, el banco mantiene niveles de capitalización significativamente superiores al sistema, con un ratio de capital global de 58,8% y un CET1 de 57,9%, respaldados por el soporte de su matriz global, Bank of China Ltd., lo que fortalece su capacidad de absorción ante shocks; si bien su operación aún es de menor escala, ha consolidado rentabilidad sostenida (ROA de 1,3% y ROE de 9,7%), apoyada en una diversificación de ingresos más allá del crédito tradicional; no obstante, su modelo presenta alta concentración en pocos clientes y sectores, consistente con su enfoque en banca corporativa, lo que constituye un riesgo inherente, aunque mitigado por el perfil crediticio de sus deudores y el respaldo del grupo.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/banca/bank-of-china-peru-sobresale-por-la-calidad-de-su-cartera-crediticia/',top5:0,tags:['solvencia','cartera crediticia','Bank of China','capital','riesgo','banca corporativa','sistema financiero.']}]},
+      {titulo:'1ra Quincena - Abril 2026',noticias:[{id:'n001',fecha:'08 Abr 2026',cats:[{key:'credito',lbl:'Credito'}],entidad:'sistema financiero',titulo:'Unos 400 000 trabajadores públicos enfrentan restricciones de acceso al crédito por deterioro en su perfil de riesgo',resumen:'Alrededor de 400 000 trabajadores del sector público enfrentan dificultades para acceder al crédito en el sistema financiero debido a que cerca del 30% presenta una calificación crediticia por debajo de la categoría “Normal”, lo que limita significativamente su elegibilidad para nuevos préstamos; esta situación responde, en gran medida, al sobreendeudamiento asociado al mal uso de tarjetas de crédito y créditos de consumo, donde muchos deudores solo pagan intereses sin amortizar el capital, generando una “bola de nieve” en sus obligaciones; pese a contar con ingresos relativamente estables, factores como la baja educación financiera y el aumento del gasto inciden en su deterioro crediticio; en paralelo, aunque la morosidad del sistema ha mostrado una tendencia a la baja (de 4,24% en 2024 a 3,54% en 2025), persiste un grupo relevante con deudas atrasadas, lo que ha dado lugar a un mayor desarrollo de mercados secundarios de compra de cartera por parte de fintechs, que buscan reinsertar a estos clientes al sistema financiero.',fuente:'Diario Gestión',url:'',top5:0,tags:['Crédito','Trabajadores Públicos','Morosidad','Sobreendeudamiento','Fintech','Compra de Cartera','Riesgo Crediticio']},{id:'n002',fecha:'08 Abr 2026',cats:[{key:'solvencia',lbl:'Solvencia'}],entidad:'banca',titulo:'Bank of China (Perú) destaca por su alta solvencia y calidad de cartera en el sistema financiero',resumen:'Bank of China (Perú) evidenció un perfil financiero altamente sólido, caracterizado por una cartera crediticia de bajo riesgo con 100% de créditos vigentes, cartera de alto riesgo de 0% y cartera pesada de apenas 0,1%, lo que refleja una estrategia crediticia conservadora enfocada en el segmento corporativo; además, el banco mantiene niveles de capitalización significativamente superiores al sistema, con un ratio de capital global de 58,8% y un CET1 de 57,9%, respaldados por el soporte de su matriz global, Bank of China Ltd., lo que fortalece su capacidad de absorción ante shocks; si bien su operación aún es de menor escala, ha consolidado rentabilidad sostenida (ROA de 1,3% y ROE de 9,7%), apoyada en una diversificación de ingresos más allá del crédito tradicional; no obstante, su modelo presenta alta concentración en pocos clientes y sectores, consistente con su enfoque en banca corporativa, lo que constituye un riesgo inherente, aunque mitigado por el perfil crediticio de sus deudores y el respaldo del grupo.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/banca/bank-of-china-peru-sobresale-por-la-calidad-de-su-cartera-crediticia/',top5:0,tags:['solvencia','cartera crediticia','Bank of China','capital','riesgo','banca corporativa','sistema financiero.']},{id:'n003',fecha:'08 Abr 2026',cats:[{key:'solvencia',lbl:'Solvencia'},{key:'rentabilidad',lbl:'Rentabilidad'}],entidad:'cmac',titulo:'Utilidades de cajas municipales crecen 195,9% a febrero impulsadas por menor costo de riesgo y mejora operativa',resumen:'Las utilidades netas del sistema de cajas municipales alcanzaron S/ 202,6 millones, registrando un crecimiento interanual de 195,9%, impulsado principalmente por la reducción del costo del riesgo, el aumento de los ingresos financieros y una mejora en la eficiencia del fondeo; en particular, los ingresos financieros crecieron 8,2%, mientras que los gastos financieros disminuyeron, elevando el margen financiero bruto y reflejando una gestión más eficiente de los recursos; además, la caída de las provisiones en 28,6% evidenció una estabilización en la calidad de cartera, liberando recursos que antes se destinaban al saneamiento; este desempeño marca un cambio de etapa en el sistema microfinanciero, que pasa de un periodo de ajuste y deterioro a uno de mayor rentabilidad y potencial expansión, aunque persisten desafíos asociados a la sostenibilidad del crecimiento y a la evolución futura del riesgo crediticio.',fuente:'Gan@Más',url:'https://revistaganamas.com.pe/utilidades-de-las-cajas-municipales-se-disparan-195-9-a-febrero-del-2026/',top5:0,tags:['Cajas Municipales','Utilidades','Rentabilidad','Provisiones','Riesgo Crediticio','Microfinanzas','Sistema Financiero']},{id:'n004',fecha:'08 Abr 2026',cats:[{key:'regulacion',lbl:'Regulacion'}],entidad:'financiera',titulo:'Surgir mantiene calificación A- con perspectiva estable, pero enfrenta retos para sostener mejora en cartera de alto riesgo',resumen:'Moody’s Local Perú ratificó la calificación A- de Santander Financiamientos S.A. (Surgir) con perspectiva estable, destacando la mejora en su calidad de cartera, el retorno a la rentabilidad y el respaldo del Grupo Santander, aunque advirtió que el principal desafío será sostener estos avances en un segmento de mayor riesgo; en 2025, la financiera redujo su mora real de cerca de 20% a 12,5%, reflejando una estrategia efectiva de de-risking y una mejor segmentación del portafolio, al tiempo que consolidó un modelo digital eficiente basado en infraestructura “cloud”; asimismo, retomó utilidades (S/ 1,7 millones) y mostró crecimiento en colocaciones, aunque aún enfrenta limitaciones de escala y eficiencia frente a sus pares; en el frente de fondeo, se observa un avance en depósitos minoristas, pero persiste concentración en depositantes; en conjunto, la entidad se encuentra en una fase de transición hacia una expansión más prudente, donde la sostenibilidad de la calidad de cartera, la rentabilidad y la diversificación del fondeo serán claves para una eventual mejora en su clasificación.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/finanzas/surgir-enfrenta-el-reto-de-sostener-la-mejora-de-su-cartera-en-un-segmento-de-alto-riesgo/',top5:0,tags:['Surgir','Moody’s','Cartera Crediticia','Morosidad','Fintech','Rentabilidad','Fondeo','Riesgo']}]},
       {titulo:'2da Quincena - Abril 2026',noticias:[]}
     ]
   }
@@ -679,6 +683,9 @@ function norm(s){
 function esc(s){
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+/* Debounce búsqueda */
+var _searchT;
+function debouncedSearch(){clearTimeout(_searchT);_searchT=setTimeout(applySearch,220);}
 var MONTH_MAP={ene:1,feb:2,mar:3,abr:4,may:5,jun:6,jul:7,ago:8,sep:9,oct:10,nov:11,dic:12};
 var MONTH_NAMES=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
 
@@ -1016,6 +1023,8 @@ function renderContent(){
   var dt=getEl('dateTo');if(dt)dt.value='';
   var info=getEl('searchInfo');if(info)info.innerHTML='';
   var area=getEl('contentArea');
+  /* Skeleton loader */
+  area.innerHTML=Array(4).fill('<div class="skeleton"></div>').join('');
   var allNews=getAllNews();
   var total=allNews.length;
   var html='<div class="sec-title fade-in">Noticias <span class="n-badge" id="nCount">'+total+'</span></div>';
@@ -1025,8 +1034,15 @@ function renderContent(){
     var extraAttr=i>=6?' data-extra="1" style="display:none"':'';
     var iso=fechaToISO(n.fecha);
     var ago=timeAgo(iso);
-    /* buscar URL de fuente: si la fuente tiene dominio conocido lo usamos, si no google */
-    var srcQ=n.url&&n.url.trim()!==''?n.url:'https://www.google.com/search?q='+encodeURIComponent(n.titulo.substring(0,70)+' '+n.fuente.split(',')[0]);
+    /* Sanitizar URL — solo http/https */
+    var safeURL=null;
+    if(n.url&&n.url.trim()!==''){
+      try{
+        var u=new URL(n.url.trim());
+        if(u.protocol==='http:'||u.protocol==='https:')safeURL=u.href;
+      }catch(e){}
+    }
+    var srcQ=safeURL||'https://www.google.com/search?q='+encodeURIComponent(n.titulo.substring(0,70)+' '+n.fuente.split(',')[0]);
     var firstCat=n.cats&&n.cats.length?n.cats[0].key:'';
     var borderColor=getCatColor(firstCat);
     html+='<div class="n-item fade-in" style="border-left-color:'+borderColor+'" data-cats="'+esc(n.cats.map(function(c){return c.key;}).join(','))+'" data-id="'+esc(n.id)+'" data-date="'+iso+'" data-entidad="'+norm(n.entidad||'')+'"'+extraAttr+'>';
@@ -1035,8 +1051,8 @@ function renderContent(){
     html+='<div class="n-body-top"><div class="n-body-left">';
     var entBadge=n.entidad&&n.entidad.trim()!==''?'<span class="cb-entidad">'+esc(n.entidad)+'</span>':'';
     html+='<div class="n-cats">'+cbadges(n.cats)+entBadge+'</div>';
-    var tituloHtml = n.url && n.url.trim() !== ''
-      ? '<a class="n-title-link" href="'+n.url+'" target="_blank" rel="noopener">'+esc(n.titulo)+'</a>'
+    var tituloHtml = safeURL
+      ? '<a class="n-title-link" href="'+safeURL+'" target="_blank" rel="noopener noreferrer">'+esc(n.titulo)+'</a>'
       : esc(n.titulo);
     html+='<div class="n-title" data-orig="'+esc(n.titulo)+'">'+tituloHtml+'</div></div>';
     html+='<div class="n-img" style="color:'+catColor(n.cats)+'">'+getCatSVG(n.cats)+'</div></div>';
@@ -1130,11 +1146,25 @@ function toggleAdmin(){
   getEl('adminEditor').style.display='none';
   setTimeout(function(){var p=getEl('adminPin');if(p)p.focus();},100);
 }
-function checkPin(){
+async function checkPin(){
   var pinEl=getEl('adminPin');
   if(!pinEl)return;
-  if(pinEl.value===ADMIN_PIN){
+  /* Bloqueo por intentos */
+  if(loginAttempts>=3){
+    setEl('adminPinError','Demasiados intentos. Recarga la página.');
+    pinEl.disabled=true;
+    return;
+  }
+  /* SHA-256 del PIN + salt */
+  var val=pinEl.value;
+  var encoder=new TextEncoder();
+  var data=encoder.encode(val+'bcrp-dasf-2026');
+  var hashBuffer=await crypto.subtle.digest('SHA-256',data);
+  var hashArray=Array.from(new Uint8Array(hashBuffer));
+  var hashHex=hashArray.map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+  if(hashHex===ADMIN_HASH){
     adminUnlocked=true;
+    loginAttempts=0;
     getEl('adminAuth').style.display='none';
     getEl('adminEditor').style.display='block';
     var tog=getEl('adminToggle');if(tog){tog.textContent='🔓 Admin';tog.classList.add('active');}
@@ -1142,8 +1172,15 @@ function checkPin(){
     var box=getEl('top5SideBox');if(box)box.classList.add('admin-mode');
     setEl('adminPinError','');
   }else{
-    setEl('adminPinError','PIN incorrecto');
+    loginAttempts++;
+    var rem=3-loginAttempts;
     pinEl.value='';
+    if(rem>0){
+      setEl('adminPinError','PIN incorrecto. '+rem+' intento'+(rem!==1?'s':'')+' restante'+(rem!==1?'s':'')+'.');
+    }else{
+      setEl('adminPinError','Demasiados intentos. Recarga la página.');
+      pinEl.disabled=true;
+    }
   }
 }
 function cancelAdmin(){
@@ -1191,7 +1228,10 @@ function buildManualTop5(month,d){
   function renderBox(boxId){
     var box=getEl(boxId);if(!box)return;
     if(!top.length){
-      box.innerHTML='<div class="top5-empty">'+(adminUnlocked?'Selecciona noticias desde el panel de edición.':'Las noticias destacadas del mes aparecerán aquí.')+'</div>';
+      box.innerHTML='<div class="top5-empty" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:24px 16px;">'
+      +'<svg width="32" height="32" viewBox="0 0 48 48" fill="none" style="opacity:0.25"><path d="M24 8l4.5 9 10 1.5-7.2 7 1.7 10L24 31l-9 5.5 1.7-10L9.5 18.5l10-1.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>'
+      +'<span style="font-size:11px;color:var(--text-faint);text-align:center;line-height:1.5;">'+(adminUnlocked?'Selecciona noticias<br>desde el panel de edición.':'Pon números del 1 al 5<br>en col M del Excel')+'</span>'
+      +'</div>';
       return;
     }
     var h='<div class="top5-grid">';
@@ -1298,6 +1338,15 @@ function exportPDF(){
 /* ═══════════════════════════════════════════════
    INIT
 ═══════════════════════════════════════════════ */
+/* Keyboard navigation */
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){clearSearch();}
+  if(e.key==='/'&&document.activeElement.tagName!=='INPUT'){
+    e.preventDefault();
+    var sb=getEl('searchBox');if(sb)sb.focus();
+  }
+});
+
 window.addEventListener('DOMContentLoaded',function(){
   /* footer date */
   var fd=getEl('footerDate');
