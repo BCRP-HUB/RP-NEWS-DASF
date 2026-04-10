@@ -145,9 +145,7 @@ body::before{
 /* SEARCH */
 .search-row{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;max-width:900px;}
 .search-box{flex:1;min-width:160px;background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:var(--sans);font-size:13px;padding:9px 12px 9px 36px;border-radius:6px;outline:none;transition:border-color 0.2s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235a6e88' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:12px center;box-shadow:var(--shadow);}
-.search-box{border:1.5px solid #CACAC8!important;border-radius:8px!important;}
-.search-box:hover{border-color:#9aa0a8!important;}
-.search-box:focus{border-color:var(--accent)!important;box-shadow:0 0 0 3px rgba(0,94,168,0.12);}
+.search-box:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,94,168,0.12);}
 .search-box{border:1.5px solid #CACAC8;border-radius:8px;}
 .search-box:hover{border-color:#9aa0a8;}
 .search-box::placeholder{color:var(--text-faint);}
@@ -183,32 +181,22 @@ body::before{
 .f-btn:hover{border-color:var(--accent);color:var(--accent);}
 .f-btn.active{color:#fff!important;border-color:transparent;box-shadow:none;}
 [data-theme="dark"] .f-btn.active{color:#0d1117!important;}
-.f-btn.active{border-color:transparent;}
-.f-btn.active.fe-btn,.f-btn.active.fc-todos{background:var(--accent);color:#fff!important;}
-/* Chips por categoría — hover y activo con color semántico */
-.f-btn.fc-credito.active,.f-btn.fc-credito:not(.f-btn-disabled):hover{background:#EAF3DE;border-color:#639922;color:#3B6D11!important;}
-.f-btn.fc-microfinanzas.active,.f-btn.fc-microfinanzas:not(.f-btn-disabled):hover{background:#E6F1FB;border-color:#378ADD;color:#0C447C!important;}
-.f-btn.fc-fintech.active,.f-btn.fc-fintech:not(.f-btn-disabled):hover{background:#EEEDFE;border-color:#7F77DD;color:#3C3489!important;}
-.f-btn.fc-regulacion.active,.f-btn.fc-regulacion:not(.f-btn-disabled):hover{background:#FAEEDA;border-color:#BA7517;color:#633806!important;}
-.f-btn.fc-inclusion.active,.f-btn.fc-inclusion:not(.f-btn-disabled):hover{background:#E1F5EE;border-color:#1D9E75;color:#085041!important;}
-.f-btn.fc-mercado.active,.f-btn.fc-mercado:not(.f-btn-disabled):hover{background:#E6F1FB;border-color:#185FA5;color:#042C53!important;}
-.f-btn.fc-pension.active,.f-btn.fc-pension:not(.f-btn-disabled):hover{background:#FBEAF0;border-color:#D4537E;color:#4B1528!important;}
-.f-btn.fc-seguros.active,.f-btn.fc-seguros:not(.f-btn-disabled):hover{background:#FCEBEB;border-color:#E24B4A;color:#501313!important;}
-.f-btn.fc-solvencia.active,.f-btn.fc-solvencia:not(.f-btn-disabled):hover{background:#FAEEDA;border-color:#EF9F27;color:#412402!important;}
-.f-btn.fc-rentabilidad.active,.f-btn.fc-rentabilidad:not(.f-btn-disabled):hover{background:#EAF3DE;border-color:#97C459;color:#173404!important;}
-.f-btn.fc-internacional.active,.f-btn.fc-internacional:not(.f-btn-disabled):hover{background:#E1F5EE;border-color:#0F6E56;color:#04342C!important;}
-.f-btn.fc-adquisicion.active,.f-btn.fc-adquisicion:not(.f-btn-disabled):hover{background:#E6F1FB;border-color:#185FA5;color:#042C53!important;}
-.f-btn.fc-cartera.active,.f-btn.fc-cartera:not(.f-btn-disabled):hover{background:#EEEDFE;border-color:#7F77DD;color:#3C3489!important;}
-.f-btn.fc-cajas.active,.f-btn.fc-cajas:not(.f-btn-disabled):hover{background:#EEEDFE;border-color:#7F77DD;color:#3C3489!important;}
-.f-btn.fc-coopac.active,.f-btn.fc-coopac:not(.f-btn-disabled):hover{background:#FBEAF0;border-color:#D4537E;color:#4B1528!important;}
-.f-btn.f-btn-disabled{opacity:0.35;cursor:not-allowed!important;}
-/* Indicador de límite */
-.limit-dots{display:flex;gap:4px;margin-top:8px;align-items:center;padding:0 2px;}
-.limit-dot{width:8px;height:8px;border-radius:50%;border:1.5px solid #CACAC8;transition:background .2s,border-color .2s;}
-.limit-dot.filled{background:#185FA5;border-color:#185FA5;}
-.limit-text{font-size:10px;color:#888;margin-left:6px;font-family:var(--mono);}
-.btn-buscar{background:#1A56C4;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-family:var(--mono);font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background 0.15s;}
-.btn-buscar:hover{background:#1447A8;}
+.f-btn.active.fc-todos{background:var(--accent);}
+.f-btn.active.fc-banca{background:var(--accent);}
+.f-btn.active.fc-credito{background:var(--green);}
+.f-btn.active.fc-fintech{background:#e05c45;}
+.f-btn.active.fc-regulacion{background:var(--purple);}
+.f-btn.active.fc-inclusion{background:#c2740a;}
+.f-btn.active.fc-mercado{background:var(--teal);}
+.f-btn.active.fc-pension{background:var(--orange);}
+.f-btn.active.fc-internacional{background:#0369a1;color:#fff!important;}
+.f-btn.active.fc-seguros{background:var(--red);}
+.f-btn.active.fc-microfinanzas{background:#16a34a;}
+.f-btn.active.fc-cajas{background:#7c3aed;}
+.f-btn.active.fc-coopac{background:var(--pink);}
+.f-btn.active.fc-solvencia{background:#0f766e;}
+.f-btn.active.fc-rentabilidad{background:#b45309;}
+.f-btn.active.fe-btn{background:var(--accent);}
 
 /* MONTH SELECTOR — quincena cascade */
 .month-cascade{display:flex;flex-direction:column;gap:0;}
@@ -277,10 +265,6 @@ body::before{
 .cb-rentabilidad{color:#b45309;background:rgba(180,83,9,0.1);}
 [data-theme="dark"] .cb-solvencia{color:#2dd4bf;background:rgba(45,212,191,0.1);}
 [data-theme="dark"] .cb-rentabilidad{color:#fbbf24;background:rgba(251,191,36,0.1);}
-.cb-adquisicion{color:#0369a1;background:rgba(3,105,161,0.1);}
-.cb-cartera{color:#7c3aed;background:rgba(124,58,237,0.1);}
-[data-theme="dark"] .cb-adquisicion{color:#7dd3fc;background:rgba(125,211,252,0.1);}
-[data-theme="dark"] .cb-cartera{color:#c4b5fd;background:rgba(196,181,253,0.1);}
 
 .n-grid{display:flex;flex-direction:column;gap:3px;margin-bottom:6px;}
 .n-item{display:grid;grid-template-columns:52px 1fr;border-left:3px solid var(--border);background:var(--surface);transition:border-color 0.2s,background 0.15s,box-shadow 0.2s,transform 0.15s;box-shadow:var(--shadow);}
@@ -300,7 +284,7 @@ body::before{
 .n-title{font-size:15px;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:6px;}
 .n-title-link{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color 0.15s,color 0.15s;}
 .n-title-link:hover{color:var(--accent);border-bottom-color:var(--accent);}
-.n-summary{font-size:13px;color:var(--text-dim);line-height:1.75;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.n-summary{font-size:13px;color:var(--text-dim);line-height:1.75;margin-bottom:8px;}
 .n-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
 .n-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
 .n-source{font-family:var(--mono);font-size:11px;color:var(--text-faint);}
@@ -354,8 +338,6 @@ body::before{
 .clock-date{font-family:var(--mono);font-size:9px;color:var(--text-dim);letter-spacing:0.5px;text-transform:uppercase;margin-top:2px;}
 .clock-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:4px;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
-@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
-.skeleton{height:110px;border-radius:8px;margin-bottom:6px;background:linear-gradient(90deg,var(--surface2) 25%,var(--border) 50%,var(--surface2) 75%);background-size:200% 100%;animation:shimmer 1.2s infinite;}
 /* FOOTER */
 .site-footer{margin-top:40px;padding:24px 28px 32px;border-top:2px solid var(--border);background:var(--surface2);border-radius:8px 8px 0 0;}
 .footer-inner{display:flex;flex-direction:column;gap:4px;}
@@ -394,21 +376,28 @@ body::before{
 ::-webkit-scrollbar{width:4px;height:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
-/* Borde izquierdo de card por categoría */
-.n-item[data-cats*="credito"]{border-left-color:#16a34a;}
-.n-item[data-cats*="microfinanzas"]{border-left-color:#16a34a;}
-.n-item[data-cats*="fintech"]{border-left-color:#e05c45;}
-.n-item[data-cats*="regulacion"]{border-left-color:#6d28d9;}
-.n-item[data-cats*="inclusion"]{border-left-color:#c2740a;}
-.n-item[data-cats*="mercado"]{border-left-color:#0e7490;}
-.n-item[data-cats*="pension"]{border-left-color:#b45309;}
-.n-item[data-cats*="seguros"]{border-left-color:#b91c1c;}
-.n-item[data-cats*="internacional"]{border-left-color:#0369a1;}
-.n-item[data-cats*="banca"]{border-left-color:#005ea8;}
-.n-item[data-cats*="solvencia"]{border-left-color:#0f766e;}
-.n-item[data-cats*="rentabilidad"]{border-left-color:#b45309;}
-.n-item[data-cats*="adquisicion"]{border-left-color:#0369a1;}
-.n-item[data-cats*="cartera"]{border-left-color:#7c3aed;}
+/* ── ESTADÍSTICAS ── */
+.stats-toggle{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--accent);cursor:pointer;padding:10px 0;border:none;background:none;transition:opacity 0.15s;}
+.stats-toggle:hover{opacity:0.7;}
+.stats-toggle-chevron{font-size:10px;color:var(--text-faint);transition:transform 0.2s;}
+.stats-toggle.open .stats-toggle-chevron{transform:rotate(180deg);}
+.stats-grid{display:none;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:20px;}
+.stats-grid.open{display:grid;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;box-shadow:var(--shadow);}
+.stat-card-title{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-faint);margin-bottom:12px;}
+.stat-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.stat-bar-label{font-size:11px;color:var(--text-dim);min-width:100px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.stat-bar-track{flex:1;height:7px;background:var(--surface2);border-radius:4px;overflow:hidden;}
+.stat-bar-fill{height:100%;border-radius:4px;transition:width 0.5s ease;}
+.stat-bar-count{font-family:var(--mono);font-size:10px;color:var(--text-dim);min-width:22px;text-align:right;}
+.stat-day-wrap{display:flex;align-items:flex-end;gap:3px;height:56px;margin-top:4px;}
+.stat-day-col{display:flex;flex-direction:column;align-items:center;gap:2px;flex:1;}
+.stat-day-bar{width:100%;background:var(--accent);border-radius:2px 2px 0 0;opacity:0.65;min-height:2px;}
+.stat-day-lbl{font-family:var(--mono);font-size:7px;color:var(--text-faint);}
+.stat-kpis{display:flex;gap:20px;flex-wrap:wrap;}
+.stat-kpi{text-align:center;}
+.stat-kpi-num{font-family:var(--mono);font-size:24px;font-weight:700;color:var(--accent);line-height:1;}
+.stat-kpi-lbl{font-size:10px;color:var(--text-faint);margin-top:2px;}
 </style>
 </head>
 <body>
@@ -512,8 +501,8 @@ body::before{
 
     <!-- SEARCH -->
     <div class="search-row">
-      <input class="search-box" id="searchBox" type="text" placeholder="Buscar noticia, entidad, tema o palabra clave..." oninput="debouncedSearch()" autocomplete="off" aria-label="Buscar noticias"/>
-      <button class="btn-buscar" onclick="applySearch()">🔍 Buscar</button>
+      <input class="search-box" id="searchBox" type="text" placeholder="Buscar noticia, entidad, tema o palabra clave..." oninput="applySearch()" autocomplete="off" aria-label="Buscar noticias"/>
+      <button onclick="applySearch()" style="background:#1A56C4;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-family:var(--mono);font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background 0.15s;" onmouseover="this.style.background='#1447A8'" onmouseout="this.style.background='#1A56C4'">🔍 Buscar</button>
       <div class="date-range-wrap">
         <span style="font-size:13px;opacity:0.6;">📅</span>
         <input class="date-picker" id="dateFrom" type="date" onchange="applyDateRange()" title="Desde"/>
@@ -527,6 +516,12 @@ body::before{
 
     <!-- FILTER GROUPS: accordion style -->
     <div class="filter-accordions" id="filterAccordions"></div>
+    <div class="stats-toggle" id="statsToggle" onclick="toggleStats()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Estadísticas del período
+      <span class="stats-toggle-chevron">▾</span>
+    </div>
+    <div class="stats-grid" id="statsGrid"></div>
     <div class="divider"></div>
 
     <div id="contentArea"></div>
@@ -545,14 +540,13 @@ body::before{
 /* ═══════════════════════════════════════════════
    ESTADO GLOBAL
 ═══════════════════════════════════════════════ */
-var activeFilter=['todos'];
+var activeFilter='todos';
 var activeEntidad='ent-todos';
 var searchText='';
 var searchDateFrom='';
 var searchDateTo='';
-var ADMIN_HASH='10897ac5227580b3f2debd2a6a7422c49604c5bd00f9b94830e1fbdfc3b46abe'; /* SHA-256 de PIN+salt */
+var ADMIN_PIN='2026';
 var adminUnlocked=false;
-var loginAttempts=0;
 var manualTop5={feb26:[],mar26:[]};
 var top5Highlighted={feb26:{},mar26:{}};
 var tickerKF=document.createElement('style');
@@ -562,6 +556,7 @@ document.head.appendChild(tickerKF);
 var activeMonth='';      /* se inicializa despues de DATA */
 var activeQuincena=null;
 var openYears={};
+var showingAll=false;
 
 /* ═══════════════════════════════════════════════
    DATOS
@@ -626,8 +621,6 @@ var CATS=[
   {key:'seguros',lbl:'Seguros',cls:'fc-seguros'},
   {key:'solvencia',lbl:'Solvencia',cls:'fc-solvencia'},
   {key:'rentabilidad',lbl:'Rentabilidad',cls:'fc-rentabilidad'},
-  {key:'adquisicion',lbl:'Adquisición',cls:'fc-adquisicion'},
-  {key:'cartera',lbl:'Cartera',cls:'fc-cartera'},
   {key:'internacional',lbl:'Internacional',cls:'fc-internacional'}
 ];
 var ENTIDADES=[
@@ -641,8 +634,7 @@ var ENTIDADES=[
   {key:'coopac',lbl:'Coopac'},
   {key:'sbs',lbl:'SBS'},
   {key:'bcrp',lbl:'BCRP'},
-  {key:'fintech',lbl:'Fintech'},
-  {key:'sistema financiero',lbl:'Sistema Financiero'}
+  {key:'fintech',lbl:'Fintech'}
 ];
 /* ENTIDAD_KW ya no se usa — filtramos por n.entidad directo */
 var ENTIDAD_KW={};
@@ -664,8 +656,6 @@ var CAT_SVG={
   coopac:'<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M24 10v4M24 34v4M10 24h4M34 24h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14.9 14.9l2.8 2.8M30.3 30.3l2.8 2.8M14.9 33.1l2.8-2.8M30.3 17.7l2.8-2.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="24" cy="24" r="3" fill="currentColor" opacity="0.4"/></svg>',
   internacional:'<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="1.5"/><ellipse cx="24" cy="24" rx="8" ry="18" stroke="currentColor" stroke-width="1.5"/><path d="M6 24h36" stroke="currentColor" stroke-width="1.5"/><path d="M8 16h32M8 32h32" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg>',
   solvencia:'<svg viewBox="0 0 48 48" fill="none"><rect x="8" y="10" width="32" height="28" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M16 24h16M16 30h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M24 4v6M16 4l2 6M32 4l-2 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="36" cy="12" r="6" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/><path d="M34 12l1.5 1.5L38 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-  adquisicion:'<svg viewBox=\'0 0 48 48\' fill=\'none\'><circle cx=\'24\' cy=\'24\' r=\'16\' stroke=\'currentColor\' stroke-width=\'1.5\'/><path d=\'M24 17v7l4 4\' stroke=\'currentColor\' stroke-width=\'1.5\' stroke-linecap=\'round\'/></svg>',
-  cartera:'<svg viewBox=\'0 0 48 48\' fill=\'none\'><rect x=\'6\' y=\'16\' width=\'36\' height=\'26\' rx=\'3\' stroke=\'currentColor\' stroke-width=\'1.5\'/><path d=\'M16 16v-4a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v4\' stroke=\'currentColor\' stroke-width=\'1.5\'/><path d=\'M6 28h36\' stroke=\'currentColor\' stroke-width=\'1.5\'/></svg>',
   rentabilidad:'<svg viewBox="0 0 48 48" fill="none"><path d="M6 36l8-10 7 4 8-14 8 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M34 22h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="14" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M14 11v3.5l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 42h36" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>'
 };
 function getCatSVG(cats){
@@ -690,9 +680,6 @@ function norm(s){
 function esc(s){
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
-/* Debounce búsqueda */
-var _searchT;
-function debouncedSearch(){clearTimeout(_searchT);_searchT=setTimeout(applySearch,220);}
 var MONTH_MAP={ene:1,feb:2,mar:3,abr:4,may:5,jun:6,jul:7,ago:8,sep:9,oct:10,nov:11,dic:12};
 var MONTH_NAMES=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
 
@@ -821,31 +808,15 @@ var filterAccOpen={cat:true,ent:false};
 function buildFilters(){
   var cont=getEl('filterAccordions');
   if(!cont)return;
-  var activeCatLbl=activeFilter.indexOf('todos')>=0?null:activeFilter.map(function(k){var c=CATS.filter(function(x){return norm(x.key)===k;})[0];return c?c.lbl:k;}).join(', ');
+  var activeCatLbl=activeFilter==='todos'?null:(CATS.filter(function(c){return c.key===activeFilter;})[0]||{lbl:null}).lbl;
   var activeEntLbl=activeEntidad==='ent-todos'?null:(ENTIDADES.filter(function(e){return e.key===activeEntidad;})[0]||{lbl:null}).lbl;
   var html='';
   /* ── Categoría ── */
   html+='<div class="facc-block">';
   html+='<div class="facc-hdr'+(filterAccOpen.cat?' open':'')+'" onclick="toggleFAcc(\'cat\')" tabindex="0" role="button" aria-expanded="'+(filterAccOpen.cat)+'"><div class="facc-lbl">Categoría'+(activeCatLbl?'<span class="facc-active-badge">'+esc(activeCatLbl)+'</span>':'')+'</div><span class="facc-chevron">▾</span></div>';
   html+='<div class="facc-body" id="filtersBar">';
-    var atMax=activeFilter.indexOf('todos')<0&&activeFilter.length>=3;
-  CATS.forEach(function(c){
-    var isAct=activeFilter.indexOf(norm(c.key))>=0;
-    var isDis=atMax&&!isAct&&c.key!=='todos';
-    html+='<button class="f-btn '+c.cls+(isAct?' active':'')+(isDis?' f-btn-disabled':'')+'\'" onclick="setFilter(\''+c.key+'\')" aria-pressed="'+isAct+'">'+ esc(c.lbl)+'</button>';
-  });
-  html+='</div></div>'; // cerrar facc-body y facc-block
-  // Indicador de límite
-  var filled=activeFilter.indexOf('todos')<0?activeFilter.length:0;
-  var rem=3-filled;
-  var dotTxt=filled===0?'Selecciona hasta 3 categorías':rem>0?rem+' más disponible'+(rem>1?'s':''):'Límite alcanzado';
-  var dotColor=filled>=3?'color:#D85A30':'';
-  html+='<div class="limit-dots" id="limitDots">';
-  html+='<div class="limit-dot'+(filled>=1?' filled':'')+'"></div>';
-  html+='<div class="limit-dot'+(filled>=2?' filled':'')+'"></div>';
-  html+='<div class="limit-dot'+(filled>=3?' filled':'')+'"></div>';
-  html+='<span class="limit-text" style="'+dotColor+'">'+dotTxt+'</span></div>';
-  html+='<div class="facc-block">';
+  CATS.forEach(function(c){html+='<button class="f-btn '+c.cls+(c.key===activeFilter?' active':'')+'" onclick="setFilter(\''+c.key+'\')" aria-pressed="'+(c.key===activeFilter)+'">'+esc(c.lbl)+'</button>';});
+  html+='</div></div>';
   /* ── Entidad Financiera ── */
   html+='<div class="facc-block">';
   html+='<div class="facc-hdr'+(filterAccOpen.ent?' open':'')+'" onclick="toggleFAcc(\'ent\')" tabindex="0" role="button" aria-expanded="'+(filterAccOpen.ent)+'"><div class="facc-lbl">Entidad Financiera'+(activeEntLbl?'<span class="facc-active-badge">'+esc(activeEntLbl)+'</span>':'')+'</div><span class="facc-chevron">▾</span></div>';
@@ -858,18 +829,7 @@ function toggleFAcc(key){
   filterAccOpen[key]=!filterAccOpen[key];
   buildFilters();
 }
-function setFilter(k){
-  k=norm(k);
-  if(k==='todos'){activeFilter=['todos'];}
-  else{
-    var ti=activeFilter.indexOf('todos');
-    if(ti>=0)activeFilter.splice(ti,1);
-    var i=activeFilter.indexOf(k);
-    if(i>=0){activeFilter.splice(i,1);if(activeFilter.length===0)activeFilter=['todos'];}
-    else{if(activeFilter.length<3)activeFilter.push(k);}
-  }
-  filterAccOpen.cat=true;buildFilters();applySearch();refreshTicker();
-}
+function setFilter(k){activeFilter=norm(k);filterAccOpen.cat=true;buildFilters();applySearch();refreshTicker();}
 function setEntidad(k){activeEntidad=k;filterAccOpen.ent=true;buildFilters();applySearch();}
 
 /* ═══════════════════════════════════════════════
@@ -900,7 +860,7 @@ function applySearch(){
   var entFiltro=activeEntidad!=='ent-todos'?activeEntidad:'';
   items.forEach(function(el){
     var cats=(el.dataset.cats||'').split(',');
-    var catOk=activeFilter.indexOf('todos')>=0||activeFilter.every(function(f){return cats.some(function(c){return norm(c)===f;});});
+    var catOk=activeFilter==='todos'||cats.map(function(c){return norm(c);}).indexOf(norm(activeFilter))>=0;
     var isoDate=el.dataset.date||'';
     var dateOk=true;
     if(searchDateFrom&&isoDate<searchDateFrom)dateOk=false;
@@ -917,7 +877,8 @@ function applySearch(){
     var entOk=!entFiltro||(el.dataset.entidad&&norm(el.dataset.entidad)===norm(entFiltro));
     var show=catOk&&dateOk&&textOk&&entOk;
     el.classList[show?'remove':'add']('hidden');
-    if(show&&el.getAttribute('data-extra'))el.style.removeProperty('display');
+    if(show&&el.getAttribute('data-extra')&&showingAll)el.style.removeProperty('display');
+    if(!showingAll&&el.getAttribute('data-extra'))el.style.display='none';
     if(titleEl){
       var orig=titleEl.getAttribute('data-orig')||titleEl.textContent;
       titleEl.setAttribute('data-orig',orig);
@@ -930,7 +891,7 @@ function applySearch(){
     }
     if(show)vis++;
   });
-  var hasFilters=!!(searchText||searchDateFrom||searchDateTo||(activeFilter.indexOf('todos')<0)||(activeEntidad!=='ent-todos'));
+  var hasFilters=!!(searchText||searchDateFrom||searchDateTo||(activeFilter!=='todos')||(activeEntidad!=='ent-todos'));
   var vmb=getEl('verMasBtn'),vlessb=getEl('verMenosBtn');
   if(vmb)vmb.style.display=hasFilters?'none':'';
   if(vlessb)vlessb.style.display=hasFilters?'none':'';
@@ -946,7 +907,7 @@ function applySearch(){
       var rs=(fp?fp[2]+'/'+fp[1]:'inicio')+' → '+(tp?tp[2]+'/'+tp[1]:'fin');
       parts.push('rango: <b>'+rs+'</b>');
     }
-    if(activeFilter.indexOf('todos')<0)parts.push('categoría: <b>'+esc(activeFilter.join(', '))+'</b>');
+    if(activeFilter!=='todos')parts.push('categoría: <b>'+esc(activeFilter)+'</b>');
     if(activeEntidad!=='ent-todos'){
       var en=ENTIDADES.filter(function(e){return e.key===activeEntidad;})[0];
       if(en)parts.push('entidad: <b>'+esc(en.lbl)+'</b>');
@@ -957,7 +918,7 @@ function applySearch(){
 function clearSearch(){
   var sb=getEl('searchBox');if(sb)sb.value='';
   clearDateRange();
-  searchText='';activeFilter=['todos'];activeEntidad='ent-todos';
+  searchText='';activeFilter='todos';activeEntidad='ent-todos';
   filterAccOpen.cat=true;filterAccOpen.ent=false;
   buildFilters();applySearch();
   var info=getEl('searchInfo');if(info)info.innerHTML='';
@@ -975,6 +936,7 @@ function buildDateRange(allNews){
    VER MÁS / VER MENOS
 ═══════════════════════════════════════════════ */
 function showAll(){
+  showingAll=true;
   document.querySelectorAll('.n-item[data-extra]').forEach(function(el){
     el.style.removeProperty('display');
   });
@@ -982,6 +944,7 @@ function showAll(){
   var vlessb=getEl('verMenosBtn');if(vlessb)vlessb.style.display='block';
 }
 function showLess(){
+  showingAll=false;
   document.querySelectorAll('.n-item[data-extra]').forEach(function(el){
     el.style.display='none';
   });
@@ -1024,14 +987,12 @@ function getAllNews(){
   return all;
 }
 function renderContent(){
-  activeFilter=['todos'];activeEntidad='ent-todos';searchText='';searchDateFrom='';searchDateTo='';
+  activeFilter='todos';activeEntidad='ent-todos';searchText='';showingAll=false;searchDateFrom='';searchDateTo='';
   var sb=getEl('searchBox');if(sb)sb.value='';
   var df=getEl('dateFrom');if(df)df.value='';
   var dt=getEl('dateTo');if(dt)dt.value='';
   var info=getEl('searchInfo');if(info)info.innerHTML='';
   var area=getEl('contentArea');
-  /* Skeleton loader */
-  area.innerHTML=Array(4).fill('<div class="skeleton"></div>').join('');
   var allNews=getAllNews();
   var total=allNews.length;
   var html='<div class="sec-title fade-in">Noticias <span class="n-badge" id="nCount">'+total+'</span></div>';
@@ -1041,15 +1002,8 @@ function renderContent(){
     var extraAttr=i>=6?' data-extra="1" style="display:none"':'';
     var iso=fechaToISO(n.fecha);
     var ago=timeAgo(iso);
-    /* Sanitizar URL — solo http/https */
-    var safeURL=null;
-    if(n.url&&n.url.trim()!==''){
-      try{
-        var u=new URL(n.url.trim());
-        if(u.protocol==='http:'||u.protocol==='https:')safeURL=u.href;
-      }catch(e){}
-    }
-    var srcQ=safeURL||'https://www.google.com/search?q='+encodeURIComponent(n.titulo.substring(0,70)+' '+n.fuente.split(',')[0]);
+    /* buscar URL de fuente: si la fuente tiene dominio conocido lo usamos, si no google */
+    var srcQ=n.url&&n.url.trim()!==''?n.url:'https://www.google.com/search?q='+encodeURIComponent(n.titulo.substring(0,70)+' '+n.fuente.split(',')[0]);
     var firstCat=n.cats&&n.cats.length?n.cats[0].key:'';
     var borderColor=getCatColor(firstCat);
     html+='<div class="n-item fade-in" style="border-left-color:'+borderColor+'" data-cats="'+esc(n.cats.map(function(c){return c.key;}).join(','))+'" data-id="'+esc(n.id)+'" data-date="'+iso+'" data-entidad="'+norm(n.entidad||'')+'"'+extraAttr+'>';
@@ -1058,8 +1012,8 @@ function renderContent(){
     html+='<div class="n-body-top"><div class="n-body-left">';
     var entBadge=n.entidad&&n.entidad.trim()!==''?'<span class="cb-entidad">'+esc(n.entidad)+'</span>':'';
     html+='<div class="n-cats">'+cbadges(n.cats)+entBadge+'</div>';
-    var tituloHtml = safeURL
-      ? '<a class="n-title-link" href="'+safeURL+'" target="_blank" rel="noopener noreferrer">'+esc(n.titulo)+'</a>'
+    var tituloHtml = n.url && n.url.trim() !== ''
+      ? '<a class="n-title-link" href="'+n.url+'" target="_blank" rel="noopener">'+esc(n.titulo)+'</a>'
       : esc(n.titulo);
     html+='<div class="n-title" data-orig="'+esc(n.titulo)+'">'+tituloHtml+'</div></div>';
     html+='<div class="n-img" style="color:'+catColor(n.cats)+'">'+getCatSVG(n.cats)+'</div></div>';
@@ -1103,7 +1057,7 @@ function catColor(cats){
   var map={banca:'#1e5fa8',credito:'#166534',fintech:'#9a3412',regulacion:'#5b21b6',
     inclusion:'#92400e',mercado:'#0e7490',pension:'#92400e',seguros:'#991b1b',
     microfinanzas:'#166534',cajas:'#5b21b6',coopac:'#9d174d',internacional:'#075985',
-    solvencia:'#0f766e',rentabilidad:'#b45309',adquisicion:'#0369a1',cartera:'#7c3aed'};
+    solvencia:'#0f766e',rentabilidad:'#b45309'};
   if(!cats||!cats.length)return map.mercado;
   return map[cats[0].key]||map.mercado;
 }
@@ -1119,9 +1073,9 @@ function tickerPause(on){
 function refreshTicker(){
   var allNews=getAllNews();
   /* Ticker muestra todas las noticias visibles */
-  var items=activeFilter.indexOf('todos')>=0
+  var items=activeFilter==='todos'
     ?allNews
-    :allNews.filter(function(n){return n.cats.some(function(c){return activeFilter.indexOf(norm(c.key))>=0;});});
+    :allNews.filter(function(n){return n.cats.map(function(c){return c.key;}).indexOf(activeFilter)>=0;});
   if(!items.length)items=allNews;
   ['tickerInner','tickerInnerD'].forEach(function(innerId){
     var inner=getEl(innerId);if(!inner)return;
@@ -1153,25 +1107,11 @@ function toggleAdmin(){
   getEl('adminEditor').style.display='none';
   setTimeout(function(){var p=getEl('adminPin');if(p)p.focus();},100);
 }
-async function checkPin(){
+function checkPin(){
   var pinEl=getEl('adminPin');
   if(!pinEl)return;
-  /* Bloqueo por intentos */
-  if(loginAttempts>=3){
-    setEl('adminPinError','Demasiados intentos. Recarga la página.');
-    pinEl.disabled=true;
-    return;
-  }
-  /* SHA-256 del PIN + salt */
-  var val=pinEl.value;
-  var encoder=new TextEncoder();
-  var data=encoder.encode(val+'bcrp-dasf-2026');
-  var hashBuffer=await crypto.subtle.digest('SHA-256',data);
-  var hashArray=Array.from(new Uint8Array(hashBuffer));
-  var hashHex=hashArray.map(function(b){return b.toString(16).padStart(2,'0');}).join('');
-  if(hashHex===ADMIN_HASH){
+  if(pinEl.value===ADMIN_PIN){
     adminUnlocked=true;
-    loginAttempts=0;
     getEl('adminAuth').style.display='none';
     getEl('adminEditor').style.display='block';
     var tog=getEl('adminToggle');if(tog){tog.textContent='🔓 Admin';tog.classList.add('active');}
@@ -1179,15 +1119,8 @@ async function checkPin(){
     var box=getEl('top5SideBox');if(box)box.classList.add('admin-mode');
     setEl('adminPinError','');
   }else{
-    loginAttempts++;
-    var rem=3-loginAttempts;
+    setEl('adminPinError','PIN incorrecto');
     pinEl.value='';
-    if(rem>0){
-      setEl('adminPinError','PIN incorrecto. '+rem+' intento'+(rem!==1?'s':'')+' restante'+(rem!==1?'s':'')+'.');
-    }else{
-      setEl('adminPinError','Demasiados intentos. Recarga la página.');
-      pinEl.disabled=true;
-    }
   }
 }
 function cancelAdmin(){
@@ -1235,10 +1168,7 @@ function buildManualTop5(month,d){
   function renderBox(boxId){
     var box=getEl(boxId);if(!box)return;
     if(!top.length){
-      box.innerHTML='<div class="top5-empty" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:24px 16px;">'
-      +'<svg width="32" height="32" viewBox="0 0 48 48" fill="none" style="opacity:0.25"><path d="M24 8l4.5 9 10 1.5-7.2 7 1.7 10L24 31l-9 5.5 1.7-10L9.5 18.5l10-1.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>'
-      +'<span style="font-size:11px;color:var(--text-faint);text-align:center;line-height:1.5;">'+(adminUnlocked?'Selecciona noticias<br>desde el panel de edición.':'Pon números del 1 al 5<br>en col M del Excel')+'</span>'
-      +'</div>';
+      box.innerHTML='<div class="top5-empty">'+(adminUnlocked?'Selecciona noticias desde el panel de edición.':'Las noticias destacadas del mes aparecerán aquí.')+'</div>';
       return;
     }
     var h='<div class="top5-grid">';
@@ -1345,14 +1275,66 @@ function exportPDF(){
 /* ═══════════════════════════════════════════════
    INIT
 ═══════════════════════════════════════════════ */
-/* Keyboard navigation */
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape'){clearSearch();}
-  if(e.key==='/'&&document.activeElement.tagName!=='INPUT'){
-    e.preventDefault();
-    var sb=getEl('searchBox');if(sb)sb.focus();
+
+/* ── ESTADÍSTICAS ── */
+var statsOpen=false;
+function toggleStats(){
+  statsOpen=!statsOpen;
+  var tog=getEl('statsToggle');
+  var grid=getEl('statsGrid');
+  if(tog)tog.classList[statsOpen?'add':'remove']('open');
+  if(grid)grid.classList[statsOpen?'add':'remove']('open');
+  if(statsOpen)renderStats();
+}
+function renderStats(){
+  var allNews=getAllNews();
+  var grid=getEl('statsGrid');
+  if(!grid||!allNews.length){if(grid)grid.innerHTML='<div style="padding:20px;color:var(--text-faint);font-size:12px;">Sin datos.</div>';return;}
+  var catMap={},entMap={},dayMap={},fuenteMap={};
+  allNews.forEach(function(n){
+    n.cats.forEach(function(c){catMap[c.lbl]=(catMap[c.lbl]||0)+1;});
+    var e=n.entidad&&n.entidad.trim()!==''?n.entidad:'Sin entidad';
+    entMap[e]=(entMap[e]||0)+1;
+    var iso=fechaToISO(n.fecha);
+    if(iso)dayMap[iso]=(dayMap[iso]||0)+1;
+    var f=n.fuente?n.fuente.split(',')[0].trim():'Sin fuente';
+    fuenteMap[f]=(fuenteMap[f]||0)+1;
+  });
+  function sortDesc(map){return Object.keys(map).map(function(k){return{lbl:k,cnt:map[k]};}).sort(function(a,b){return b.cnt-a.cnt;});}
+  var cats=sortDesc(catMap),ents=sortDesc(entMap),fuentes=sortDesc(fuenteMap);
+  var days=Object.keys(dayMap).sort();
+  var maxDay=days.length?Math.max.apply(null,days.map(function(d){return dayMap[d];})):1;
+  var catColors=['#005ea8','#16a34a','#e05c45','#6d28d9','#c2740a','#0e7490','#b45309','#b91c1c','#0f766e','#be185d'];
+  function bars(entries,maxCnt,col){
+    return entries.slice(0,7).map(function(e,i){
+      var pct=Math.round(e.cnt/maxCnt*100);
+      var c=Array.isArray(col)?col[i%col.length]:col;
+      return '<div class="stat-bar-row"><div class="stat-bar-label" title="'+esc(e.lbl)+'">'+esc(e.lbl)+'</div>'
+        +'<div class="stat-bar-track"><div class="stat-bar-fill" style="width:'+pct+'%;background:'+c+'"></div></div>'
+        +'<div class="stat-bar-count">'+e.cnt+'</div></div>';
+    }).join('');
   }
-});
+  var html='';
+  html+='<div class="stat-card"><div class="stat-card-title">Resumen</div><div class="stat-kpis">';
+  html+='<div class="stat-kpi"><div class="stat-kpi-num">'+allNews.length+'</div><div class="stat-kpi-lbl">Noticias</div></div>';
+  html+='<div class="stat-kpi"><div class="stat-kpi-num">'+cats.length+'</div><div class="stat-kpi-lbl">Categorías</div></div>';
+  html+='<div class="stat-kpi"><div class="stat-kpi-num">'+fuentes.length+'</div><div class="stat-kpi-lbl">Fuentes</div></div>';
+  html+='<div class="stat-kpi"><div class="stat-kpi-num">'+days.length+'</div><div class="stat-kpi-lbl">Días</div></div>';
+  html+='</div></div>';
+  html+='<div class="stat-card"><div class="stat-card-title">Por categoría</div>'+bars(cats,cats[0]?cats[0].cnt:1,catColors)+'</div>';
+  if(days.length){
+    html+='<div class="stat-card"><div class="stat-card-title">Por día</div><div class="stat-day-wrap">';
+    days.forEach(function(d){
+      var cnt=dayMap[d];var h2=Math.max(Math.round(cnt/maxDay*52),3);
+      var parts=d.split('-');var lbl=parts[2]+'/'+parts[1];
+      html+='<div class="stat-day-col"><div class="stat-day-bar" style="height:'+h2+'px" title="'+lbl+': '+cnt+'"></div><div class="stat-day-lbl">'+lbl+'</div></div>';
+    });
+    html+='</div></div>';
+  }
+  html+='<div class="stat-card"><div class="stat-card-title">Por fuente</div>'+bars(fuentes,fuentes[0]?fuentes[0].cnt:1,'#0e7490')+'</div>';
+  if(ents.length>1){html+='<div class="stat-card"><div class="stat-card-title">Por entidad</div>'+bars(ents,ents[0]?ents[0].cnt:1,'#6d28d9')+'</div>';}
+  grid.innerHTML=html;
+}
 
 window.addEventListener('DOMContentLoaded',function(){
   /* footer date */
