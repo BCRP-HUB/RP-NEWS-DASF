@@ -35,8 +35,6 @@ body{
   font-family:var(--sans);background:var(--bg);color:var(--text);
   min-height:100vh;transition:background 0.3s,color 0.3s;
 }
-
-/* BCRP-inspired background: light watermark pattern */
 body::before{
   content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   background:
@@ -50,14 +48,10 @@ body::before{
     radial-gradient(ellipse 60% 40% at 80% 100%,rgba(57,213,213,0.03) 0%,transparent 55%),
     url("data:image/svg+xml,%3Csvg width='48' height='48' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='48' y2='0' stroke='%232f81f7' stroke-width='0.3' opacity='0.3'/%3E%3Cline x1='0' y1='0' x2='0' y2='48' stroke='%232f81f7' stroke-width='0.3' opacity='0.3'/%3E%3C/svg%3E") repeat;
 }
-
-/* Top accent bar — BCRP brand blue */
 .sidebar-accent{position:fixed;left:0;top:0;bottom:0;width:4px;z-index:20;
   background:linear-gradient(180deg,#005ea8 0%,#0070c4 40%,#1a8a6e 80%,#005ea8 100%);
   opacity:0.9;}
 [data-theme="dark"] .sidebar-accent{background:linear-gradient(180deg,var(--accent),var(--teal),var(--green),var(--purple));}
-
-/* TOPBAR (mobile) */
 .topbar{display:none;position:sticky;top:0;z-index:100;
   background:rgba(255,255,255,0.96);border-bottom:1px solid var(--border);
   backdrop-filter:blur(12px);padding:0 16px;height:52px;
@@ -66,8 +60,6 @@ body::before{
 [data-theme="dark"] .topbar{background:rgba(10,16,32,0.96);}
 .topbar-title{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);}
 .topbar-actions{display:flex;align-items:center;gap:8px;}
-
-/* LAYOUT */
 .page-wrap{position:relative;z-index:2;display:flex;min-height:100vh;}
 .left-panel{
   width:268px;min-width:268px;
@@ -83,16 +75,6 @@ body::before{
 [data-theme="dark"] .panel-head{background:rgba(47,129,247,0.04);}
 .ph-title{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--text);display:flex;align-items:center;gap:6px;}
 .ph-sub{font-size:9px;color:var(--text-faint);margin-top:1px;}
-.ticker-scroll{height:220px;overflow:hidden;position:relative;}
-.ticker-inner{position:absolute;top:0;left:0;right:0;}
-.ticker-inner.paused{animation-play-state:paused !important;}
-.t-item{padding:10px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;}
-.t-item:hover{background:var(--accent-light);}
-.t-date{font-family:var(--mono);font-size:9px;color:var(--text-faint);margin-bottom:2px;}
-.t-title{font-size:13px;font-weight:500;color:var(--text);line-height:1.4;}
-.ticker-foot{padding:6px 16px;font-size:10px;color:var(--text-faint);border-top:1px solid var(--border);}
-
-/* TOP 5 SIDEBAR */
 .top5-admin-btn{font-family:var(--mono);font-size:9px;font-weight:600;padding:3px 8px;border-radius:3px;border:1px solid var(--border2);background:transparent;color:var(--text-dim);cursor:pointer;transition:all 0.2s;letter-spacing:0.5px;}
 .top5-admin-btn:hover{border-color:var(--orange);color:var(--orange);}
 .top5-admin-btn.active{background:var(--orange);color:#fff;border-color:var(--orange);}
@@ -125,8 +107,6 @@ body::before{
 .t5-title{font-size:11px;font-weight:500;color:var(--text);line-height:1.4;margin-bottom:3px;}
 .t5-meta{display:flex;align-items:center;gap:4px;flex-wrap:wrap;}
 .top5-empty{padding:16px 14px;font-size:11px;color:var(--text-faint);text-align:center;border:1px dashed var(--border2);border-radius:6px;margin:12px;background:var(--surface);}
-
-/* MAIN CONTENT */
 .main-content{flex:1;min-width:0;padding:28px 28px 0;}
 .header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:12px;padding-bottom:18px;border-bottom:2px solid var(--border);}
 .header-left{flex:1;}
@@ -141,8 +121,6 @@ body::before{
 .theme-btn:hover{border-color:var(--accent);}
 .pdf-btn{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;font-weight:600;padding:8px 12px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);color:var(--text-dim);cursor:pointer;transition:all 0.2s;box-shadow:var(--shadow);}
 .pdf-btn:hover{border-color:var(--accent);color:var(--accent);}
-
-/* SEARCH */
 .search-row{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;max-width:900px;}
 .search-box{flex:1;min-width:160px;background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:var(--sans);font-size:13px;padding:9px 12px 9px 36px;border-radius:6px;outline:none;transition:border-color 0.2s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235a6e88' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:12px center;box-shadow:var(--shadow);}
 .search-box:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,94,168,0.12);}
@@ -161,8 +139,6 @@ body::before{
 .clear-date-btn:hover,.clear-btn:hover{border-color:var(--red);color:var(--red);}
 .search-info{font-family:var(--mono);font-size:10px;color:var(--text-dim);min-height:18px;margin-bottom:10px;}
 .search-info b{color:var(--accent);}
-
-/* FILTER ACCORDIONS */
 .filter-accordions{display:flex;flex-direction:column;gap:0;margin-bottom:16px;border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:var(--shadow);}
 .facc-block{border-bottom:1px solid var(--border);}
 .facc-block:last-child{border-bottom:none;}
@@ -217,10 +193,7 @@ body::before{
 .limit-dot{width:8px;height:8px;border-radius:50%;border:1.5px solid #CACAC8;transition:background .2s,border-color .2s;}
 .limit-dot.filled{background:#185FA5;border-color:#185FA5;}
 .limit-text{font-size:10px;color:#888;margin-left:6px;font-family:var(--mono);}
-
-/* MONTH SELECTOR — quincena cascade */
 .month-cascade{display:flex;flex-direction:column;gap:0;}
-/* año */
 .mc-year{border-bottom:1px solid var(--border);}
 .mc-year:last-child{border-bottom:none;}
 .mc-year-hdr{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;cursor:pointer;background:rgba(0,94,168,0.05);transition:background 0.15s;user-select:none;border-bottom:1px solid var(--border);}
@@ -231,7 +204,6 @@ body::before{
 .mc-year-hdr.open .mc-year-chevron{transform:rotate(180deg);}
 .mc-year-body{display:none;flex-direction:column;}
 .mc-year-hdr.open + .mc-year-body{display:flex;}
-/* mes */
 .mc-month{border-bottom:1px solid var(--border);}
 .mc-month:last-child{border-bottom:none;}
 .mc-month-hdr{display:flex;align-items:center;justify-content:space-between;padding:8px 14px 8px 20px;cursor:pointer;transition:background 0.15s;user-select:none;}
@@ -241,18 +213,13 @@ body::before{
 .mc-month-lbl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--accent);}
 .mc-chevron{font-size:10px;color:var(--text-faint);transition:transform 0.2s;}
 .mc-month-hdr.open .mc-chevron{transform:rotate(180deg);}
-/* quincenas */
 .mc-quincenas{display:none;flex-direction:column;}
 .mc-month-hdr.open + .mc-quincenas{display:flex;}
 .mc-q{padding:7px 14px 7px 30px;cursor:pointer;font-family:var(--mono);font-size:9px;letter-spacing:0.3px;color:var(--text-dim);border-bottom:1px solid var(--border);transition:background 0.12s;line-height:1.4;}
 .mc-q:hover{background:var(--accent-light);color:var(--accent);}
 .mc-q.active{color:var(--accent);font-weight:600;background:var(--accent-light);border-left:3px solid var(--accent);padding-left:27px;}
 .mc-q:last-child{border-bottom:none;}
-
-/* DIVIDER */
 .divider{height:1px;background:linear-gradient(90deg,var(--accent) 0%,var(--border) 50%,transparent 100%);margin-bottom:20px;opacity:0.4;}
-
-/* NEWS */
 .sec-title{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
 .sec-title::after{content:'';flex:1;height:1px;background:var(--border);}
 .n-badge{font-size:9px;background:var(--accent-light);color:var(--accent);border-radius:10px;padding:1px 8px;margin-left:4px;font-family:var(--mono);font-weight:600;}
@@ -285,11 +252,11 @@ body::before{
 .cb-rentabilidad{color:#b45309;background:rgba(180,83,9,0.1);}
 [data-theme="dark"] .cb-solvencia{color:#2dd4bf;background:rgba(45,212,191,0.1);}
 [data-theme="dark"] .cb-rentabilidad{color:#fbbf24;background:rgba(251,191,36,0.1);}
-
 .n-grid{display:flex;flex-direction:column;gap:3px;margin-bottom:6px;}
 .n-item{display:grid;grid-template-columns:52px 1fr;border-left:3px solid var(--border);background:var(--surface);transition:border-color 0.2s,background 0.15s,box-shadow 0.2s,transform 0.15s;box-shadow:var(--shadow);}
 .n-item:hover{border-left-color:var(--accent);background:var(--surface2);box-shadow:0 4px 16px rgba(0,94,168,0.10);transform:translateY(-1px);}
 .n-item.hidden{display:none!important;}
+.n-item.n-extra{display:none!important;}
 .n-date-col{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:14px 6px 14px 0;}
 .n-date{font-family:var(--mono);font-size:11px;color:var(--text-dim);text-align:center;line-height:1.6;font-weight:600;}
 .n-body{padding:12px 14px;border-left:1px solid var(--border);}
@@ -313,8 +280,6 @@ body::before{
 .share-btn{font-family:var(--mono);font-size:9px;padding:4px 8px;border-radius:4px;border:1px solid var(--border2);background:transparent;color:var(--text-dim);cursor:pointer;transition:all 0.15s;text-decoration:none;display:inline-flex;align-items:center;}
 .share-btn:hover{border-color:var(--accent);color:var(--accent);}
 .share-btn.copied{border-color:var(--green);color:var(--green);}
-
-/* VER MAS / MENOS */
 .ver-mas-btn,.ver-menos-btn{
   width:100%;font-family:var(--mono);font-size:10px;font-weight:600;
   padding:11px;border-radius:6px;border:1px solid var(--border2);
@@ -324,7 +289,6 @@ body::before{
 .ver-mas-btn:hover{border-color:var(--accent);background:var(--accent-light);}
 .ver-menos-btn{color:var(--text-dim);display:none;}
 .ver-menos-btn:hover{border-color:var(--text-dim);background:var(--surface2);}
-
 .highlight{background:rgba(0,94,168,0.18);color:var(--text);border-radius:2px;padding:0 2px;}
 [data-theme="dark"] .highlight{background:rgba(47,129,247,0.3);}
 [data-theme="dark"] .n-tag{background:rgba(47,129,247,0.12);color:var(--accent);}
@@ -332,18 +296,12 @@ body::before{
 .no-results.show{display:block;}
 .fade-in{animation:fadeUp 0.3s ease;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
-
-/* DRAWER */
 .drawer-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.45);backdrop-filter:blur(4px);}
 .drawer-overlay.open{display:block;}
 .drawer{position:fixed;left:0;top:0;bottom:0;width:290px;z-index:201;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;transform:translateX(-100%);transition:transform 0.3s ease;}
 .drawer.open{transform:translateX(0);}
 .drawer-close{position:absolute;top:12px;right:12px;font-size:18px;background:none;border:none;color:var(--text-dim);cursor:pointer;z-index:10;padding:4px;}
-
-/* TIME AGO BADGE */
 .time-ago{font-family:var(--mono);font-size:9px;color:var(--text-faint);margin-top:4px;display:inline-block;text-align:center;line-height:1.3;background:var(--surface2);border-radius:10px;padding:1px 6px;border:1px solid var(--border);}
-
-/* STAGGERED FADE-IN */
 .n-item{animation:fadeUp 0.35s ease both;}
 .n-item:nth-child(1){animation-delay:0.04s;}
 .n-item:nth-child(2){animation-delay:0.08s;}
@@ -351,21 +309,16 @@ body::before{
 .n-item:nth-child(4){animation-delay:0.16s;}
 .n-item:nth-child(5){animation-delay:0.20s;}
 .n-item:nth-child(6){animation-delay:0.24s;}
-
-/* LIVE CLOCK */
 .live-clock{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:1px;padding:6px 12px;border-radius:6px;border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);min-width:110px;}
 .clock-time{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--text);letter-spacing:2px;line-height:1;}
 .clock-date{font-family:var(--mono);font-size:9px;color:var(--text-dim);letter-spacing:0.5px;text-transform:uppercase;margin-top:2px;}
 .clock-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:4px;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
-/* FOOTER */
 .site-footer{margin-top:40px;padding:24px 28px 32px;border-top:2px solid var(--border);background:var(--surface2);border-radius:8px 8px 0 0;}
 .footer-inner{display:flex;flex-direction:column;gap:4px;}
 .footer-logo{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:2px;}
 .footer-copy{font-family:var(--mono);font-size:10px;color:var(--text-dim);}
 .footer-note{font-size:10px;color:var(--text-faint);line-height:1.65;margin-top:3px;}
-
-/* RESPONSIVE */
 @media(max-width:820px){
   .left-panel{display:none;}
   .topbar{display:flex;}
@@ -379,8 +332,6 @@ body::before{
   .n-summary{font-size:11px;}.header-right{gap:6px;}
   .date-picker{min-width:110px;}
 }
-
-/* Borde izquierdo de card por categoría */
 .n-item[data-cats*="credito"]{border-left-color:#16a34a;}
 .n-item[data-cats*="microfinanzas"]{border-left-color:#16a34a;}
 .n-item[data-cats*="fintech"]{border-left-color:#e05c45;}
@@ -396,7 +347,6 @@ body::before{
 ::-webkit-scrollbar{width:4px;height:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
-/* ── ESTADÍSTICAS ── */
 .stats-toggle{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--accent);cursor:pointer;padding:10px 0;border:none;background:none;transition:opacity 0.15s;}
 .stats-toggle:hover{opacity:0.7;}
 .stats-toggle-chevron{font-size:10px;color:var(--text-faint);transition:transform 0.2s;}
@@ -418,6 +368,21 @@ body::before{
 .stat-kpi{text-align:center;}
 .stat-kpi-num{font-family:var(--mono);font-size:24px;font-weight:700;color:var(--accent);line-height:1;}
 .stat-kpi-lbl{font-size:10px;color:var(--text-faint);margin-top:2px;}
+
+/* MODAL TOP5 */
+.t5-modal-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.18);backdrop-filter:blur(2px);}
+.t5-modal-overlay.open{display:flex;align-items:flex-start;justify-content:flex-start;}
+.t5-modal{position:absolute;width:340px;max-width:calc(100vw - 24px);background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.18),0 2px 8px rgba(0,0,0,0.10);overflow:hidden;animation:modalPop 0.18s ease;}
+@keyframes modalPop{from{opacity:0;transform:scale(0.93);}to{opacity:1;transform:scale(1);}}
+.t5-modal-header{display:flex;align-items:flex-start;justify-content:space-between;padding:14px 16px 10px;border-bottom:1px solid var(--border);gap:8px;}
+.t5-modal-cats{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px;}
+.t5-modal-title{font-size:14px;font-weight:700;color:var(--text);line-height:1.45;}
+.t5-modal-close{background:none;border:none;cursor:pointer;color:var(--text-faint);font-size:16px;padding:2px 4px;flex-shrink:0;transition:color 0.15s;}
+.t5-modal-close:hover{color:var(--red);}
+.t5-modal-body{padding:12px 16px 14px;}
+.t5-modal-resumen{font-size:12px;color:var(--text-dim);line-height:1.7;max-height:220px;overflow-y:auto;}
+.t5-modal-footer{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-top:1px solid var(--border);background:var(--surface2);}
+.t5-modal-rank{font-family:var(--mono);font-size:10px;color:var(--text-faint);}
 </style>
 </head>
 <body>
@@ -428,7 +393,7 @@ body::before{
   <button onclick="openDrawer()" style="background:none;border:none;cursor:pointer;color:var(--accent);font-size:20px;padding:4px;" aria-label="Menú">☰</button>
   <span class="topbar-title">SF Peruano</span>
   <div class="topbar-actions">
-    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Cambiar tema">☀️</button>
+    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Cambiar tema">🌙</button>
   </div>
 </div>
 
@@ -444,31 +409,18 @@ body::before{
 
 <!-- MAIN PAGE -->
 <div class="page-wrap">
-  <!-- LEFT PANEL -->
+  <!-- LEFT PANEL — sin ticker -->
   <div class="left-panel">
-    <!-- Ticker -->
-    <div class="panel-sec">
-      <div class="panel-head">
-        <div>
-          <div class="ph-title"><span style="color:var(--accent)">◆</span> Últimas noticias</div>
-          <div class="ph-sub">Pausa al pasar el mouse</div>
-        </div>
-      </div>
-      <div class="ticker-scroll" onmouseenter="tickerPause(true)" onmouseleave="tickerPause(false)">
-        <div id="tickerInner" class="ticker-inner"></div>
-      </div>
-      <div class="ticker-foot">Sigue el filtro activo</div>
-    </div>
     <!-- Month / Quincena cascade -->
     <div class="panel-sec" style="flex-shrink:0;">
       <div class="panel-head"><div class="ph-title"><span style="color:var(--accent)">◆</span> Período</div></div>
-      <div class="month-cascade" id="monthCascade"></div>
+      <div class="month-cascade" id="monthCascade" style="overflow-y:auto;max-height:calc(100vh - 260px);"></div>
     </div>
     <!-- Top 5 -->
     <div class="panel-sec-last" style="display:flex;flex-direction:column;">
       <div class="panel-head">
         <div class="ph-title">★ Top 5 del Mes</div>
-        <span style="font-family:var(--mono);font-size:9px;color:var(--text-faint);">Desde Excel col K</span>
+
       </div>
       <div class="admin-panel" id="adminPanel" style="display:none!important">
         <div id="adminAuth">
@@ -512,7 +464,7 @@ body::before{
           <div class="clock-time" id="clockTime">--:--:--</div>
           <div class="clock-date" id="clockDate"><span class="clock-dot"></span>--</div>
         </div>
-        <button class="theme-btn" onclick="toggleTheme()" id="themeBtnD" aria-label="Cambiar tema">☀️</button>
+        <button class="theme-btn" onclick="toggleTheme()" id="themeBtnD" aria-label="Cambiar tema">🌙</button>
         <button class="pdf-btn" onclick="exportPDF()">
           <svg width="12" height="14" viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1" y="1" width="8" height="11" rx="1"/><path d="M3 4h5M3 6.5h5M3 9h3"/><path d="M7 1v3h3" stroke-width="1" opacity="0.5"/></svg>PDF
         </button>
@@ -534,7 +486,7 @@ body::before{
     </div>
     <div class="search-info" id="searchInfo" aria-live="polite"></div>
 
-    <!-- FILTER GROUPS: accordion style -->
+    <!-- FILTER GROUPS -->
     <div class="filter-accordions" id="filterAccordions"></div>
     <div class="stats-toggle" id="statsToggle" onclick="toggleStats()">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
@@ -556,10 +508,7 @@ body::before{
   </div>
 </div>
 
-<script>
-/* ═══════════════════════════════════════════════
-   ESTADO GLOBAL
-═══════════════════════════════════════════════ */
+<script type="text/javascript">
 var activeFilter=['todos'];
 var activeEntidad='ent-todos';
 var searchText='';
@@ -569,23 +518,17 @@ var ADMIN_PIN='2026';
 var adminUnlocked=false;
 var manualTop5={feb26:[],mar26:[]};
 var top5Highlighted={feb26:{},mar26:{}};
-var tickerKF=document.createElement('style');
-document.head.appendChild(tickerKF);
 
-/* ── estado de período seleccionado ── */
-var activeMonth='';      /* se inicializa despues de DATA */
+var activeMonth='';
 var activeQuincena=null;
 var openYears={};
 var showingAll=false;
 
-/* ═══════════════════════════════════════════════
-   DATOS
-═══════════════════════════════════════════════ */
 var DATA={
   abr26:{
     label:'Abril',year:'2026',
     quincenas:[
-      {titulo:'1ra Quincena - Abril 2026',noticias:[{id:'n001',fecha:'13 Abr 2026',cats:[{key:'microfinanzas',lbl:'Microfinanzas'},{key:'solvencia',lbl:'Solvencia'}],entidad:'Banca',titulo:'Agrobanco mejora su perspectiva a positiva tras avances en morosidad, solvencia y crecimiento crediticio',resumen:'Agrobanco logró mejorar su perspectiva de riesgo de estable a positiva, manteniendo su clasificación respaldada por el Estado, en un contexto de avances en indicadores clave como la reducción de la morosidad, el fortalecimiento patrimonial y la expansión de su cartera minorista; en particular, la cartera de alto riesgo disminuyó de 62,1% a 48,6% entre 2024 y 2025, mientras que la nueva cartera minorista muestra un perfil más saludable con apenas 3,3% de alto riesgo y cobertura superior al 100%, reflejando una mejor gestión crediticia; además, el banco mantiene una sólida solvencia con un ratio de capital de 81%, muy por encima del sistema, impulsado por aportes estatales acumulados; no obstante, persisten riesgos estructurales asociados al sector agropecuario como el cambio climático y la volatilidad de ingresos, por lo que la sostenibilidad de esta mejora dependerá tanto de la continuidad del respaldo público como de la consolidación de la calidad de cartera y la rentabilidad.',fuente:'Gan@Más',url:'https://revistaganamas.com.pe/agrobanco-mejora-su-perspectiva-de-estable-a-positiva-en-medio-de-mejoras-financieras/',top5:0,tags:['Agrobanco','morosidad','solvencia','crédito agrícola','riesgo','Estado','microfinanzas.']},{id:'n002',fecha:'13 Abr 2026',cats:[{key:'rentabilidad',lbl:'Rentabilidad'},{key:'solvencia',lbl:'Solvencia'}],entidad:'CMAC',titulo:'Caja Maynas mejora rentabilidad y capital, pero enfrenta presión por riesgo crediticio',resumen:'Caja Maynas mostró una recuperación en su desempeño financiero tras revertir pérdidas previas, registrando una utilidad neta de S/ 1,3 millones frente a niveles casi nulos el año anterior, impulsada por mejoras en eficiencia operativa, reducción del costo de fondeo (−26%) y control del gasto administrativo (−15%), lo que permitió expandir significativamente su margen operacional; sin embargo, este avance estuvo acompañado de un aumento relevante en provisiones de S/ 0,9 millones a S/ 2,3 millones reflejando una postura más conservadora ante el riesgo crediticio en un contexto donde la calidad de cartera aún se mantiene por encima del promedio del sistema; en paralelo, la entidad fortaleció su posición patrimonial mediante deuda subordinada, elevando su ratio de capital global a 15,3% y respaldando su crecimiento, lo que llevó a la ratificación de su clasificación B- con perspectiva estable; pese a la mejora, persisten desafíos estructurales en morosidad, cobertura y gestión de cartera que serán determinantes para consolidar su recuperación en el mediano plazo.',fuente:'Gan@Más',url:'https://revistaganamas.com.pe/caja-maynas-mejora-su-rentabilidad-y-capital-pero-mantiene-presion-por-riesgo-crediticio/',top5:0,tags:['Caja Maynas','microfinanzas','rentabilidad','provisiones','riesgo crediticio','solvencia','capital.']},{id:'n003',fecha:'13 Abr 2026',cats:[{key:'rentabilidad',lbl:'Rentabilidad'},{key:'solvencia',lbl:'Solvencia'}],entidad:'Coopac',titulo:'COOPAC de nivel 3 registran pérdidas por deterioro del crédito y presión en provisiones',resumen:'Las cooperativas de ahorro y crédito (Coopac) de nivel 3 pasaron de utilidades a pérdidas, registrando un resultado agregado de S/ 9,3 millones frente a ganancias de S/ 7,4 millones un año antes, principalmente debido al deterioro de la calidad crediticia y el fuerte incremento de provisiones, en un contexto de menores ingresos por tipo de cambio y presión sobre márgenes financieros. Este resultado estuvo altamente influenciado por el desempeño de Coopac Pacífico, cuyas pérdidas explican gran parte del deterioro del sistema, evidenciando una elevada concentración de riesgos; sin este efecto, el resto de las entidades habría mantenido resultados positivos, aunque con señales de desaceleración. Además, la rigidez de los costos de fondeo y el aumento de gastos operativos limitaron la capacidad de ajuste de las cooperativas, mientras que algunas entidades mostraron resiliencia mediante control de costos o reversión de provisiones. En conjunto, el desempeño refleja vulnerabilidades estructurales del segmento, destacando la necesidad de fortalecer la gestión del riesgo crediticio, mejorar eficiencia operativa y reducir la exposición a shocks concentrados para preservar la estabilidad del sistema.',fuente:'Gan@Más',url:'https://revistaganamas.com.pe/coopac-de-nivel-3-registran-perdidas-al-inicio-de-2026-por-deterioro-del-credito/',top5:0,tags:['coopac','microfinanzas','provisiones','riesgo crediticio','rentabilidad','solvencia','sistema financiero.']},{id:'n004',fecha:'13 Abr 2026',cats:[{key:'inclusion',lbl:'Inclusion'}],entidad:'Coopac',titulo:'Cooperativas ingresan a una fase de consolidación con impulso en fusiones y digitalización',resumen:'El sistema de cooperativas de ahorro y crédito (Coopac) en el Perú atraviesa una etapa de consolidación tras un 2025 positivo, evidenciada por el inicio de conversaciones de fusión entre al menos dos pares de entidades, en un contexto donde el mercado exige instituciones más sólidas y con mayor capacidad de inversión en digitalización. A la fecha, existen 226 Coopac registradas en la SBS, con un crecimiento relevante en su base de usuarios: los depositantes pasaron de 1,32 a 1,44 millones y los deudores de 652 000 a 757 000 entre 2024 y 2025, mientras que los socios superaron los 2,9 millones. Este proceso estaría liderado principalmente por cooperativas de nivel 2, que concentran más de la mitad de los activos del sistema, aunque las fusiones enfrentan desafíos como el regionalismo y la diversidad de modelos de negocio. Paralelamente, el sector avanza en digitalización con herramientas como tarjetas de débito y billeteras digitales (WalletOn), consolidando un proceso de transformación estructural orientado a eficiencia, escala y sostenibilidad',fuente:'Semana Económica',url:'https://semanaeconomica.com/index.php/economia-finanzas/microfinanzas/cooperativas-entran-en-la-etapa-de-una-necesaria-consolidacionnbsp',top5:0,tags:['coopac','cooperativas','fusiones','consolidación','inclusión financiera','digitalización','WalletOn']},{id:'n005',fecha:'08 Abr 2026',cats:[{key:'regulacion',lbl:'Regulacion'},{key:'rentabilidad',lbl:'Rentabilidad'}],entidad:'Financiera',titulo:'Surgir mantiene calificación A- con perspectiva estable, pero enfrenta retos para sostener mejora en cartera de alto riesgo',resumen:'Moody’s Local Perú ratificó la calificación A- de Santander Financiamientos S.A. (Surgir) con perspectiva estable, destacando la mejora en su calidad de cartera, el retorno a la rentabilidad y el respaldo del Grupo Santander, aunque advirtió que el principal desafío será sostener estos avances en un segmento de mayor riesgo; en 2025, la financiera redujo su mora real de cerca de 20% a 12,5%, reflejando una estrategia efectiva de de-risking y una mejor segmentación del portafolio, al tiempo que consolidó un modelo digital eficiente basado en infraestructura “cloud”; asimismo, retomó utilidades (S/ 1,7 millones) y mostró crecimiento en colocaciones, aunque aún enfrenta limitaciones de escala y eficiencia frente a sus pares; en el frente de fondeo, se observa un avance en depósitos minoristas, pero persiste concentración en depositantes; en conjunto, la entidad se encuentra en una fase de transición hacia una expansión más prudente, donde la sostenibilidad de la calidad de cartera, la rentabilidad y la diversificación del fondeo serán claves para una eventual mejora en su clasificación.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/finanzas/surgir-enfrenta-el-reto-de-sostener-la-mejora-de-su-cartera-en-un-segmento-de-alto-riesgo/',top5:0,tags:['Surgir','Moody’s','Cartera Crediticia','Morosidad','Fintech','Rentabilidad','Fondeo','Riesgo']},{id:'n006',fecha:'08 Abr 2026',cats:[{key:'credito',lbl:'Credito'}],entidad:'Sistema Financiero',titulo:'Unos 400 000 trabajadores públicos enfrentan restricciones de acceso al crédito por deterioro en su perfil de riesgo',resumen:'Alrededor de 400 000 trabajadores del sector público enfrentan dificultades para acceder al crédito en el sistema financiero debido a que cerca del 30% presenta una calificación crediticia por debajo de la categoría “Normal”, lo que limita significativamente su elegibilidad para nuevos préstamos; esta situación responde, en gran medida, al sobreendeudamiento asociado al mal uso de tarjetas de crédito y créditos de consumo, donde muchos deudores solo pagan intereses sin amortizar el capital, generando una “bola de nieve” en sus obligaciones; pese a contar con ingresos relativamente estables, factores como la baja educación financiera y el aumento del gasto inciden en su deterioro crediticio; en paralelo, aunque la morosidad del sistema ha mostrado una tendencia a la baja (de 4,24% en 2024 a 3,54% en 2025), persiste un grupo relevante con deudas atrasadas, lo que ha dado lugar a un mayor desarrollo de mercados secundarios de compra de cartera por parte de fintechs, que buscan reinsertar a estos clientes al sistema financiero.',fuente:'Diario Gestión',url:'',top5:4,tags:['Crédito','Trabajadores Públicos','Morosidad','Sobreendeudamiento','Fintech','Compra de Cartera','Riesgo Crediticio']},{id:'n007',fecha:'08 Abr 2026',cats:[{key:'solvencia',lbl:'Solvencia'}],entidad:'Banca',titulo:'Bank of China (Perú) destaca por su alta solvencia y calidad de cartera en el sistema financiero',resumen:'Bank of China (Perú) evidenció un perfil financiero altamente sólido, caracterizado por una cartera crediticia de bajo riesgo con 100% de créditos vigentes, cartera de alto riesgo de 0% y cartera pesada de apenas 0,1%, lo que refleja una estrategia crediticia conservadora enfocada en el segmento corporativo; además, el banco mantiene niveles de capitalización significativamente superiores al sistema, con un ratio de capital global de 58,8% y un CET1 de 57,9%, respaldados por el soporte de su matriz global, Bank of China Ltd., lo que fortalece su capacidad de absorción ante shocks; si bien su operación aún es de menor escala, ha consolidado rentabilidad sostenida (ROA de 1,3% y ROE de 9,7%), apoyada en una diversificación de ingresos más allá del crédito tradicional; no obstante, su modelo presenta alta concentración en pocos clientes y sectores, consistente con su enfoque en banca corporativa, lo que constituye un riesgo inherente, aunque mitigado por el perfil crediticio de sus deudores y el respaldo del grupo.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/banca/bank-of-china-peru-sobresale-por-la-calidad-de-su-cartera-crediticia/',top5:0,tags:['solvencia','cartera crediticia','Bank of China','capital','riesgo','banca corporativa','sistema financiero']},{id:'n008',fecha:'08 Abr 2026',cats:[{key:'solvencia',lbl:'Solvencia'},{key:'rentabilidad',lbl:'Rentabilidad'}],entidad:'CMAC',titulo:'Utilidades de cajas municipales crecen 195,9% a febrero impulsadas por menor costo de riesgo y mejora operativa',resumen:'Las utilidades netas del sistema de cajas municipales alcanzaron S/ 202,6 millones, registrando un crecimiento interanual de 195,9%, impulsado principalmente por la reducción del costo del riesgo, el aumento de los ingresos financieros y una mejora en la eficiencia del fondeo; en particular, los ingresos financieros crecieron 8,2%, mientras que los gastos financieros disminuyeron, elevando el margen financiero bruto y reflejando una gestión más eficiente de los recursos; además, la caída de las provisiones en 28,6% evidenció una estabilización en la calidad de cartera, liberando recursos que antes se destinaban al saneamiento; este desempeño marca un cambio de etapa en el sistema microfinanciero, que pasa de un periodo de ajuste y deterioro a uno de mayor rentabilidad y potencial expansión, aunque persisten desafíos asociados a la sostenibilidad del crecimiento y a la evolución futura del riesgo crediticio.',fuente:'Gan@Más',url:'https://revistaganamas.com.pe/utilidades-de-las-cajas-municipales-se-disparan-195-9-a-febrero-del-2026/',top5:0,tags:['Cajas Municipales','Utilidades','Rentabilidad','Provisiones','Riesgo Crediticio','Microfinanzas','Sistema Financiero']},{id:'n009',fecha:'07 Abr 2026',cats:[{key:'mercado',lbl:'Mercado'}],entidad:'Financiera',titulo:'IFS adquiere Financiera Oh! por US$130 millones y refuerza su ecosistema financiero digital en consumo',resumen:'Intercorp Financial Services (IFS) adquirió InFinance XP S.A. antes Financiera Oh! por US$130 millones, en una operación intragrupo con InRetail que le permite integrar a su plataforma financiera una entidad con aproximadamente tres millones de clientes, S/1 700 millones en colocaciones y S/1 500 millones en depósitos; esta adquisición fortalece la posición de IFS en el segmento de financiamiento al consumo y amplía su ecosistema que ya incluye banca, seguros, pagos y gestión patrimonial mediante una mayor integración con canales retail, aprovechando la capilaridad de más de 4 	000 tiendas de InRetail; además, la financiera viene impulsando su transformación digital con la app SIP, orientada a centralizar productos financieros, pagos y programas de lealtad, lo que refuerza la estrategia del grupo de construir una plataforma escalable centrada en el cliente y con mayor penetración en servicios financieros digitales.',fuente:'Semana Económica',url:'',top5:0,tags:['IFS','Intercorp','Financiera Oh','Consumo','Fintech','Ecosistema','Banca Digital']},{id:'n010',fecha:'07 Abr 2026',cats:[{key:'internacional',lbl:'Internacional'},{key:'mercado',lbl:'Mercado'}],entidad:'Banca',titulo:'Revolut avanza en su ingreso al Perú y se posiciona como potencial primer banco 100% digital',resumen:'Revolut continúa avanzando en su proceso para operar como banco en el Perú tras obtener la autorización de organización de la SBS, etapa clave previa a la solicitud de licencia de funcionamiento, en un contexto donde el neobanco ya genera alta expectativa en el mercado con cerca de 60 000 personas inscritas en su lista de espera; la entidad viene fortaleciendo su equipo local actualmente de alrededor de 20 personas e implementando su infraestructura tecnológica y operativa, con miras a completar los requisitos regulatorios durante 2026; su eventual entrada podría impulsar gradualmente la competencia en el sistema financiero, especialmente frente a la banca tradicional, aunque su impacto dependerá de su capacidad de adaptar su modelo digital al contexto local y cumplir con los estándares regulatorios exigidos; el proceso de licenciamiento contempla la aprobación de políticas, sistemas y estructura organizacional, con un plazo de evaluación de hasta 270 días por parte del supervisor, lo que sugiere que su entrada efectiva al mercado podría concretarse en el corto plazo.',fuente:'Semana Económica',url:'https://semanaeconomica.com/index.php/economia-finanzas/banca/revolut-avanza-en-su-camino-de-ser-el-primer-banco-digital-y-despierta-expectativa-en-el-mercado',top5:0,tags:['Revolut','Banca Digital','Competencia','SBS','Licencia','Fintech','Sistema Financiero']},{id:'n011',fecha:'06 Abr 2026',cats:[{key:'credito',lbl:'Credito'}],entidad:'Sistema Financiero',titulo:'Crédito al sector privado creció 7,1% interanual en febrero impulsado por dinamismo en ambas monedas y segmentos',resumen:'El crédito al sector privado registró un crecimiento interanual de 7,1%, impulsado por el desempeño tanto en moneda nacional como extranjera, según el BCRP; en soles, las colocaciones avanzaron 5,5%, mientras que en dólares crecieron 13%, reflejando un mayor dinamismo en ambos frentes; por segmentos, los préstamos a personas aumentaron 6,8% y los dirigidos a empresas 7,3%, evidenciando una recuperación del financiamiento tanto al consumo como al sector productivo; adicionalmente, al excluir el efecto de amortizaciones y cancelaciones del programa Reactiva Perú, el crecimiento del crédito habría sido mayor, alcanzando alrededor de 7,8%, lo que confirma una tendencia positiva en la expansión del crédito en el sistema financiero.',fuente:'Diario Expreso',url:'',top5:2,tags:['Crédito','BCRP','Colocaciones','Sistema Financiero','Préstamos','Crecimiento','Dolarización']},{id:'n012',fecha:'06 Abr 2026',cats:[{key:'microfinanzas',lbl:'Microfinanzas'}],entidad:'Banca',titulo:'Yape consolida su rol como plataforma financiera al colocar 1,8 millones de préstamos mensuales',resumen:'Yape, la billetera digital del BCP, consolidó su transformación hacia una plataforma financiera integral al registrar 1,8 millones de préstamos mensuales y alcanzar 15,9 millones de usuarios activos, con un volumen de transacciones de S/ 48 174,4 millones, evidenciando su creciente relevancia en el sistema financiero; el avance del crédito digital permitió que aproximadamente 1,3 millones de personas sin historial accedieran por primera vez a financiamiento formal de las cuales el 41% fueron mujeres, reforzando su impacto en inclusión financiera; además, la plataforma ha expandido su ecosistema con servicios de pagos, seguros, remesas y comercio digital, consolidándose como una “super app” que combina alta frecuencia de uso, generación de data y mayor capacidad de monetización, aunque este crecimiento también implica desafíos en la gestión de riesgo crediticio en segmentos previamente no bancarizados.',fuente:'Gan@Más',url:'https://revistaganamas.com.pe/yape-ya-no-solo-mueve-dinero-tambien-coloca-1-8-millones-de-prestamos-al-mes/',top5:3,tags:['Yape','fintech','crédito digital','inclusión financiera','BCP','billeteras digitales','préstamos']},{id:'n013',fecha:'06 Abr 2026',cats:[{key:'credito',lbl:'Credito'}],entidad:'Sistema Financiero',titulo:'El 16% de peruanos percibe a prestamistas informales como la opción más fácil de acceso al crédito',resumen:'El 16% de los peruanos considera a los prestamistas informales como la alternativa más fácil para acceder a crédito proporción que alcanza el 22% en la selva debido principalmente a la rapidez y menor exigencia de requisitos, pese a los riesgos asociados, según un estudio de Credicorp e Ipsos; este comportamiento refleja brechas persistentes en el acceso al financiamiento formal, especialmente en segmentos como MYPE y trabajadores informales, donde la urgencia de liquidez prima sobre el costo o la seguridad; en ese contexto, las cajas municipales, microfinancieras y cooperativas cumplen un rol clave fuera de Lima como canales de inclusión, mientras que el avance de billeteras digitales cuya adopción pasó de 19% en 2021 a 65% en 2025 emerge como un mecanismo relevante para ampliar el acceso a servicios financieros formales y reducir la dependencia de esquemas informales.',fuente:'Diario Gestión',url:'',top5:1,tags:['inclusión financiera','crédito informal','MYPE','cajas','cooperativas','billeteras digitales','acceso']},{id:'n014',fecha:'01 Abr 2026',cats:[{key:'mercado',lbl:'Mercado'},{key:'inclusion',lbl:'Inclusion'},{key:'regulacion',lbl:'Regulacion'}],entidad:'SBS',titulo:'SBS implementa vía rápida para licencias y facilita ingreso de nuevos bancos al sistema financiero',resumen:'La SBS viene implementando una “vía rápida” para agilizar el ingreso de nuevas entidades al sistema financiero, mediante la creación de la Coordinación Ejecutiva de Organización de Empresas (CEO), una unidad especializada que centraliza y acelera la evaluación de solicitudes de licenciamiento en su etapa inicial; este proceso busca reducir los plazos que usualmente oscilan entre tres y seis meses y mejorar la eficiencia en la toma de decisiones, en un contexto de creciente interés de actores digitales y especializados como Revolut y Kori Financiera; la medida apunta a fomentar mayor competencia en el sistema financiero, manteniendo estándares regulatorios estrictos en la evaluación de solvencia, modelo de negocio e idoneidad de los inversionistas, antes de avanzar a la segunda fase de autorización de funcionamiento, lo que refleja un esfuerzo del regulador por adaptarse a la innovación financiera sin comprometer la estabilidad del sistema.',fuente:'Diario Gestión',url:'',top5:0,tags:['SBS','licencias','bancos','regulación','competencia','fintech','sistema financiero']}]},
+      {titulo:'1ra Quincena - Abril 2026',noticias:[{id:'n002',fecha:'13 Abr 2026',cats:[{key:'microfinanzas',lbl:'Microfinanzas'},{key:'solvencia',lbl:'Solvencia'}],entidad:'Banca',titulo:'Agrobanco mejora su perspectiva a positiva tras avances en morosidad, solvencia y crecimiento crediticio',resumen:'Agrobanco logró mejorar su perspectiva de riesgo de estable a positiva, manteniendo su clasificación respaldada por el Estado, en un contexto de avances en indicadores clave como la reducción de la morosidad, el fortalecimiento patrimonial y la expansión de su cartera minorista; en particular, la cartera de alto riesgo disminuyó de 62,1% a 48,6% entre 2024 y 2025, mientras que la nueva cartera minorista muestra un perfil más saludable con apenas 3,3% de alto riesgo y cobertura superior al 100%, reflejando una mejor gestión crediticia; además, el banco mantiene una sólida solvencia con un ratio de capital de 81%, muy por encima del sistema, impulsado por aportes estatales acumulados; no obstante, persisten riesgos estructurales asociados al sector agropecuario como el cambio climático y la volatilidad de ingresos, por lo que la sostenibilidad de esta mejora dependerá tanto de la continuidad del respaldo público como de la consolidación de la calidad de cartera y la rentabilidad.',fuente:'Gan@Más',url:'https://revistaganamas.com.pe/agrobanco-mejora-su-perspectiva-de-estable-a-positiva-en-medio-de-mejoras-financieras/',top5:0,tags:['Agrobanco','morosidad','solvencia','crédito agrícola','riesgo','Estado','microfinanzas.']},{id:'n003',fecha:'13 Abr 2026',cats:[{key:'rentabilidad',lbl:'Rentabilidad'},{key:'solvencia',lbl:'Solvencia'}],entidad:'CMAC',titulo:'Caja Maynas mejora rentabilidad y capital, pero enfrenta presión por riesgo crediticio',resumen:'Caja Maynas mostró una recuperación en su desempeño financiero tras revertir pérdidas previas, registrando una utilidad neta de S/ 1,3 millones frente a niveles casi nulos el año anterior, impulsada por mejoras en eficiencia operativa, reducción del costo de fondeo (−26%) y control del gasto administrativo (−15%), lo que permitió expandir significativamente su margen operacional; sin embargo, este avance estuvo acompañado de un aumento relevante en provisiones de S/ 0,9 millones a S/ 2,3 millones reflejando una postura más conservadora ante el riesgo crediticio en un contexto donde la calidad de cartera aún se mantiene por encima del promedio del sistema; en paralelo, la entidad fortaleció su posición patrimonial mediante deuda subordinada, elevando su ratio de capital global a 15,3% y respaldando su crecimiento, lo que llevó a la ratificación de su clasificación B- con perspectiva estable; pese a la mejora, persisten desafíos estructurales en morosidad, cobertura y gestión de cartera que serán determinantes para consolidar su recuperación en el mediano plazo.',fuente:'Gan@Más',url:'https://revistaganamas.com.pe/caja-maynas-mejora-su-rentabilidad-y-capital-pero-mantiene-presion-por-riesgo-crediticio/',top5:0,tags:['Caja Maynas','microfinanzas','rentabilidad','provisiones','riesgo crediticio','solvencia','capital.']},{id:'n004',fecha:'13 Abr 2026',cats:[{key:'rentabilidad',lbl:'Rentabilidad'},{key:'solvencia',lbl:'Solvencia'}],entidad:'Coopac',titulo:'COOPAC de nivel 3 registran pérdidas por deterioro del crédito y presión en provisiones',resumen:'Las cooperativas de ahorro y crédito (Coopac) de nivel 3 pasaron de utilidades a pérdidas, registrando un resultado agregado de S/ 9,3 millones frente a ganancias de S/ 7,4 millones un año antes, principalmente debido al deterioro de la calidad crediticia y el fuerte incremento de provisiones, en un contexto de menores ingresos por tipo de cambio y presión sobre márgenes financieros. Este resultado estuvo altamente influenciado por el desempeño de Coopac Pacífico, cuyas pérdidas explican gran parte del deterioro del sistema, evidenciando una elevada concentración de riesgos; sin este efecto, el resto de las entidades habría mantenido resultados positivos, aunque con señales de desaceleración. Además, la rigidez de los costos de fondeo y el aumento de gastos operativos limitaron la capacidad de ajuste de las cooperativas, mientras que algunas entidades mostraron resiliencia mediante control de costos o reversión de provisiones. En conjunto, el desempeño refleja vulnerabilidades estructurales del segmento, destacando la necesidad de fortalecer la gestión del riesgo crediticio, mejorar eficiencia operativa y reducir la exposición a shocks concentrados para preservar la estabilidad del sistema.',fuente:'Gan@Más',url:'https://revistaganamas.com.pe/coopac-de-nivel-3-registran-perdidas-al-inicio-de-2026-por-deterioro-del-credito/',top5:0,tags:['coopac','microfinanzas','provisiones','riesgo crediticio','rentabilidad','solvencia','sistema financiero.']},{id:'n005',fecha:'13 Abr 2026',cats:[{key:'inclusion',lbl:'Inclusion'}],entidad:'Coopac',titulo:'Cooperativas ingresan a una fase de consolidación con impulso en fusiones y digitalización',resumen:'El sistema de cooperativas de ahorro y crédito (Coopac) en el Perú atraviesa una etapa de consolidación tras un 2025 positivo, evidenciada por el inicio de conversaciones de fusión entre al menos dos pares de entidades, en un contexto donde el mercado exige instituciones más sólidas y con mayor capacidad de inversión en digitalización. A la fecha, existen 226 Coopac registradas en la SBS, con un crecimiento relevante en su base de usuarios: los depositantes pasaron de 1,32 a 1,44 millones y los deudores de 652 000 a 757 000 entre 2024 y 2025, mientras que los socios superaron los 2,9 millones. Este proceso estaría liderado principalmente por cooperativas de nivel 2, que concentran más de la mitad de los activos del sistema, aunque las fusiones enfrentan desafíos como el regionalismo y la diversidad de modelos de negocio. Paralelamente, el sector avanza en digitalización con herramientas como tarjetas de débito y billeteras digitales (WalletOn), consolidando un proceso de transformación estructural orientado a eficiencia, escala y sostenibilidad',fuente:'Semana Económica',url:'https://semanaeconomica.com/index.php/economia-finanzas/microfinanzas/cooperativas-entran-en-la-etapa-de-una-necesaria-consolidacionnbsp',top5:0,tags:['coopac','cooperativas','fusiones','consolidación','inclusión financiera','digitalización','WalletOn']},{id:'n006',fecha:'08 Abr 2026',cats:[{key:'regulacion',lbl:'Regulacion'},{key:'rentabilidad',lbl:'Rentabilidad'}],entidad:'Financiera',titulo:'Surgir mantiene calificación A- con perspectiva estable, pero enfrenta retos para sostener mejora en cartera de alto riesgo',resumen:'Moody’s Local Perú ratificó la calificación A- de Santander Financiamientos S.A. (Surgir) con perspectiva estable, destacando la mejora en su calidad de cartera, el retorno a la rentabilidad y el respaldo del Grupo Santander, aunque advirtió que el principal desafío será sostener estos avances en un segmento de mayor riesgo; en 2025, la financiera redujo su mora real de cerca de 20% a 12,5%, reflejando una estrategia efectiva de de-risking y una mejor segmentación del portafolio, al tiempo que consolidó un modelo digital eficiente basado en infraestructura “cloud”; asimismo, retomó utilidades (S/ 1,7 millones) y mostró crecimiento en colocaciones, aunque aún enfrenta limitaciones de escala y eficiencia frente a sus pares; en el frente de fondeo, se observa un avance en depósitos minoristas, pero persiste concentración en depositantes; en conjunto, la entidad se encuentra en una fase de transición hacia una expansión más prudente, donde la sostenibilidad de la calidad de cartera, la rentabilidad y la diversificación del fondeo serán claves para una eventual mejora en su clasificación.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/finanzas/surgir-enfrenta-el-reto-de-sostener-la-mejora-de-su-cartera-en-un-segmento-de-alto-riesgo/',top5:0,tags:['Surgir','Moody’s','Cartera Crediticia','Morosidad','Fintech','Rentabilidad','Fondeo','Riesgo']},{id:'n007',fecha:'08 Abr 2026',cats:[{key:'credito',lbl:'Credito'}],entidad:'Sistema Financiero',titulo:'Unos 400 000 trabajadores públicos enfrentan restricciones de acceso al crédito por deterioro en su perfil de riesgo',resumen:'Alrededor de 400 000 trabajadores del sector público enfrentan dificultades para acceder al crédito en el sistema financiero debido a que cerca del 30% presenta una calificación crediticia por debajo de la categoría “Normal”, lo que limita significativamente su elegibilidad para nuevos préstamos; esta situación responde, en gran medida, al sobreendeudamiento asociado al mal uso de tarjetas de crédito y créditos de consumo, donde muchos deudores solo pagan intereses sin amortizar el capital, generando una “bola de nieve” en sus obligaciones; pese a contar con ingresos relativamente estables, factores como la baja educación financiera y el aumento del gasto inciden en su deterioro crediticio; en paralelo, aunque la morosidad del sistema ha mostrado una tendencia a la baja (de 4,24% en 2024 a 3,54% en 2025), persiste un grupo relevante con deudas atrasadas, lo que ha dado lugar a un mayor desarrollo de mercados secundarios de compra de cartera por parte de fintechs, que buscan reinsertar a estos clientes al sistema financiero.',fuente:'Diario Gestión',url:'',top5:4,tags:['Crédito','Trabajadores Públicos','Morosidad','Sobreendeudamiento','Fintech','Compra de Cartera','Riesgo Crediticio']},{id:'n008',fecha:'08 Abr 2026',cats:[{key:'solvencia',lbl:'Solvencia'}],entidad:'Banca',titulo:'Bank of China (Perú) destaca por su alta solvencia y calidad de cartera en el sistema financiero',resumen:'Bank of China (Perú) evidenció un perfil financiero altamente sólido, caracterizado por una cartera crediticia de bajo riesgo con 100% de créditos vigentes, cartera de alto riesgo de 0% y cartera pesada de apenas 0,1%, lo que refleja una estrategia crediticia conservadora enfocada en el segmento corporativo; además, el banco mantiene niveles de capitalización significativamente superiores al sistema, con un ratio de capital global de 58,8% y un CET1 de 57,9%, respaldados por el soporte de su matriz global, Bank of China Ltd., lo que fortalece su capacidad de absorción ante shocks; si bien su operación aún es de menor escala, ha consolidado rentabilidad sostenida (ROA de 1,3% y ROE de 9,7%), apoyada en una diversificación de ingresos más allá del crédito tradicional; no obstante, su modelo presenta alta concentración en pocos clientes y sectores, consistente con su enfoque en banca corporativa, lo que constituye un riesgo inherente, aunque mitigado por el perfil crediticio de sus deudores y el respaldo del grupo.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/banca/bank-of-china-peru-sobresale-por-la-calidad-de-su-cartera-crediticia/',top5:0,tags:['solvencia','cartera crediticia','Bank of China','capital','riesgo','banca corporativa','sistema financiero']},{id:'n009',fecha:'08 Abr 2026',cats:[{key:'solvencia',lbl:'Solvencia'},{key:'rentabilidad',lbl:'Rentabilidad'}],entidad:'CMAC',titulo:'Utilidades de cajas municipales crecen 195,9% a febrero impulsadas por menor costo de riesgo y mejora operativa',resumen:'Las utilidades netas del sistema de cajas municipales alcanzaron S/ 202,6 millones, registrando un crecimiento interanual de 195,9%, impulsado principalmente por la reducción del costo del riesgo, el aumento de los ingresos financieros y una mejora en la eficiencia del fondeo; en particular, los ingresos financieros crecieron 8,2%, mientras que los gastos financieros disminuyeron, elevando el margen financiero bruto y reflejando una gestión más eficiente de los recursos; además, la caída de las provisiones en 28,6% evidenció una estabilización en la calidad de cartera, liberando recursos que antes se destinaban al saneamiento; este desempeño marca un cambio de etapa en el sistema microfinanciero, que pasa de un periodo de ajuste y deterioro a uno de mayor rentabilidad y potencial expansión, aunque persisten desafíos asociados a la sostenibilidad del crecimiento y a la evolución futura del riesgo crediticio.',fuente:'Gan@Más',url:'https://revistaganamas.com.pe/utilidades-de-las-cajas-municipales-se-disparan-195-9-a-febrero-del-2026/',top5:0,tags:['Cajas Municipales','Utilidades','Rentabilidad','Provisiones','Riesgo Crediticio','Microfinanzas','Sistema Financiero']},{id:'n010',fecha:'07 Abr 2026',cats:[{key:'mercado',lbl:'Mercado'}],entidad:'Financiera',titulo:'IFS adquiere Financiera Oh! por US$130 millones y refuerza su ecosistema financiero digital en consumo',resumen:'Intercorp Financial Services (IFS) adquirió InFinance XP S.A. antes Financiera Oh! por US$130 millones, en una operación intragrupo con InRetail que le permite integrar a su plataforma financiera una entidad con aproximadamente tres millones de clientes, S/1 700 millones en colocaciones y S/1 500 millones en depósitos; esta adquisición fortalece la posición de IFS en el segmento de financiamiento al consumo y amplía su ecosistema que ya incluye banca, seguros, pagos y gestión patrimonial mediante una mayor integración con canales retail, aprovechando la capilaridad de más de 4 	000 tiendas de InRetail; además, la financiera viene impulsando su transformación digital con la app SIP, orientada a centralizar productos financieros, pagos y programas de lealtad, lo que refuerza la estrategia del grupo de construir una plataforma escalable centrada en el cliente y con mayor penetración en servicios financieros digitales.',fuente:'Semana Económica',url:'',top5:0,tags:['IFS','Intercorp','Financiera Oh','Consumo','Fintech','Ecosistema','Banca Digital']},{id:'n011',fecha:'07 Abr 2026',cats:[{key:'internacional',lbl:'Internacional'},{key:'mercado',lbl:'Mercado'}],entidad:'Banca',titulo:'Revolut avanza en su ingreso al Perú y se posiciona como potencial primer banco 100% digital',resumen:'Revolut continúa avanzando en su proceso para operar como banco en el Perú tras obtener la autorización de organización de la SBS, etapa clave previa a la solicitud de licencia de funcionamiento, en un contexto donde el neobanco ya genera alta expectativa en el mercado con cerca de 60 000 personas inscritas en su lista de espera; la entidad viene fortaleciendo su equipo local actualmente de alrededor de 20 personas e implementando su infraestructura tecnológica y operativa, con miras a completar los requisitos regulatorios durante 2026; su eventual entrada podría impulsar gradualmente la competencia en el sistema financiero, especialmente frente a la banca tradicional, aunque su impacto dependerá de su capacidad de adaptar su modelo digital al contexto local y cumplir con los estándares regulatorios exigidos; el proceso de licenciamiento contempla la aprobación de políticas, sistemas y estructura organizacional, con un plazo de evaluación de hasta 270 días por parte del supervisor, lo que sugiere que su entrada efectiva al mercado podría concretarse en el corto plazo.',fuente:'Semana Económica',url:'https://semanaeconomica.com/index.php/economia-finanzas/banca/revolut-avanza-en-su-camino-de-ser-el-primer-banco-digital-y-despierta-expectativa-en-el-mercado',top5:0,tags:['Revolut','Banca Digital','Competencia','SBS','Licencia','Fintech','Sistema Financiero']},{id:'n012',fecha:'06 Abr 2026',cats:[{key:'credito',lbl:'Credito'}],entidad:'Sistema Financiero',titulo:'Crédito al sector privado creció 7,1% interanual en febrero impulsado por dinamismo en ambas monedas y segmentos',resumen:'El crédito al sector privado registró un crecimiento interanual de 7,1%, impulsado por el desempeño tanto en moneda nacional como extranjera, según el BCRP; en soles, las colocaciones avanzaron 5,5%, mientras que en dólares crecieron 13%, reflejando un mayor dinamismo en ambos frentes; por segmentos, los préstamos a personas aumentaron 6,8% y los dirigidos a empresas 7,3%, evidenciando una recuperación del financiamiento tanto al consumo como al sector productivo; adicionalmente, al excluir el efecto de amortizaciones y cancelaciones del programa Reactiva Perú, el crecimiento del crédito habría sido mayor, alcanzando alrededor de 7,8%, lo que confirma una tendencia positiva en la expansión del crédito en el sistema financiero.',fuente:'Diario Expreso',url:'',top5:2,tags:['Crédito','BCRP','Colocaciones','Sistema Financiero','Préstamos','Crecimiento','Dolarización']},{id:'n013',fecha:'06 Abr 2026',cats:[{key:'microfinanzas',lbl:'Microfinanzas'}],entidad:'Banca',titulo:'Yape consolida su rol como plataforma financiera al colocar 1,8 millones de préstamos mensuales',resumen:'Yape, la billetera digital del BCP, consolidó su transformación hacia una plataforma financiera integral al registrar 1,8 millones de préstamos mensuales y alcanzar 15,9 millones de usuarios activos, con un volumen de transacciones de S/ 48 174,4 millones, evidenciando su creciente relevancia en el sistema financiero; el avance del crédito digital permitió que aproximadamente 1,3 millones de personas sin historial accedieran por primera vez a financiamiento formal de las cuales el 41% fueron mujeres, reforzando su impacto en inclusión financiera; además, la plataforma ha expandido su ecosistema con servicios de pagos, seguros, remesas y comercio digital, consolidándose como una “super app” que combina alta frecuencia de uso, generación de data y mayor capacidad de monetización, aunque este crecimiento también implica desafíos en la gestión de riesgo crediticio en segmentos previamente no bancarizados.',fuente:'Gan@Más',url:'https://revistaganamas.com.pe/yape-ya-no-solo-mueve-dinero-tambien-coloca-1-8-millones-de-prestamos-al-mes/',top5:3,tags:['Yape','fintech','crédito digital','inclusión financiera','BCP','billeteras digitales','préstamos']},{id:'n014',fecha:'06 Abr 2026',cats:[{key:'credito',lbl:'Credito'}],entidad:'Sistema Financiero',titulo:'El 16% de peruanos percibe a prestamistas informales como la opción más fácil de acceso al crédito',resumen:'El 16% de los peruanos considera a los prestamistas informales como la alternativa más fácil para acceder a crédito proporción que alcanza el 22% en la selva debido principalmente a la rapidez y menor exigencia de requisitos, pese a los riesgos asociados, según un estudio de Credicorp e Ipsos; este comportamiento refleja brechas persistentes en el acceso al financiamiento formal, especialmente en segmentos como MYPE y trabajadores informales, donde la urgencia de liquidez prima sobre el costo o la seguridad; en ese contexto, las cajas municipales, microfinancieras y cooperativas cumplen un rol clave fuera de Lima como canales de inclusión, mientras que el avance de billeteras digitales cuya adopción pasó de 19% en 2021 a 65% en 2025 emerge como un mecanismo relevante para ampliar el acceso a servicios financieros formales y reducir la dependencia de esquemas informales.',fuente:'Diario Gestión',url:'',top5:1,tags:['inclusión financiera','crédito informal','MYPE','cajas','cooperativas','billeteras digitales','acceso']},{id:'n015',fecha:'01 Abr 2026',cats:[{key:'mercado',lbl:'Mercado'},{key:'inclusion',lbl:'Inclusion'},{key:'regulacion',lbl:'Regulacion'}],entidad:'SBS',titulo:'SBS implementa vía rápida para licencias y facilita ingreso de nuevos bancos al sistema financiero',resumen:'La SBS viene implementando una “vía rápida” para agilizar el ingreso de nuevas entidades al sistema financiero, mediante la creación de la Coordinación Ejecutiva de Organización de Empresas (CEO), una unidad especializada que centraliza y acelera la evaluación de solicitudes de licenciamiento en su etapa inicial; este proceso busca reducir los plazos que usualmente oscilan entre tres y seis meses y mejorar la eficiencia en la toma de decisiones, en un contexto de creciente interés de actores digitales y especializados como Revolut y Kori Financiera; la medida apunta a fomentar mayor competencia en el sistema financiero, manteniendo estándares regulatorios estrictos en la evaluación de solvencia, modelo de negocio e idoneidad de los inversionistas, antes de avanzar a la segunda fase de autorización de funcionamiento, lo que refleja un esfuerzo del regulador por adaptarse a la innovación financiera sin comprometer la estabilidad del sistema.',fuente:'Diario Gestión',url:'',top5:0,tags:['SBS','licencias','bancos','regulación','competencia','fintech','sistema financiero']}]},
       {titulo:'2da Quincena - Abril 2026',noticias:[]}
     ]
   },
@@ -593,7 +536,7 @@ var DATA={
     label:'Marzo',year:'2026',
     quincenas:[
       {titulo:'1ra Quincena - Marzo 2026',noticias:[]},
-      {titulo:'2da Quincena - Marzo 2026',noticias:[{id:'n015',fecha:'46112',cats:[{key:'rentabilidad',lbl:'Rentabilidad'}],entidad:'Banca',titulo:'Banco Pichincha Perú avanza en su recuperación con apoyo de su matriz, aunque mantiene retos en morosidad y capitalización',resumen:'Banco Pichincha Perú continúa su proceso de recuperación apoyado en el respaldo de su matriz, que ha inyectado S/ 322,2 millones en los últimos tres años, permitiendo revertir pérdidas y registrar una utilidad neta de S/ 55,1 millones en 2025; este desempeño se explica por la reducción del costo de fondeo, menores provisiones y ajustes en gastos operativos, en el marco de un plan estratégico que incluye salida de segmentos de mayor riesgo y fortalecimiento del fondeo vía depósitos, que ahora representan el 72,8% de los activos; sin embargo, persisten desafíos relevantes, ya que la morosidad sigue elevada pese a su reducción (CAR de 10,0% a 8,9% y cartera pesada de 14,0% a 13,3%), con niveles aún superiores al sistema, mientras que la cobertura mejoró (103,3%) pero continúa rezagada frente al promedio del mercado, y la capitalización, aunque en recuperación (ratio de capital global de 14,2%), mantiene un margen acotado sobre los requerimientos regulatorios, lo que condiciona la sostenibilidad de su mejora y mantiene la perspectiva estable sujeta a la consolidación de su estrategia.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/banca/matriz-de-banco-pichincha-peru-inyecto-s-322-2-millones-en-ultimos-tres-anos-para-sostener-su-recuperacion/',top5:0,tags:['Banco Pichincha','capitalización','morosidad','provisiones','fondeo','recuperación','banca']},{id:'n016',fecha:'46112',cats:[{key:'rentabilidad',lbl:'Rentabilidad'}],entidad:'Banca',titulo:'Scotiabank impulsa desarrollo interno y capacitación en inteligencia artificial como eje estratégico de talento',resumen:'Scotiabank Perú fortaleció su estrategia de gestión de talento durante 2025, destacando que más del 50% de sus colaboradores promovidos accedieron a nuevas posiciones mediante procesos internos, en un contexto de apuesta por el desarrollo profesional, la atracción de talento joven y la formación continua; la entidad también reforzó sus programas de prácticas, trainee y mentoring, con tasas de contratación superiores al 70% en algunos casos, y consolidó su ecosistema de aprendizaje con plataformas digitales que alcanzaron un 72% de uso activo; además, incorporó de manera relevante la inteligencia artificial en su capacitación, entrenando a más de 800 colaboradores en herramientas como Copilot y en creación de prompts, junto con iniciativas prácticas orientadas a mejorar la productividad y toma de decisiones; en conjunto, el banco reportó un promedio de 73 horas de formación por colaborador, reflejando una estrategia orientada a preparar a sus equipos frente a la transformación digital y los nuevos desafíos del sistema financiero.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/banca/scotiabank-peru-promovio-a-mas-del-50-de-sus-colaboradores-mediante-procesos-de-seleccion/',top5:0,tags:['Scotiabank','talento','capacitación','inteligencia artificial','banca digital','productividad']},{id:'n017',fecha:'46112',cats:[{key:'mercado',lbl:'Mercado'},{key:'inclusion',lbl:'Inclusion'},{key:'credito',lbl:'Credito'}],entidad:'Sistema Financiero',titulo:'Tarjetas de crédito crecen 8,66% y las de débito superan los 40,7 millones en la banca múltiple',resumen:'El mercado de tarjetas en la banca múltiple peruana mantiene una expansión sostenida, con un crecimiento anual de 8,66% en tarjetas de crédito alcanzando 6,88 millones y de 7,80% en tarjetas de débito superando los 40,7 millones, lo que implicó la incorporación de más de 3,4 millones de plásticos en el último año; este dinamismo refleja una mayor bancarización y profundización del uso de medios de pago electrónicos, con el BCP consolidándose como líder del sistema y explicando cerca del 40% del crecimiento en débito, mientras que BBVA mostró un fuerte avance en tarjetas de crédito y actores como Interbank, Falabella y nuevos participantes como Santander Consumer Bank y Compartamos Banco vienen ganando participación en distintos segmentos; en conjunto, el mercado muestra mayor competencia en productos de consumo y transaccionales, aunque aún con alta concentración en los principales bancos del sistema.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/finanzas/tarjetas-de-credito-crecieron-mas-de-8-en-la-banca-multiple-y-rozan-los-6-9-millones-a-enero/',top5:0,tags:['tarjetas','crédito','débito','medios de pago','bancarización','BCP','sistema financiero']},{id:'n018',fecha:'46112',cats:[{key:'rentabilidad',lbl:'Rentabilidad'},{key:'solvencia',lbl:'Solvencia'}],entidad:'Banca',titulo:'Santander Perú mejora calidad de cartera y rentabilidad tras endurecer criterios crediticios',resumen:'Banco Santander Perú fortaleció su perfil financiero durante 2025, tras aplicar criterios más restrictivos en la originación de créditos que permitieron reducir su cartera de alto riesgo de 5,4% a 4,5% y la cartera pesada de 5,6% a 3,8%, en un contexto de mayor prudencia crediticia; este ajuste estuvo acompañado de un crecimiento de utilidades de 16,7%, alcanzando S/ 277.4 millones, y de sólidos indicadores de rentabilidad (ROE de 18,6% y ROA de 2,6%), en línea con el sistema; asimismo, el banco reforzó sus coberturas con provisiones sobre requerimientos de 118% y cobertura de cartera pesada de 105,4% y mantuvo una posición robusta de liquidez y solvencia, con un ratio de capital global de 19,7%, respaldado por el soporte de su matriz; no obstante, persisten riesgos asociados a la concentración de su cartera en segmentos mayoristas, lo que exige una gestión continua del riesgo pese a la mejora observada en sus indicadores.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/banca/santander-peru-endurece-filtros-crediticios-y-mejora-la-calidad-de-su-cartera/',top5:0,tags:['Santander','cartera','morosidad','provisiones','rentabilidad','solvencia','banca']},{id:'n019',fecha:'46112',cats:[{key:'mercado',lbl:'Mercado'},{key:'fintech',lbl:'Fintech'}],entidad:'SBS',titulo:'SBS autoriza organización de Revolut Bank Perú y Kori Financiera, impulsando mayor competencia en el sistema financiero',resumen:'La SBS autorizó la organización de Revolut Bank Perú S.A. como banco 100% digital y Kori Financiera S.A., enfocada en créditos para MYPE, en el marco de una estrategia para agilizar el ingreso de nuevos actores al sistema financiero; ambas entidades se encuentran en la etapa inicial de licenciamiento, quedando su operación sujeta a la obtención de la autorización de funcionamiento, en un contexto donde el regulador ha implementado medidas para acelerar estos procesos, incluyendo la creación de la Coordinación Ejecutiva de Organización de Empresas (CEO) como “puerta de entrada” para evaluar nuevas solicitudes; este proceso refleja una mayor apertura hacia modelos digitales y especializados, lo que apunta a intensificar la competencia, ampliar la oferta de servicios financieros y dinamizar el sistema en línea con las tendencias de innovación y digitalización del sector.',fuente:'Gan@Más',url:'https://revistaganamas.com.pe/revolut-bank-peru-y-kori-financiera-reciben-luz-verde-de-la-sbs-para-iniciar-su-organizacion/',top5:0,tags:['SBS','Revolut','Kori','licenciamiento','fintech','banca digital','competencia']},{id:'n020',fecha:'46112',cats:[{key:'inclusion',lbl:'Inclusion'},{key:'microfinanzas',lbl:'Microfinanzas'}],entidad:'CMAC',titulo:'Caja Ica impulsa financiamiento con impacto social en agua y saneamiento mediante alianzas estratégicas',resumen:'Caja Ica viene fortaleciendo su estrategia de inclusión financiera mediante el financiamiento de soluciones de agua y saneamiento, en alianza con Water.org, FEPCMAC y COFIDE, a través de iniciativas como el Bono Azul, orientadas a ampliar el acceso a servicios básicos en hogares vulnerables; este modelo, basado en esquemas como WaterCredit, permite financiar infraestructura como tanques, cisternas y módulos sanitarios, evidenciando cómo el crédito puede generar impacto social directo en la calidad de vida de las familias; además, la entidad reforzó la articulación interinstitucional mediante espacios técnicos y visitas de campo que validan la implementación de estos productos, consolidando su posicionamiento en el desarrollo de soluciones financieras sostenibles y destacando el rol del sistema microfinanciero en el cierre de brechas estructurales en servicios básicos.',fuente:'Gan@Más',url:'https://revistaganamas.com.pe/caja-ica-impulsa-financiamiento-con-impacto-social-y-refuerza-su-apuesta-por-agua-y-saneamiento/',top5:0,tags:['Caja Ica','inclusión financiera','agua','saneamiento','microfinanzas','impacto social','Bono Azul']},{id:'n021',fecha:'46112',cats:[{key:'credito',lbl:'Credito'}],entidad:'Banca',titulo:'Banco de Comercio mantiene elevada mora real (9,71%) y presión en su perfil crediticio',resumen:'El Banco de Comercio mantiene presión en su perfil crediticio pese a la estabilidad de sus calificaciones, debido principalmente al deterioro en la calidad de su cartera, ya que la mora atrasada se ubicó en 4,42% y la mora real incluyendo castigos alcanzó 9,71%, por encima del promedio del sistema; además, el banco presenta una alta concentración en créditos por convenio (64,5% del portafolio), lo que limita su diversificación, mientras que en 2025 su cartera total se redujo 1,74%, aunque con una recomposición hacia segmentos de mayor riesgo como pequeña empresa (+59,8%) y mediana empresa (+11,0%); por el lado de solvencia, mantiene una política de capitalización del 100% de utilidades que permitió elevar la cobertura de cartera problema a 104,2%, aunque aún por debajo del sistema, y si bien la liquidez es adecuada, presenta menor holgura relativa frente a otros bancos, en un contexto donde la perspectiva estable refleja ausencia de deterioro inmediato pero persistencia de riesgos estructurales.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/banca/bancom-eleva-su-mora-real-a-9-71-y-mantiene-presion-sobre-su-perfil-crediticio/',top5:0,tags:['mora','calidad de cartera','Banco de Comercio','riesgo crediticio','solvencia','banca']},{id:'n022',fecha:'46112',cats:[{key:'solvencia',lbl:'Solvencia'}],entidad:'Banca',titulo:'BCI Perú mejora calidad de cartera y diversificación, aunque mantiene riesgos por concentración',resumen:'BCI Perú viene consolidando su crecimiento con una mejora en la calidad de su cartera y una mayor diversificación de riesgos, reflejada en la reducción de la mora atrasada de 1,23% a 0,62% y un incremento en la cobertura de cartera problema hasta 242,19%, respaldado por provisiones prudenciales; asimismo, la participación de los 20 principales deudores cayó de 30,53% a 19,72%, evidenciando avances en la diversificación del portafolio, en un contexto donde las colocaciones crecieron 74,43% interanual y el pasivo aumentó 116,69%, impulsado principalmente por depósitos que representan el 75,56% del fondeo total; no obstante, persisten riesgos asociados a la concentración tanto en cartera como en depósitos donde los 20 principales depositantes aún concentran el 62%, así como a su aún reducida escala dentro del sistema (0,68% de participación), aunque su sólido respaldo patrimonial por parte de su matriz y un ratio de capital global de 28,62% sostienen una perspectiva estable y su proceso de consolidación en el mercado local.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/banca/bci-peru-baja-la-concentracion-de-sus-20-principales-deudores-y-mejora-la-diversificacion-de-su-cartera/',top5:0,tags:['BCI Perú','cartera','morosidad','diversificación','fondeo','solvencia','banca']},{id:'n023',fecha:'46112',cats:[{key:'solvencia',lbl:'Solvencia'},{key:'regulacion',lbl:'Regulacion'}],entidad:'Banca',titulo:'BCP mantiene liderazgo y fortalece su rentabilidad con impulso del negocio digital y cartera minorista',resumen:'El Banco de Crédito del Perú (BCP) mantiene una sólida fortaleza crediticia respaldada por su liderazgo en el sistema financiero con participaciones de 37% en colocaciones y 39% en depósitos, una rentabilidad consistente y una adecuada capitalización, en un contexto donde Moody’s destaca el creciente rol de su ecosistema digital, especialmente Yape, como eje de expansión y monetización de clientes; asimismo, el banco registró un margen financiero neto de 6,5% y una utilidad sobre activos tangibles de 3,0%, con una mejora en la calidad de cartera tras dos años de depuración que redujo los créditos problemáticos a 2,8% y elevó la cobertura a 200%, mientras que el crecimiento del portafolio (4,7%) estuvo impulsado por banca minorista (+8%), lo que podría incrementar gradualmente el costo de riesgo; por el lado de solvencia, mantiene un ratio de capital adecuado (13,6%) pese a un alto payout de dividendos, y un fondeo sólido basado en depósitos (85%), aunque Moody’s advierte que su desempeño seguirá condicionado por el entorno institucional del país, manteniendo una perspectiva estable.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/banca/moodys-ve-en-yape-un-eje-cada-vez-mas-relevante-para-la-expansion-y-monetizacion-del-bcp/',top5:0,tags:['BCP','Yape','rentabilidad','cartera','fondeo','banca digital','solvencia']}]}
+      {titulo:'2da Quincena - Marzo 2026',noticias:[{id:'n016',fecha:'46112',cats:[{key:'rentabilidad',lbl:'Rentabilidad'}],entidad:'Banca',titulo:'Banco Pichincha Perú avanza en su recuperación con apoyo de su matriz, aunque mantiene retos en morosidad y capitalización',resumen:'Banco Pichincha Perú continúa su proceso de recuperación apoyado en el respaldo de su matriz, que ha inyectado S/ 322,2 millones en los últimos tres años, permitiendo revertir pérdidas y registrar una utilidad neta de S/ 55,1 millones en 2025; este desempeño se explica por la reducción del costo de fondeo, menores provisiones y ajustes en gastos operativos, en el marco de un plan estratégico que incluye salida de segmentos de mayor riesgo y fortalecimiento del fondeo vía depósitos, que ahora representan el 72,8% de los activos; sin embargo, persisten desafíos relevantes, ya que la morosidad sigue elevada pese a su reducción (CAR de 10,0% a 8,9% y cartera pesada de 14,0% a 13,3%), con niveles aún superiores al sistema, mientras que la cobertura mejoró (103,3%) pero continúa rezagada frente al promedio del mercado, y la capitalización, aunque en recuperación (ratio de capital global de 14,2%), mantiene un margen acotado sobre los requerimientos regulatorios, lo que condiciona la sostenibilidad de su mejora y mantiene la perspectiva estable sujeta a la consolidación de su estrategia.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/banca/matriz-de-banco-pichincha-peru-inyecto-s-322-2-millones-en-ultimos-tres-anos-para-sostener-su-recuperacion/',top5:0,tags:['Banco Pichincha','capitalización','morosidad','provisiones','fondeo','recuperación','banca']},{id:'n017',fecha:'46112',cats:[{key:'rentabilidad',lbl:'Rentabilidad'}],entidad:'Banca',titulo:'Scotiabank impulsa desarrollo interno y capacitación en inteligencia artificial como eje estratégico de talento',resumen:'Scotiabank Perú fortaleció su estrategia de gestión de talento durante 2025, destacando que más del 50% de sus colaboradores promovidos accedieron a nuevas posiciones mediante procesos internos, en un contexto de apuesta por el desarrollo profesional, la atracción de talento joven y la formación continua; la entidad también reforzó sus programas de prácticas, trainee y mentoring, con tasas de contratación superiores al 70% en algunos casos, y consolidó su ecosistema de aprendizaje con plataformas digitales que alcanzaron un 72% de uso activo; además, incorporó de manera relevante la inteligencia artificial en su capacitación, entrenando a más de 800 colaboradores en herramientas como Copilot y en creación de prompts, junto con iniciativas prácticas orientadas a mejorar la productividad y toma de decisiones; en conjunto, el banco reportó un promedio de 73 horas de formación por colaborador, reflejando una estrategia orientada a preparar a sus equipos frente a la transformación digital y los nuevos desafíos del sistema financiero.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/banca/scotiabank-peru-promovio-a-mas-del-50-de-sus-colaboradores-mediante-procesos-de-seleccion/',top5:0,tags:['Scotiabank','talento','capacitación','inteligencia artificial','banca digital','productividad']},{id:'n018',fecha:'46112',cats:[{key:'mercado',lbl:'Mercado'},{key:'inclusion',lbl:'Inclusion'},{key:'credito',lbl:'Credito'}],entidad:'Sistema Financiero',titulo:'Tarjetas de crédito crecen 8,66% y las de débito superan los 40,7 millones en la banca múltiple',resumen:'El mercado de tarjetas en la banca múltiple peruana mantiene una expansión sostenida, con un crecimiento anual de 8,66% en tarjetas de crédito alcanzando 6,88 millones y de 7,80% en tarjetas de débito superando los 40,7 millones, lo que implicó la incorporación de más de 3,4 millones de plásticos en el último año; este dinamismo refleja una mayor bancarización y profundización del uso de medios de pago electrónicos, con el BCP consolidándose como líder del sistema y explicando cerca del 40% del crecimiento en débito, mientras que BBVA mostró un fuerte avance en tarjetas de crédito y actores como Interbank, Falabella y nuevos participantes como Santander Consumer Bank y Compartamos Banco vienen ganando participación en distintos segmentos; en conjunto, el mercado muestra mayor competencia en productos de consumo y transaccionales, aunque aún con alta concentración en los principales bancos del sistema.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/finanzas/tarjetas-de-credito-crecieron-mas-de-8-en-la-banca-multiple-y-rozan-los-6-9-millones-a-enero/',top5:0,tags:['tarjetas','crédito','débito','medios de pago','bancarización','BCP','sistema financiero']},{id:'n019',fecha:'46112',cats:[{key:'rentabilidad',lbl:'Rentabilidad'},{key:'solvencia',lbl:'Solvencia'}],entidad:'Banca',titulo:'Santander Perú mejora calidad de cartera y rentabilidad tras endurecer criterios crediticios',resumen:'Banco Santander Perú fortaleció su perfil financiero durante 2025, tras aplicar criterios más restrictivos en la originación de créditos que permitieron reducir su cartera de alto riesgo de 5,4% a 4,5% y la cartera pesada de 5,6% a 3,8%, en un contexto de mayor prudencia crediticia; este ajuste estuvo acompañado de un crecimiento de utilidades de 16,7%, alcanzando S/ 277.4 millones, y de sólidos indicadores de rentabilidad (ROE de 18,6% y ROA de 2,6%), en línea con el sistema; asimismo, el banco reforzó sus coberturas con provisiones sobre requerimientos de 118% y cobertura de cartera pesada de 105,4% y mantuvo una posición robusta de liquidez y solvencia, con un ratio de capital global de 19,7%, respaldado por el soporte de su matriz; no obstante, persisten riesgos asociados a la concentración de su cartera en segmentos mayoristas, lo que exige una gestión continua del riesgo pese a la mejora observada en sus indicadores.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/banca/santander-peru-endurece-filtros-crediticios-y-mejora-la-calidad-de-su-cartera/',top5:0,tags:['Santander','cartera','morosidad','provisiones','rentabilidad','solvencia','banca']},{id:'n020',fecha:'46112',cats:[{key:'mercado',lbl:'Mercado'},{key:'fintech',lbl:'Fintech'}],entidad:'SBS',titulo:'SBS autoriza organización de Revolut Bank Perú y Kori Financiera, impulsando mayor competencia en el sistema financiero',resumen:'La SBS autorizó la organización de Revolut Bank Perú S.A. como banco 100% digital y Kori Financiera S.A., enfocada en créditos para MYPE, en el marco de una estrategia para agilizar el ingreso de nuevos actores al sistema financiero; ambas entidades se encuentran en la etapa inicial de licenciamiento, quedando su operación sujeta a la obtención de la autorización de funcionamiento, en un contexto donde el regulador ha implementado medidas para acelerar estos procesos, incluyendo la creación de la Coordinación Ejecutiva de Organización de Empresas (CEO) como “puerta de entrada” para evaluar nuevas solicitudes; este proceso refleja una mayor apertura hacia modelos digitales y especializados, lo que apunta a intensificar la competencia, ampliar la oferta de servicios financieros y dinamizar el sistema en línea con las tendencias de innovación y digitalización del sector.',fuente:'Gan@Más',url:'https://revistaganamas.com.pe/revolut-bank-peru-y-kori-financiera-reciben-luz-verde-de-la-sbs-para-iniciar-su-organizacion/',top5:0,tags:['SBS','Revolut','Kori','licenciamiento','fintech','banca digital','competencia']},{id:'n021',fecha:'46112',cats:[{key:'inclusion',lbl:'Inclusion'},{key:'microfinanzas',lbl:'Microfinanzas'}],entidad:'CMAC',titulo:'Caja Ica impulsa financiamiento con impacto social en agua y saneamiento mediante alianzas estratégicas',resumen:'Caja Ica viene fortaleciendo su estrategia de inclusión financiera mediante el financiamiento de soluciones de agua y saneamiento, en alianza con Water.org, FEPCMAC y COFIDE, a través de iniciativas como el Bono Azul, orientadas a ampliar el acceso a servicios básicos en hogares vulnerables; este modelo, basado en esquemas como WaterCredit, permite financiar infraestructura como tanques, cisternas y módulos sanitarios, evidenciando cómo el crédito puede generar impacto social directo en la calidad de vida de las familias; además, la entidad reforzó la articulación interinstitucional mediante espacios técnicos y visitas de campo que validan la implementación de estos productos, consolidando su posicionamiento en el desarrollo de soluciones financieras sostenibles y destacando el rol del sistema microfinanciero en el cierre de brechas estructurales en servicios básicos.',fuente:'Gan@Más',url:'https://revistaganamas.com.pe/caja-ica-impulsa-financiamiento-con-impacto-social-y-refuerza-su-apuesta-por-agua-y-saneamiento/',top5:0,tags:['Caja Ica','inclusión financiera','agua','saneamiento','microfinanzas','impacto social','Bono Azul']},{id:'n022',fecha:'46112',cats:[{key:'credito',lbl:'Credito'}],entidad:'Banca',titulo:'Banco de Comercio mantiene elevada mora real (9,71%) y presión en su perfil crediticio',resumen:'El Banco de Comercio mantiene presión en su perfil crediticio pese a la estabilidad de sus calificaciones, debido principalmente al deterioro en la calidad de su cartera, ya que la mora atrasada se ubicó en 4,42% y la mora real incluyendo castigos alcanzó 9,71%, por encima del promedio del sistema; además, el banco presenta una alta concentración en créditos por convenio (64,5% del portafolio), lo que limita su diversificación, mientras que en 2025 su cartera total se redujo 1,74%, aunque con una recomposición hacia segmentos de mayor riesgo como pequeña empresa (+59,8%) y mediana empresa (+11,0%); por el lado de solvencia, mantiene una política de capitalización del 100% de utilidades que permitió elevar la cobertura de cartera problema a 104,2%, aunque aún por debajo del sistema, y si bien la liquidez es adecuada, presenta menor holgura relativa frente a otros bancos, en un contexto donde la perspectiva estable refleja ausencia de deterioro inmediato pero persistencia de riesgos estructurales.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/banca/bancom-eleva-su-mora-real-a-9-71-y-mantiene-presion-sobre-su-perfil-crediticio/',top5:0,tags:['mora','calidad de cartera','Banco de Comercio','riesgo crediticio','solvencia','banca']},{id:'n023',fecha:'46112',cats:[{key:'solvencia',lbl:'Solvencia'}],entidad:'Banca',titulo:'BCI Perú mejora calidad de cartera y diversificación, aunque mantiene riesgos por concentración',resumen:'BCI Perú viene consolidando su crecimiento con una mejora en la calidad de su cartera y una mayor diversificación de riesgos, reflejada en la reducción de la mora atrasada de 1,23% a 0,62% y un incremento en la cobertura de cartera problema hasta 242,19%, respaldado por provisiones prudenciales; asimismo, la participación de los 20 principales deudores cayó de 30,53% a 19,72%, evidenciando avances en la diversificación del portafolio, en un contexto donde las colocaciones crecieron 74,43% interanual y el pasivo aumentó 116,69%, impulsado principalmente por depósitos que representan el 75,56% del fondeo total; no obstante, persisten riesgos asociados a la concentración tanto en cartera como en depósitos donde los 20 principales depositantes aún concentran el 62%, así como a su aún reducida escala dentro del sistema (0,68% de participación), aunque su sólido respaldo patrimonial por parte de su matriz y un ratio de capital global de 28,62% sostienen una perspectiva estable y su proceso de consolidación en el mercado local.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/banca/bci-peru-baja-la-concentracion-de-sus-20-principales-deudores-y-mejora-la-diversificacion-de-su-cartera/',top5:0,tags:['BCI Perú','cartera','morosidad','diversificación','fondeo','solvencia','banca']},{id:'n024',fecha:'46112',cats:[{key:'solvencia',lbl:'Solvencia'},{key:'regulacion',lbl:'Regulacion'}],entidad:'Banca',titulo:'BCP mantiene liderazgo y fortalece su rentabilidad con impulso del negocio digital y cartera minorista',resumen:'El Banco de Crédito del Perú (BCP) mantiene una sólida fortaleza crediticia respaldada por su liderazgo en el sistema financiero con participaciones de 37% en colocaciones y 39% en depósitos, una rentabilidad consistente y una adecuada capitalización, en un contexto donde Moody’s destaca el creciente rol de su ecosistema digital, especialmente Yape, como eje de expansión y monetización de clientes; asimismo, el banco registró un margen financiero neto de 6,5% y una utilidad sobre activos tangibles de 3,0%, con una mejora en la calidad de cartera tras dos años de depuración que redujo los créditos problemáticos a 2,8% y elevó la cobertura a 200%, mientras que el crecimiento del portafolio (4,7%) estuvo impulsado por banca minorista (+8%), lo que podría incrementar gradualmente el costo de riesgo; por el lado de solvencia, mantiene un ratio de capital adecuado (13,6%) pese a un alto payout de dividendos, y un fondeo sólido basado en depósitos (85%), aunque Moody’s advierte que su desempeño seguirá condicionado por el entorno institucional del país, manteniendo una perspectiva estable.',fuente:'+Finanz@s',url:'https://masfinanzas.com.pe/banca/moodys-ve-en-yape-un-eje-cada-vez-mas-relevante-para-la-expansion-y-monetizacion-del-bcp/',top5:0,tags:['BCP','Yape','rentabilidad','cartera','fondeo','banca digital','solvencia']}]}
     ]
   }
 };
@@ -608,8 +551,7 @@ var YEAR_INDEX=(function(){
   return idx;
 }());
 
-/* Inicializar mes activo = mas reciente con noticias */
-(function(){
+;(function(){
   var keys=Object.keys(DATA);
   keys.sort(function(a,b){
     var ya=DATA[a].year||'0', yb=DATA[b].year||'0';
@@ -626,9 +568,6 @@ var YEAR_INDEX=(function(){
   if(activeMonth&&DATA[activeMonth])openYears[DATA[activeMonth].year]=true;
 }());
 
-/* ═══════════════════════════════════════════════
-   CATEGORÍAS Y ENTIDADES
-═══════════════════════════════════════════════ */
 var CATS=[
   {key:'todos',lbl:'Todas',cls:'fc-todos'},
   {key:'credito',lbl:'Crédito',cls:'fc-credito'},
@@ -656,12 +595,7 @@ var ENTIDADES=[
   {key:'bcrp',lbl:'BCRP'},
   {key:'fintech',lbl:'Fintech'}
 ];
-/* ENTIDAD_KW ya no se usa — filtramos por n.entidad directo */
-var ENTIDAD_KW={};
 
-/* ═══════════════════════════════════════════════
-   ICONOS SVG POR CATEGORÍA
-═══════════════════════════════════════════════ */
 var CAT_SVG={
   banca:'<svg viewBox="0 0 48 48" fill="none"><rect x="6" y="19" width="36" height="21" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 24h36" stroke="currentColor" stroke-width="1.5"/><path d="M24 7L42 19H6L24 7Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><rect x="13" y="28" width="5" height="7" rx="1" fill="currentColor" opacity="0.35"/><rect x="21.5" y="28" width="5" height="7" rx="1" fill="currentColor" opacity="0.35"/><rect x="30" y="28" width="5" height="7" rx="1" fill="currentColor" opacity="0.35"/></svg>',
   credito:'<svg viewBox="0 0 48 48" fill="none"><rect x="4" y="11" width="40" height="26" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M4 20h40" stroke="currentColor" stroke-width="2"/><rect x="9" y="27" width="12" height="4" rx="1" fill="currentColor" opacity="0.35"/><circle cx="36" cy="31" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M36 28v3.5l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
@@ -686,10 +620,6 @@ function cbadges(cats){
   return cats.map(function(c){return '<span class="cb cb-'+c.key+'" title="'+esc(c.lbl)+'">'+esc(c.lbl)+'</span>';}).join('');
 }
 
-/* ═══════════════════════════════════════════════
-   UTILIDADES
-═══════════════════════════════════════════════ */
-/* Normaliza texto: minusculas, sin tildes, sin espacios extra */
 function norm(s){
   if(!s)return '';
   return s.toLowerCase()
@@ -703,19 +633,15 @@ function esc(s){
 var MONTH_MAP={ene:1,feb:2,mar:3,abr:4,may:5,jun:6,jul:7,ago:8,sep:9,oct:10,nov:11,dic:12};
 var MONTH_NAMES=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
 
-/* Convierte fecha serial de Excel (numero) o texto a ISO yyyy-mm-dd */
 function fechaToISO(f){
   if(!f)return '';
   f=String(f).trim();
-  /* Si es numero serial de Excel */
   if(/^\d{4,6}$/.test(f)){
     var serial=parseInt(f,10);
-    /* Excel epoch: 1 ene 1900 = 1, con bug del año bisiesto 1900 */
     var d=new Date((serial-25569)*86400000);
     var yy=d.getUTCFullYear(),mm=d.getUTCMonth()+1,dd=d.getUTCDate();
     return yy+'-'+String(mm).padStart(2,'0')+'-'+String(dd).padStart(2,'0');
   }
-  /* Si es texto: "19 Mar 2026" */
   var p=f.split(' ');
   if(p.length>=2){
     var mon=MONTH_MAP[p[1].toLowerCase().substring(0,3)];
@@ -725,7 +651,6 @@ function fechaToISO(f){
   return '';
 }
 
-/* Convierte fecha serial o texto a formato legible "19 Mar 2026" */
 function fechaLegible(f){
   if(!f)return '';
   f=String(f).trim();
@@ -739,19 +664,13 @@ function fechaLegible(f){
 function setEl(id,val){var el=document.getElementById(id);if(el)el.textContent=val;}
 function getEl(id){return document.getElementById(id);}
 
-/* ═══════════════════════════════════════════════
-   TEMA
-═══════════════════════════════════════════════ */
 function toggleTheme(){
   var dark=document.documentElement.getAttribute('data-theme')==='dark';
   document.documentElement.setAttribute('data-theme',dark?'light':'dark');
-  var ic=dark?'☀️':'🌙';
+  var ic=dark?'🌙':'☀️';
   setEl('themeBtn',ic);setEl('themeBtnD',ic);
 }
 
-/* ═══════════════════════════════════════════════
-   DRAWER
-═══════════════════════════════════════════════ */
 function openDrawer(){
   getEl('drawer').classList.add('open');
   getEl('drawerOverlay').classList.add('open');
@@ -764,9 +683,6 @@ function closeDrawer(){
   document.body.style.overflow='';
 }
 
-/* ═══════════════════════════════════════════════
-   MONTH CASCADE (side panel)
-═══════════════════════════════════════════════ */
 function buildMonthCascade(){
   var cont=getEl('monthCascade');
   if(!cont)return;
@@ -801,12 +717,7 @@ function toggleYear(yr){
 function toggleMonth(mKey){
   var yr=DATA[mKey]?DATA[mKey].year:null;
   if(yr)openYears[yr]=true;
-  /* Si ya esta activo, colapsar/expandir quincenas */
-  if(mKey===activeMonth){
-    /* toggle: si ya estaba abierto, solo actualizar cascade */
-    buildMonthCascade();
-    return;
-  }
+  if(mKey===activeMonth){buildMonthCascade();return;}
   activeMonth=mKey;
   activeQuincena=null;
   buildMonthCascade();
@@ -821,9 +732,6 @@ function selectPeriod(mKey,qIdx){
   renderContent();
 }
 
-/* ═══════════════════════════════════════════════
-   FILTROS
-═══════════════════════════════════════════════ */
 var filterAccOpen={cat:true,ent:false};
 function buildFilters(){
   var cont=getEl('filterAccordions');
@@ -831,34 +739,28 @@ function buildFilters(){
   var activeCatLbl=activeFilter.indexOf('todos')>=0?null:activeFilter.map(function(k){var c=CATS.filter(function(x){return norm(x.key)===k;})[0];return c?c.lbl:k;}).join(', ');
   var activeEntLbl=activeEntidad==='ent-todos'?null:(ENTIDADES.filter(function(e){return e.key===activeEntidad;})[0]||{lbl:null}).lbl;
   var html='';
-  /* ── Categoría ── */
   html+='<div class="facc-block">';
-  html+='<div class="facc-hdr'+(filterAccOpen.cat?' open':'')+'" onclick="toggleFAcc(\'cat\')" tabindex="0" role="button" aria-expanded="'+(filterAccOpen.cat)+'"><div class="facc-lbl">Categoría'+(activeCatLbl?'<span class="facc-active-badge">'+esc(activeCatLbl)+'</span>':'')+'</div><span class="facc-chevron">▾</span></div>';
+  html+='<div class="facc-hdr'+(filterAccOpen.cat?' open':'')+'" onclick="toggleFAcc(\'cat\')" tabindex="0" role="button"><div class="facc-lbl">Categoría'+(activeCatLbl?'<span class="facc-active-badge">'+esc(activeCatLbl)+'</span>':'')+'</div><span class="facc-chevron">▾</span></div>';
   html+='<div class="facc-body" id="filtersBar">';
-    var atMax=activeFilter.indexOf('todos')<0&&activeFilter.length>=3;
+  var atMax=activeFilter.indexOf('todos')<0&&activeFilter.length>=3;
   CATS.forEach(function(c){
     var isAct=activeFilter.indexOf(norm(c.key))>=0;
     var isDis=atMax&&!isAct&&c.key!=='todos';
-    html+='<button class="f-btn '+c.cls+(isAct?' active':'')+(isDis?' f-btn-disabled':'')+'\'" onclick="setFilter(\''+c.key+'\')" aria-pressed="'+isAct+'">'+esc(c.lbl)+'</button>';
+    html+='<button class="f-btn '+c.cls+(isAct?' active':'')+(isDis?' f-btn-disabled':'')+'" onclick="setFilter(\''+c.key+'\')" aria-pressed="'+isAct+'">'+esc(c.lbl)+'</button>';
   });
   html+='</div></div>';
   var filled=activeFilter.indexOf('todos')<0?activeFilter.length:0;
   var rem=3-filled;
-  var dotTxt=filled===0?'Selecciona hasta 3':rem>0?rem+' más disponible'+(rem>1?'s':''):'Ímite alcanzado';
+  var dotTxt=filled===0?'Selecciona hasta 3':rem>0?rem+' más disponible'+(rem>1?'s':''):'Límite alcanzado';
   html+='<div class="limit-dots"><div class="limit-dot'+(filled>=1?' filled':'')+'"></div><div class="limit-dot'+(filled>=2?' filled':'')+'"></div><div class="limit-dot'+(filled>=3?' filled':'')+'"></div><span class="limit-text" style="'+(filled>=3?'color:#D85A30':'')+'">'+dotTxt+'</span></div>';
   html+='<div class="facc-block">';
-  /* ── Entidad Financiera ── */
-  html+='<div class="facc-block">';
-  html+='<div class="facc-hdr'+(filterAccOpen.ent?' open':'')+'" onclick="toggleFAcc(\'ent\')" tabindex="0" role="button" aria-expanded="'+(filterAccOpen.ent)+'"><div class="facc-lbl">Entidad Financiera'+(activeEntLbl?'<span class="facc-active-badge">'+esc(activeEntLbl)+'</span>':'')+'</div><span class="facc-chevron">▾</span></div>';
+  html+='<div class="facc-hdr'+(filterAccOpen.ent?' open':'')+'" onclick="toggleFAcc(\'ent\')" tabindex="0" role="button"><div class="facc-lbl">Entidad Financiera'+(activeEntLbl?'<span class="facc-active-badge">'+esc(activeEntLbl)+'</span>':'')+'</div><span class="facc-chevron">▾</span></div>';
   html+='<div class="facc-body" id="entidadesBar">';
   ENTIDADES.forEach(function(e){html+='<button class="f-btn fe-btn'+(e.key===activeEntidad?' active':'')+'" onclick="setEntidad(\''+e.key+'\')" aria-pressed="'+(e.key===activeEntidad)+'">'+esc(e.lbl)+'</button>';});
   html+='</div></div>';
   cont.innerHTML=html;
 }
-function toggleFAcc(key){
-  filterAccOpen[key]=!filterAccOpen[key];
-  buildFilters();
-}
+function toggleFAcc(key){filterAccOpen[key]=!filterAccOpen[key];buildFilters();}
 function setFilter(k){
   k=norm(k);
   if(k==='todos'){activeFilter=['todos'];}
@@ -869,13 +771,11 @@ function setFilter(k){
     if(i>=0){activeFilter.splice(i,1);if(activeFilter.length===0)activeFilter=['todos'];}
     else{if(activeFilter.length<3)activeFilter.push(k);}
   }
-  filterAccOpen.cat=true;buildFilters();applySearch();refreshTicker();
+  showingAll=false;
+  filterAccOpen.cat=true;buildFilters();applySearch();
 }
-function setEntidad(k){activeEntidad=k;filterAccOpen.ent=true;buildFilters();applySearch();}
+function setEntidad(k){activeEntidad=k;showingAll=false;filterAccOpen.ent=true;buildFilters();applySearch();}
 
-/* ═══════════════════════════════════════════════
-   BÚSQUEDA Y FILTRADO
-═══════════════════════════════════════════════ */
 function applyDateRange(){
   var df=getEl('dateFrom'),dt=getEl('dateTo');
   var from=df?df.value:'',to=dt?dt.value:'';
@@ -884,14 +784,12 @@ function applyDateRange(){
     if(diff>14){alert('El rango máximo es de 2 semanas (14 días).');if(dt)dt.value='';return;}
     if(diff<0){if(dt)dt.value=from;return;}
   }
-  searchDateFrom=from;searchDateTo=to;
-  applySearch();
+  searchDateFrom=from;searchDateTo=to;applySearch();
 }
 function clearDateRange(){
   var df=getEl('dateFrom'),dt=getEl('dateTo');
   if(df)df.value='';if(dt)dt.value='';
-  searchDateFrom='';searchDateTo='';
-  applySearch();
+  searchDateFrom='';searchDateTo='';applySearch();
 }
 function applySearch(){
   var sbEl=getEl('searchBox');
@@ -917,25 +815,34 @@ function applySearch(){
     var textOk=!searchText||hay.indexOf(searchText)>=0;
     var entOk=!entFiltro||(el.dataset.entidad&&norm(el.dataset.entidad)===norm(entFiltro));
     var show=catOk&&dateOk&&textOk&&entOk;
-    el.classList[show?'remove':'add']('hidden');
-    if(show&&el.getAttribute('data-extra')&&showingAll)el.style.removeProperty('display');
-    if(!showingAll&&el.getAttribute('data-extra'))el.style.display='none';
+    var isExtra=!!el.getAttribute('data-extra');
+    var hasFiltersNow=!!(searchText||searchDateFrom||searchDateTo||(activeFilter.indexOf('todos')<0)||(activeEntidad!=='ent-todos'));
+    if(!show){
+      el.classList.add('hidden');
+      el.classList.remove('n-extra');
+    }else{
+      el.classList.remove('hidden');
+      if(isExtra&&!showingAll&&!hasFiltersNow){
+        el.classList.add('n-extra');
+      }else{
+        el.classList.remove('n-extra');
+      }
+    }
     if(titleEl){
       var orig=titleEl.getAttribute('data-orig')||titleEl.textContent;
       titleEl.setAttribute('data-orig',orig);
       if(show&&searchText){
         var re=new RegExp('('+searchText.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
         titleEl.innerHTML=orig.replace(re,'<span class="highlight">$1</span>');
-      }else{
-        titleEl.textContent=orig;
-      }
+      }else{titleEl.textContent=orig;}
     }
-    if(show)vis++;
+    if(show&&!(isExtra&&!showingAll&&!hasFiltersNow))vis++;
   });
   var hasFilters=!!(searchText||searchDateFrom||searchDateTo||(activeFilter.indexOf('todos')<0)||(activeEntidad!=='ent-todos'));
   var vmb=getEl('verMasBtn'),vlessb=getEl('verMenosBtn');
-  if(vmb)vmb.style.display=hasFilters?'none':'';
-  if(vlessb)vlessb.style.display=hasFilters?'none':'';
+  /* Con filtros activos mostramos todo y ocultamos el boton Ver mas */
+  if(vmb)vmb.style.display=hasFilters?'none':(showingAll?'none':'');
+  if(vlessb)vlessb.style.display=(hasFilters||!showingAll)?'none':'block';
   var nc=getEl('nCount');if(nc)nc.textContent=String(vis);
   var nr=getEl('noResults');if(nr)nr.className=vis===0?'no-results show':'no-results';
   var info=getEl('searchInfo');
@@ -973,12 +880,10 @@ function buildDateRange(allNews){
   if(dt){dt.min=dates[0];dt.max=dates[dates.length-1];}
 }
 
-/* ═══════════════════════════════════════════════
-   VER MÁS / VER MENOS
-═══════════════════════════════════════════════ */
 function showAll(){
   showingAll=true;
   document.querySelectorAll('.n-item[data-extra]').forEach(function(el){
+    el.classList.remove('n-extra');
     el.style.removeProperty('display');
   });
   var vmb=getEl('verMasBtn');if(vmb)vmb.style.display='none';
@@ -987,7 +892,8 @@ function showAll(){
 function showLess(){
   showingAll=false;
   document.querySelectorAll('.n-item[data-extra]').forEach(function(el){
-    el.style.display='none';
+    el.classList.add('n-extra');
+    el.style.removeProperty('display');
   });
   var vmb=getEl('verMasBtn');if(vmb)vmb.style.display='block';
   var vlessb=getEl('verMenosBtn');if(vlessb)vlessb.style.display='none';
@@ -995,10 +901,6 @@ function showLess(){
   if(grid)window.scrollTo({top:grid.offsetTop-80,behavior:'smooth'});
 }
 
-/* ═══════════════════════════════════════════════
-   TIME AGO
-═══════════════════════════════════════════════ */
-var MONTH_NUM={ene:1,feb:2,mar:3,abr:4,may:5,jun:6,jul:7,ago:8,sep:9,oct:10,nov:11,dic:12};
 function timeAgo(isoDate){
   if(!isoDate)return '';
   var d=new Date(isoDate+'T12:00:00');
@@ -1012,9 +914,6 @@ function timeAgo(isoDate){
   return 'Hace '+(Math.round(diffD/30))+' mes.';
 }
 
-/* ═══════════════════════════════════════════════
-   RENDER PRINCIPAL
-═══════════════════════════════════════════════ */
 function getAllNews(){
   var d=DATA[activeMonth];if(!d)return [];
   var all=[];
@@ -1040,14 +939,14 @@ function renderContent(){
   html+='<div class="n-grid" id="newsGrid">';
   allNews.forEach(function(n,i){
     var tags=n.tags.map(function(t){return '<span class="n-tag">'+esc(t)+'</span>';}).join('');
-    var extraAttr=i>=6?' data-extra="1" style="display:none"':'';
+    var extraAttr=i>=6?' data-extra="1"':'';
     var iso=fechaToISO(n.fecha);
     var ago=timeAgo(iso);
-    /* buscar URL de fuente: si la fuente tiene dominio conocido lo usamos, si no google */
     var srcQ=n.url&&n.url.trim()!==''?n.url:'https://www.google.com/search?q='+encodeURIComponent(n.titulo.substring(0,70)+' '+n.fuente.split(',')[0]);
     var firstCat=n.cats&&n.cats.length?n.cats[0].key:'';
     var borderColor=getCatColor(firstCat);
-    html+='<div class="n-item fade-in" style="border-left-color:'+borderColor+'" data-cats="'+esc(n.cats.map(function(c){return c.key;}).join(','))+'" data-id="'+esc(n.id)+'" data-date="'+iso+'" data-entidad="'+norm(n.entidad||'')+'"'+extraAttr+'>';
+    var extraClass=i>=6?' n-extra':'';
+    html+='<div class="n-item fade-in'+extraClass+'" style="border-left-color:'+borderColor+'" data-cats="'+esc(n.cats.map(function(c){return c.key;}).join(','))+'" data-id="'+esc(n.id)+'" data-date="'+iso+'" data-entidad="'+norm(n.entidad||'')+'"'+extraAttr+'>';
     html+='<div class="n-date-col"><span class="n-date">'+esc(fechaLegible(n.fecha))+'</span><span class="time-ago">'+ago+'</span></div>';
     html+='<div class="n-body">';
     html+='<div class="n-body-top"><div class="n-body-left">';
@@ -1062,7 +961,7 @@ function renderContent(){
     html+='<div class="n-footer"><div class="n-meta"><span class="n-source">'+esc(n.fuente)+'</span><div class="n-tags">'+tags+'</div></div>';
     html+='<div class="n-actions">';
     html+='<a class="share-btn" href="'+srcQ+'" target="_blank" rel="noopener">↗ Ver fuente</a>';
-    html+='<button class="share-btn" id="sb_'+esc(n.id)+'" onclick="shareNews(\''+esc(n.id)+'\',\''+esc(n.titulo)+'\',\''+esc(n.fuente)+'\')">⎘ Copiar</button>';
+    html+='<button class="share-btn" id="sb_'+esc(n.id)+'" onclick="shareNews(\''+esc(n.id)+'\',\''+esc(n.titulo)+'\',\''+esc(n.fuente)+'\',\''+esc(n.resumen.substring(0,800))+'\')">⎘ Copiar</button>';
     html+='</div>';
     html+='</div></div></div>';
   });
@@ -1076,8 +975,6 @@ function renderContent(){
   buildManualTop5(activeMonth,DATA[activeMonth]);
   buildFilters();
   buildDateRange(allNews);
-  setTimeout(refreshTicker,150);
-  /* Scroll suave al inicio del contenido */
   setTimeout(function(){
     var mc=document.querySelector('.main-content');
     if(mc)mc.scrollTo({top:0,behavior:'smooth'});
@@ -1085,60 +982,88 @@ function renderContent(){
   },50);
 }
 function getCatColor(key){
-  var map={
-    banca:'#005ea8',credito:'#16a34a',fintech:'#e05c45',
-    regulacion:'#6d28d9',inclusion:'#c2740a',mercado:'#0e7490',
-    pension:'#b45309',seguros:'#b91c1c',microfinanzas:'#16a34a',
-    cajas:'#7c3aed',coopac:'#be185d',internacional:'#0369a1',
-    solvencia:'#0f766e',rentabilidad:'#b45309'
-  };
+  var map={banca:'#005ea8',credito:'#16a34a',fintech:'#e05c45',regulacion:'#6d28d9',inclusion:'#c2740a',mercado:'#0e7490',pension:'#b45309',seguros:'#b91c1c',microfinanzas:'#16a34a',cajas:'#7c3aed',coopac:'#be185d',internacional:'#0369a1',solvencia:'#0f766e',rentabilidad:'#b45309'};
   return map[key]||'#d4dce8';
 }
 function catColor(cats){
-  var map={banca:'#1e5fa8',credito:'#166534',fintech:'#9a3412',regulacion:'#5b21b6',
-    inclusion:'#92400e',mercado:'#0e7490',pension:'#92400e',seguros:'#991b1b',
-    microfinanzas:'#166534',cajas:'#5b21b6',coopac:'#9d174d',internacional:'#075985',
-    solvencia:'#0f766e',rentabilidad:'#b45309'};
+  var map={banca:'#1e5fa8',credito:'#166534',fintech:'#9a3412',regulacion:'#5b21b6',inclusion:'#92400e',mercado:'#0e7490',pension:'#92400e',seguros:'#991b1b',microfinanzas:'#166534',cajas:'#5b21b6',coopac:'#9d174d',internacional:'#075985',solvencia:'#0f766e',rentabilidad:'#b45309'};
   if(!cats||!cats.length)return map.mercado;
   return map[cats[0].key]||map.mercado;
 }
 
-/* ═══════════════════════════════════════════════
-   TICKER
-═══════════════════════════════════════════════ */
-function tickerPause(on){
-  ['tickerInner','tickerInnerD'].forEach(function(id){
-    var el=getEl(id);if(el)el.classList[on?'add':'remove']('paused');
-  });
+/* -- PATCH 2: copiar mejorado — título + resumen + fuente -- */
+function shareNews(id,titulo,fuente,resumen){
+  var text=titulo+'\n\n'+(resumen||'')+'\n\nFuente: '+fuente;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(function(){flashShare(id);}).catch(function(){fallbackCopy(text,id);});
+  }else{fallbackCopy(text,id);}
 }
-function refreshTicker(){
-  var allNews=getAllNews();
-  /* Ticker muestra todas las noticias visibles */
-  var items=activeFilter.indexOf('todos')>=0
-    ?allNews
-    :allNews.filter(function(n){return n.cats.some(function(c){return activeFilter.indexOf(norm(c.key))>=0;});});
-  if(!items.length)items=allNews;
-  ['tickerInner','tickerInnerD'].forEach(function(innerId){
-    var inner=getEl(innerId);if(!inner)return;
-    if(!items.length){inner.innerHTML='<div style="padding:12px 14px;font-size:10px;color:var(--text-dim);">Sin noticias.</div>';inner.style.animation='none';return;}
-    var combined=items.concat(items);
-    inner.innerHTML=combined.map(function(n){
-      return '<div class="t-item"><div class="t-date">'+esc(fechaLegible(n.fecha))+' · '+esc(n.fuente.split(',')[0])+'</div>'
-        +'<div class="t-title">'+esc(n.titulo)+'</div></div>';
-    }).join('');
-    inner.style.animation='none';
-    setTimeout(function(){
-      var halfH=inner.scrollHeight/2;
-      tickerKF.textContent='@keyframes tickSc{0%{top:0}100%{top:-'+halfH+'px}}';
-      inner.style.top='0';
-      inner.style.animation='tickSc '+(Math.max(28,items.length*7))+'s linear infinite';
-    },120);
-  });
+function fallbackCopy(text,id){
+  var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);flashShare(id);
+}
+function flashShare(id){
+  var btn=getEl('sb_'+id);if(!btn)return;
+  btn.textContent='✓ Copiado';btn.classList.add('copied');
+  setTimeout(function(){btn.textContent='⎘ Copiar';btn.classList.remove('copied');},2000);
 }
 
-/* ═══════════════════════════════════════════════
-   ADMIN TOP 5
-═══════════════════════════════════════════════ */
+/* -- PATCH 3: PDF con fechas legibles -- */
+function exportPDF(){
+  var d=DATA[activeMonth];if(!d){alert('Sin datos.');return;}
+  var allNews=getAllNews();
+  var newsMap={};allNews.forEach(function(n){newsMap[n.id]=n;});
+  var top=(manualTop5[activeMonth]||[]).map(function(id){return newsMap[id];}).filter(Boolean);
+  var hlMap=top5Highlighted[activeMonth]||{};
+  /* también top5 desde campo n.top5 */
+  var top5Field=allNews.filter(function(n){return n.top5&&n.top5>0;}).sort(function(a,b){return a.top5-b.top5;});
+  if(!top.length)top=top5Field;
+  var now=new Date();
+  var fechaGen=now.toLocaleDateString('es-PE',{day:'2-digit',month:'long',year:'numeric'})+' '+now.toLocaleTimeString('es-PE',{hour:'2-digit',minute:'2-digit'});
+  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>SF Peruano — '+esc(d.label)+' — USO INTERNO</title>';
+  html+='<style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:Georgia,serif;max-width:820px;margin:32px auto;color:#1a2438;line-height:1.6;font-size:13px;}';
+  html+='.page-hdr{border-bottom:3px solid #005ea8;padding-bottom:10px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-end;}';
+  html+='.hdr-left h1{font-size:20px;color:#005ea8;font-family:sans-serif;}.hdr-left p{font-size:11px;color:#5a6e88;font-family:monospace;margin-top:2px;}';
+  html+='.hdr-right{text-align:right;font-family:monospace;font-size:10px;color:#5a6e88;}';
+  html+='.uso-interno{display:inline-block;background:#fee2e2;color:#991b1b;font-size:9px;font-weight:bold;font-family:monospace;letter-spacing:1px;padding:2px 8px;border-radius:3px;margin-top:4px;}';
+  html+='.section-title{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#005ea8;margin:20px 0 8px;font-family:monospace;border-left:3px solid #005ea8;padding-left:8px;}';
+  html+='.item{margin-bottom:12px;padding:10px 12px;background:#f8fafc;border-left:3px solid #d4dce8;page-break-inside:avoid;}';
+  html+='.item.top{border-left-color:#92710a;}.item.hl{background:#fefce8;border-left-color:#b45309;}';
+  html+='.item-meta{font-size:10px;color:#5a6e88;font-family:monospace;margin-bottom:4px;}';
+  html+='.item-title{font-size:13px;font-weight:bold;color:#1a2438;margin-bottom:5px;}';
+  html+='.item-summary{font-size:12px;color:#374151;}.item-source{font-size:10px;color:#9ab0c8;margin-top:4px;font-family:monospace;}';
+  html+='.footer{margin-top:32px;padding-top:10px;border-top:1px solid #d4dce8;font-size:9px;color:#9ab0c8;font-family:monospace;display:flex;justify-content:space-between;}';
+  html+='@media print{body{margin:16px;}}</style></head><body>';
+  html+='<div class="page-hdr"><div class="hdr-left"><h1>Sistema Financiero Peruano</h1>';
+  html+='<p>'+esc(d.label)+' · '+allNews.length+' noticias · Generado: '+fechaGen+'</p></div>';
+  html+='<div class="hdr-right"><div class="uso-interno">USO INTERNO</div><br>Departamento de Análisis del Sistema Financiero</div></div>';
+  if(top.length){
+    html+='<div class="section-title">Top '+top.length+' Noticias del Mes</div>';
+    top.forEach(function(n,i){
+      var hl=hlMap[n.id];
+      /* PATCH: usar fechaLegible() para convertir seriales Excel */
+      html+='<div class="item top'+(hl?' hl':'')+'"><div class="item-meta">'+esc(fechaLegible(n.fecha))+' · '+n.cats.map(function(c){return esc(c.lbl);}).join(' · ')+(hl?' · ⬡ Destacada':'')+'</div>';
+      html+='<div class="item-title">'+(i+1)+'. '+esc(n.titulo)+'</div>';
+      html+='<div class="item-summary">'+esc(n.resumen)+'</div>';
+      html+='<div class="item-source">'+esc(n.fuente)+'</div></div>';
+    });
+  }
+  html+='<div class="section-title">Todas las Noticias</div>';
+  allNews.forEach(function(n){
+    /* PATCH: usar fechaLegible() para convertir seriales Excel */
+    html+='<div class="item"><div class="item-meta">'+esc(fechaLegible(n.fecha))+' · '+n.cats.map(function(c){return esc(c.lbl);}).join(' · ')+'</div>';
+    html+='<div class="item-title">'+esc(n.titulo)+'</div>';
+    html+='<div class="item-summary">'+esc(n.resumen)+'</div>';
+    html+='<div class="item-source">'+esc(n.fuente)+'</div></div>';
+  });
+  html+='<div class="footer"><span>SF Peruano · Departamento de Análisis del Sistema Financiero · '+esc(d.label)+'</span><span>USO INTERNO — No distribuir sin autorización</span></div>';
+  
+  var win=window.open('','_blank','width=920,height=720');
+  win.document.write(html);win.document.close();
+  setTimeout(function(){win.print();},700);
+}
+
 function toggleAdmin(){
   var panel=getEl('adminPanel');
   if(!panel)return;
@@ -1157,7 +1082,6 @@ function checkPin(){
     getEl('adminEditor').style.display='block';
     var tog=getEl('adminToggle');if(tog){tog.textContent='🔓 Admin';tog.classList.add('active');}
     populateAdminSelect();
-    var box=getEl('top5SideBox');if(box)box.classList.add('admin-mode');
     setEl('adminPinError','');
   }else{
     setEl('adminPinError','PIN incorrecto');
@@ -1182,7 +1106,7 @@ function addToTop5(){
   var sel=getEl('adminNewsSelect');if(!sel||!sel.value)return;
   var id=sel.value;
   if(!manualTop5[activeMonth])manualTop5[activeMonth]=[];
-  if(manualTop5[activeMonth].length>=5){alert('El Top 5 ya está completo. Elimina una noticia primero.');return;}
+  if(manualTop5[activeMonth].length>=5){alert('El Top 5 ya está completo.');return;}
   manualTop5[activeMonth].push(id);
   buildManualTop5(activeMonth,DATA[activeMonth]);
   populateAdminSelect();
@@ -1202,7 +1126,6 @@ function toggleHighlight(month,id){
 function buildManualTop5(month,d){
   var allNews=[];
   if(d)d.quincenas.forEach(function(q){q.noticias.forEach(function(n){allNews.push(n);});});
-  /* Usar top5 desde el campo n.top5 exportado del Excel */
   var top=allNews.filter(function(n){return n.top5&&n.top5>0;});
   top.sort(function(a,b){return a.top5-b.top5;});
   var hlMap={};
@@ -1213,9 +1136,12 @@ function buildManualTop5(month,d){
       return;
     }
     var h='<div class="top5-grid">';
+    /* guardar noticias top5 en objeto global para modal */
+    window._t5Map={};
     top.forEach(function(n,r){
+      window._t5Map[n.id]={n:n,r:r};
       var hl=hlMap[n.id];
-      h+='<div class="t5-item'+(hl?' highlighted':'')+'">';
+      h+='<div class="t5-item t5-clickable'+(hl?' highlighted':'')+'" data-t5id="'+esc(n.id)+'" style="cursor:pointer;" title="Ver detalle">';
       h+='<div class="t5-rank"><span class="t5-num">'+(r+1)+'</span></div>';
       h+='<div class="t5-icon" style="color:'+catColor(n.cats)+'"><div style="width:26px;height:26px;">'+getCatSVG(n.cats)+'</div></div>';
       h+='<div class="t5-body"><div class="t5-title">'+esc(n.titulo)+'</div>';
@@ -1241,83 +1167,6 @@ function syncDrawerTop5(){
   if(side&&drawer)drawer.innerHTML=side.innerHTML;
 }
 
-/* ═══════════════════════════════════════════════
-   COMPARTIR
-═══════════════════════════════════════════════ */
-function shareNews(id,titulo,fuente){
-  var text=titulo+'\nFuente: '+fuente;
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(text).then(function(){flashShare(id);}).catch(function(){fallbackCopy(text,id);});
-  }else{fallbackCopy(text,id);}
-}
-function fallbackCopy(text,id){
-  var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
-  try{document.execCommand('copy');}catch(e){}
-  document.body.removeChild(ta);flashShare(id);
-}
-function flashShare(id){
-  var btn=getEl('sb_'+id);if(!btn)return;
-  btn.textContent='✓ Copiado';btn.classList.add('copied');
-  setTimeout(function(){btn.textContent='⎘ Copiar';btn.classList.remove('copied');},2000);
-}
-
-/* ═══════════════════════════════════════════════
-   EXPORT PDF
-═══════════════════════════════════════════════ */
-function exportPDF(){
-  var d=DATA[activeMonth];if(!d){alert('Sin datos.');return;}
-  var allNews=getAllNews();
-  var newsMap={};allNews.forEach(function(n){newsMap[n.id]=n;});
-  var top=(manualTop5[activeMonth]||[]).map(function(id){return newsMap[id];}).filter(Boolean);
-  var hlMap=top5Highlighted[activeMonth]||{};
-  var now=new Date();
-  var fechaGen=now.toLocaleDateString('es-PE',{day:'2-digit',month:'long',year:'numeric'})+' '+now.toLocaleTimeString('es-PE',{hour:'2-digit',minute:'2-digit'});
-  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>SF Peruano — '+esc(d.label)+' — USO INTERNO</title>';
-  html+='<style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:Georgia,serif;max-width:820px;margin:32px auto;color:#1a2438;line-height:1.6;font-size:13px;}';
-  html+='.page-hdr{border-bottom:3px solid #005ea8;padding-bottom:10px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-end;}';
-  html+='.hdr-left h1{font-size:20px;color:#005ea8;font-family:sans-serif;}.hdr-left p{font-size:11px;color:#5a6e88;font-family:monospace;margin-top:2px;}';
-  html+='.hdr-right{text-align:right;font-family:monospace;font-size:10px;color:#5a6e88;}';
-  html+='.uso-interno{display:inline-block;background:#fee2e2;color:#991b1b;font-size:9px;font-weight:bold;font-family:monospace;letter-spacing:1px;padding:2px 8px;border-radius:3px;margin-top:4px;}';
-  html+='.section-title{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#005ea8;margin:20px 0 8px;font-family:monospace;border-left:3px solid #005ea8;padding-left:8px;}';
-  html+='.item{margin-bottom:12px;padding:10px 12px;background:#f8fafc;border-left:3px solid #d4dce8;page-break-inside:avoid;}';
-  html+='.item.top{border-left-color:#92710a;}.item.hl{background:#fefce8;border-left-color:#b45309;}';
-  html+='.item-meta{font-size:10px;color:#5a6e88;font-family:monospace;margin-bottom:4px;}';
-  html+='.item-title{font-size:13px;font-weight:bold;color:#1a2438;margin-bottom:5px;}';
-  html+='.item-summary{font-size:12px;color:#374151;}.item-source{font-size:10px;color:#9ab0c8;margin-top:4px;font-family:monospace;}';
-  html+='.footer{margin-top:32px;padding-top:10px;border-top:1px solid #d4dce8;font-size:9px;color:#9ab0c8;font-family:monospace;display:flex;justify-content:space-between;}';
-  html+='@media print{body{margin:16px;}}</style></head><body>';
-  html+='<div class="page-hdr"><div class="hdr-left"><h1>Sistema Financiero Peruano</h1>';
-  html+='<p>'+esc(d.label)+' · '+allNews.length+' noticias · Generado: '+fechaGen+'</p></div>';
-  html+='<div class="hdr-right"><div class="uso-interno">USO INTERNO</div><br>Departamento de Análisis del Sistema Financiero</div></div>';
-  if(top.length){
-    html+='<div class="section-title">Top '+top.length+' Noticias del Mes</div>';
-    top.forEach(function(n,i){
-      var hl=hlMap[n.id];
-      html+='<div class="item top'+(hl?' hl':'')+'"><div class="item-meta">'+esc(n.fecha)+' · '+n.cats.map(function(c){return esc(c.lbl);}).join(' · ')+(hl?' · ⬡ Destacada':'')+'</div>';
-      html+='<div class="item-title">'+(i+1)+'. '+esc(n.titulo)+'</div>';
-      html+='<div class="item-summary">'+esc(n.resumen)+'</div>';
-      html+='<div class="item-source">'+esc(n.fuente)+'</div></div>';
-    });
-  }
-  html+='<div class="section-title">Todas las Noticias</div>';
-  allNews.forEach(function(n){
-    html+='<div class="item"><div class="item-meta">'+esc(n.fecha)+' · '+n.cats.map(function(c){return esc(c.lbl);}).join(' · ')+'</div>';
-    html+='<div class="item-title">'+esc(n.titulo)+'</div>';
-    html+='<div class="item-summary">'+esc(n.resumen)+'</div>';
-    html+='<div class="item-source">'+esc(n.fuente)+'</div></div>';
-  });
-  html+='<div class="footer"><span>SF Peruano · Departamento de Análisis del Sistema Financiero · '+esc(d.label)+'</span><span>USO INTERNO — No distribuir sin autorización</span></div>';
-  html+='</body></html>';
-  var win=window.open('','_blank','width=920,height=720');
-  win.document.write(html);win.document.close();
-  setTimeout(function(){win.print();},700);
-}
-
-/* ═══════════════════════════════════════════════
-   INIT
-═══════════════════════════════════════════════ */
-
-/* ── ESTADÍSTICAS ── */
 var statsOpen=false;
 function toggleStats(){
   statsOpen=!statsOpen;
@@ -1377,11 +1226,61 @@ function renderStats(){
   grid.innerHTML=html;
 }
 
+/* -- MODAL TOP5 -- */
+var _t5ModalData=null;
+function openT5Modal(n,rank){
+  if(!n)return;
+  _t5ModalData=n;
+  /* posicionar cerca del panel izquierdo */
+  var modal=getEl('t5Modal');
+  var overlay=getEl('t5ModalOverlay');
+  var panel=document.querySelector('.left-panel');
+  var panelW=panel?panel.offsetWidth:268;
+  modal.style.left=(panelW+8)+'px';
+  modal.style.top='80px';
+  /* llenar contenido */
+  var catsEl=getEl('t5ModalCats');
+  if(catsEl)catsEl.innerHTML=cbadges(n.cats||[])+(n.entidad?'<span class="cb-entidad">'+esc(n.entidad)+'</span>':'');
+  var titEl=getEl('t5ModalTitle');
+  if(titEl)titEl.textContent=n.titulo||'';
+  var resEl=getEl('t5ModalResumen');
+  if(resEl)resEl.textContent=n.resumen||'';
+  var rankEl=getEl('t5ModalRank');
+  if(rankEl)rankEl.textContent='#'+(rank+1)+' Top 5 · '+fechaLegible(n.fecha);
+  var urlEl=getEl('t5ModalUrl');
+  if(urlEl){
+    var href=n.url&&n.url.trim()!==''?n.url:'https://www.google.com/search?q='+encodeURIComponent((n.titulo||'').substring(0,60));
+    urlEl.href=href;
+  }
+  overlay.classList.add('open');
+}
+function closeT5Modal(e){
+  if(e&&e.target!==getEl('t5ModalOverlay'))return;
+  getEl('t5ModalOverlay').classList.remove('open');
+  _t5ModalData=null;
+}
+function copyT5Modal(){
+  if(!_t5ModalData)return;
+  var n=_t5ModalData;
+  var text=(n.titulo||'')+'\n\n'+(n.resumen||'')+'\n\nFuente: '+(n.fuente||'');
+  var btn=getEl('t5ModalCopy');
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(function(){
+      if(btn){btn.textContent='✓ Copiado';setTimeout(function(){btn.textContent='⎘ Copiar';},2000);}
+    });
+  }else{
+    var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');}catch(e2){}
+    document.body.removeChild(ta);
+    if(btn){btn.textContent='✓ Copiado';setTimeout(function(){btn.textContent='⎘ Copiar';},2000);}
+  }
+}
+/* cerrar con Escape */
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeT5Modal(null);});
+
 window.addEventListener('DOMContentLoaded',function(){
-  /* footer date */
   var fd=getEl('footerDate');
   if(fd)fd.textContent=new Date().toLocaleDateString('es-PE',{day:'2-digit',month:'long',year:'numeric'});
-  /* live clock */
   var DIAS=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
   var MESES=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
   function tickClock(){
@@ -1397,7 +1296,39 @@ window.addEventListener('DOMContentLoaded',function(){
   setInterval(tickClock,1000);
   buildMonthCascade();
   renderContent();
+  /* event delegation para Top5 modal */
+  document.addEventListener('click',function(e){
+    var item=e.target.closest('.t5-clickable');
+    if(item){
+      var tid=item.getAttribute('data-t5id');
+      if(tid&&window._t5Map&&window._t5Map[tid]){
+        openT5Modal(window._t5Map[tid].n, window._t5Map[tid].r);
+      }
+    }
+  });
 });
 </script>
+<!-- MODAL TOP5 -->
+<div class="t5-modal-overlay" id="t5ModalOverlay" onclick="closeT5Modal(event)">
+  <div class="t5-modal" id="t5Modal">
+    <div class="t5-modal-header">
+      <div style="flex:1;min-width:0;">
+        <div class="t5-modal-cats" id="t5ModalCats"></div>
+        <div class="t5-modal-title" id="t5ModalTitle"></div>
+      </div>
+      <button class="t5-modal-close" onclick="closeT5Modal(null)">✕</button>
+    </div>
+    <div class="t5-modal-body">
+      <div class="t5-modal-resumen" id="t5ModalResumen"></div>
+    </div>
+    <div class="t5-modal-footer">
+      <span class="t5-modal-rank" id="t5ModalRank"></span>
+      <div style="display:flex;gap:6px;">
+        <a class="share-btn" id="t5ModalUrl" href="#" target="_blank" rel="noopener">↗ Ver fuente</a>
+        <button class="share-btn" id="t5ModalCopy" onclick="copyT5Modal()">⎘ Copiar</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
