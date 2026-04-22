@@ -249,6 +249,11 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .cb-coopac{color:#9d174d;background:rgba(190,24,93,0.1);}
 .cb-solvencia{color:#0f766e;background:rgba(15,118,110,0.1);}
 .cb-rentabilidad{color:#b45309;background:rgba(180,83,9,0.1);}
+.cb-quiebras{color:#dc2626;background:rgba(220,38,38,0.1);}
+.cb-innovacion{color:#7c3aed;background:rgba(124,58,237,0.1);}
+.cb-fondeo{color:#0369a1;background:rgba(3,105,161,0.1);}
+.cb-calidad{color:#0f766e;background:rgba(15,118,110,0.08);}
+.cb-pagos{color:#b45309;background:rgba(180,83,9,0.08);}
 .cb-entidad{font-family:var(--mono);font-size:9px;font-weight:600;padding:2px 8px;border-radius:3px;
   background:var(--surface2);border:1px solid var(--border2);color:var(--text-dim);
   text-transform:uppercase;letter-spacing:0.5px;}
@@ -762,7 +767,12 @@ var CAT_SVG={
   microfinanzas:'<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="22" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M24 16v2m0 8v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 38c0-4 6-7 14-7s14 3 14 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/></svg>',
   solvencia:'<svg viewBox="0 0 48 48" fill="none"><rect x="8" y="10" width="32" height="28" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M16 24h16M16 30h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
   rentabilidad:'<svg viewBox="0 0 48 48" fill="none"><path d="M6 36l8-10 7 4 8-14 8 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-  internacional:'<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="1.5"/><ellipse cx="24" cy="24" rx="8" ry="18" stroke="currentColor" stroke-width="1.5"/><path d="M6 24h36" stroke="currentColor" stroke-width="1.5"/></svg>'
+  internacional:'<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="1.5"/><ellipse cx="24" cy="24" rx="8" ry="18" stroke="currentColor" stroke-width="1.5"/><path d="M6 24h36" stroke="currentColor" stroke-width="1.5"/></svg>',
+  quiebras:'<svg viewBox="0 0 48 48" fill="none"><path d="M24 6L6 18v6c0 10 7 17 18 20 11-3 18-10 18-20v-6L24 6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M17 24l4 4 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/><line x1="24" y1="16" x2="24" y2="26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="30" r="1.5" fill="currentColor"/></svg>',
+  innovacion:'<svg viewBox="0 0 48 48" fill="none"><rect x="12" y="4" width="24" height="40" rx="4" stroke="currentColor" stroke-width="1.5"/><path d="M20 18l3 3 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="36" cy="12" r="6" fill="currentColor" opacity="0.2" stroke="currentColor" stroke-width="1.2"/><path d="M36 9v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
+  fondeo:'<svg viewBox="0 0 48 48" fill="none"><rect x="4" y="11" width="40" height="26" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M4 20h40" stroke="currentColor" stroke-width="2"/><circle cx="14" cy="30" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M22 29h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+  calidad:'<svg viewBox="0 0 48 48" fill="none"><rect x="8" y="10" width="32" height="28" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M16 22l5 5 10-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  pagos:'<svg viewBox="0 0 48 48" fill="none"><rect x="6" y="14" width="36" height="24" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M6 21h36" stroke="currentColor" stroke-width="2"/><path d="M14 30h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="34" cy="30" r="3" stroke="currentColor" stroke-width="1.5"/></svg>'
 };
 
 function getCatSVG(cats){
